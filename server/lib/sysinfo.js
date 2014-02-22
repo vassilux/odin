@@ -25,23 +25,12 @@ var doit = function(host, port, callback) {
 
     try {
         var socket = new net.Socket();
-
-        /*var socket = net.createConnection(port, host, function() {
-        logger.debug("sysinfo created connection.");
-    });*/
-
-        /**
-         * Send a command to the system info server
-         */
-
         socket.connect(port, host, function() {
             logger.debug("sysinfo connected to the server, send the sysinfo command.");
             var cmd = {};
             cmd.type = 'getsysinfo';
             sendCommand(socket, cmd)
         });
-
-
 
         socket.on('data', function(data) {
             // Send the message to end the connection
@@ -51,16 +40,7 @@ var doit = function(host, port, callback) {
             cmd.type = 'quit';
             sendCommand(socket, cmd)
 
-        })
-        /*.on('connect', function() {
-        // Send the request to the server for get the informations
-        logger.debug("sysinfo connected to the server, send the sysinfo command.");
-        var cmd = {};
-        cmd.type = 'getsysinfo';
-        sendCommand(socket, cmd)
-
-    })*/
-        .on('end', function() {
+        }).on('end', function() {
             logger.debug("sysinfo the connection to the server ended.");
         }).on('error', function(error) {
             logger.debug("Try get the system informations from server on address " + host + ' and port ' + port + '. Get an error' + error);
@@ -78,8 +58,6 @@ var doit = function(host, port, callback) {
 exports.get = function(port, host, callback) {
     try {
         logger.debug("Try get the system informations from server on address " + host + ' and port ' + port + '.');
-        //return callback('{}');
-
         return doit(port, host, function(data) {
             data.info = info();
             return callback(data);
