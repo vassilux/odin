@@ -6335,3 +6335,4 @@
 2014-02-21 17:18:09,825 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
 2014-02-21 17:18:09,951 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
 2014-02-21 17:18:09,955 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:55623] from factory.
+2014-02-22 14:01:27,339 - odin_sys - run_sys.py - 49 - DEBUG - ODINSYS : Server started and listen on the port : 3003
