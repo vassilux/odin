@@ -20,7 +20,8 @@ fi
 rm -rf  ./pyodin/logs/*
 #
 mkdir "$DEPLOY_DIR"
-cp -aR client "$DEPLOY_DIR"
+mkdir "$DEPLOY_DIR/app"
+cp -aR client/app "$DEPLOY_DIR/app"
 cp -aR install "$DEPLOY_DIR"
 cp -aR pyodin "$DEPLOY_DIR"
 cp -aR server "$DEPLOY_DIR"
