@@ -1,0 +1,1 @@
+# Check F1COM message 0x1B for outgoing call and add the pearameter to the config file
