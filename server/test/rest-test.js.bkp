@@ -1,0 +1,108 @@
+var request = require('superagent'); 
+var expect = require('expect.js');
+//
+const TEST_HOST="http://localhost:3001/api/users";
+
+var testUser={firstName:"test",lastName:"userTest",username:"userTest", password:"crackmeplease", admin: true};
+var testNewUser= {firstName:"newfirstName",lastName:"userlastName",username:"userTest", password:"crackmepleasemoretime", admin: false};
+
+
+describe('Users test suite ', function(){
+	it('should get users without error', function(done){
+		request.get(TEST_HOST).end(function(res){
+			expect(res).to.exist;
+			expect(res.status).to.equal(200); 
+			//must find one admin
+			expect(JSON.stringify(res.body)).to.contain('admin');
+			//must got an array of users
+			expect(res.body).to.be.an('array');
+			done();
+		});
+
+	});
+
+	it('should delete user without error', function(done){
+		request
+		.del(TEST_HOST+ '/userTest')
+		.end(function(res){
+			expect(res).to.exist;
+			expect(res.status).to.equal(404); 
+			//console.log(res.body)
+			done();
+		});
+	});
+
+
+	it('should create user without error', function(done){
+		request
+		.post(TEST_HOST)
+		.send(testUser)
+		.set('Content-Type', 'application/json')		
+		.end(function(res){
+			expect(res).to.exist;
+			expect(res.status).to.equal(200); 
+			done();
+		});
+	});
+	
+	//
+	it('should create user with an error, user cause user existe', function(done){
+		request
+		.post(TEST_HOST)
+		.send(testUser)
+		.set('Content-Type', 'application/json')		
+		.end(function(res){
+			expect(res).to.exist;
+			expect(res.status).to.equal(404); 
+			done();
+		});
+	});
+
+	//
+	it('should get the user without error', function(done){
+		request
+		.get(TEST_HOST+ '/userTest')
+		.end(function(res){
+			expect(res).to.exist;
+			expect(res.status).to.equal(200);
+			done();
+		});
+	});
+
+	//
+	it('should update the user without error', function(done){
+		request
+		.put(TEST_HOST+ '/userTest')
+		.send(testNewUser)
+		.end(function(res){
+			expect(res).to.exist;
+			expect(res.status).to.equal(200);
+			done();
+		});
+	});
+
+	it('should get the user with new updated data ', function(done){
+		request
+		.get(TEST_HOST+ '/userTest')
+		.end(function(res){
+			expect(res).to.exist;
+			expect(res.status).to.equal(200);
+			console.log(JSON.stringify(res.body));
+			expect(JSON.stringify(res.body)).to.contain('newfirstName');
+			done();
+		});
+	});
+
+	//
+	/*it('should delete user without error', function(done){
+		request
+		.del(TEST_HOST+ '/userTest')
+		.end(function(res){
+			expect(res).to.exist;
+			expect(res.status).to.equal(200); 
+			done();
+		});
+	});*/
+ 	
+}); 
+
