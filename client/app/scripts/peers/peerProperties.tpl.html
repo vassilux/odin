@@ -1,0 +1,18 @@
+<form name="form" novalidate class="login-form">
+    <div class="modal-header">
+        
+    </div>
+    <div class="modal-body">
+        <div class="alert alert-info"> <span data-i18n="_peers.dialog.properties.title_">User/Peer Properties</span> : {{currentPeerProperties.channel}}</div>
+       
+         <ul ng-repeat="item in requestResponse"> 
+          <li>{{item}}</li>
+         </ul>
+	    
+
+    </div>
+    
+    <div class="modal-footer">
+       <button class="btn btn-warning cancel" ng-click="closePeerProperties()" data-i18n="_peers.dialog.properties.close_">Close</button>
+    </div>
+</form>

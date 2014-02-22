@@ -1,0 +1,22 @@
+<form name="form" novalidate class="login-form">
+    <div class="modal-header">
+        
+    </div>
+    <div class="modal-body">
+        <div class="alert alert-info" data-i18n="_peers.dialog.info.title_"> User/Peer informations </div>
+      	<ul>
+	    	<li><span data-i18n="_peers.dialog.info.object_type_">Object Type</span>  : {{currentPeer.objecttype}}   </li>
+	    	<li><span data-i18n="_peers.dialog.info.channel_type_">Channel Type</span> : {{currentPeer.channeltype}}  </li>
+	    	<li><span data-i18n="_peers.dialog.info.channel_">Channel</span>: {{currentPeer.channel}}      </li>
+	    	<li><span data-i18n="_peers.dialog.info.status_">Status</span>: {{currentPeer.status}}       </li>
+	      <li><span data-i18n="_peers.dialog.info.forced_cid_">Forced CID</span>  : {{currentPeer.forcedCid}}    </li>
+	      <li><span data-i18n="_peers.dialog.info.caller_id_">Caller ID</span>    : {{currentPeer.callerid}}     </li>
+	      <li><span data-i18n="_peers.dialog.info.context_">Context      : {{currentPeer.context}}      </li>
+		</ul>
+
+    </div>
+    
+    <div class="modal-footer">
+       <button class="btn btn-warning cancel" ng-click="closePeerInfo()" data-i18n="_peers.dialog.info.close_">Close</button>
+    </div>
+</form>

@@ -1,0 +1,22 @@
+<form name="form" novalidate class="login-form">
+  <div class="modal-header">
+
+  </div>
+  <div class="modal-body">
+    <div class="alert alert-info"> Channel {{currentChannel.channel}} informations </div>
+    <ul>
+      <li>Spy  : {{currentChannel.spy}}   </li>
+      <li>Monitor : {{currentChannel.monitor}}  </li>
+      <li>Caller Number	 : {{currentChannel.calleridnum}}      </li>
+      <li>Caller Name    : {{currentChannel.calleridname}}       </li>
+      <li>State  : {{currentChannel.state}}    </li>
+      <li>Start time    : {{currentChannel.starttime}}     </li>
+      <li>Unique id      : {{currentChannel.uniqueid}}      </li>
+    </ul>
+
+  </div>
+
+  <div class="modal-footer">
+   <button class="btn btn-warning cancel" ng-click="closeChannelInfo()">Close</button>
+ </div>
+</form>

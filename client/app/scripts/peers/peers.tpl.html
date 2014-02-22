@@ -1,0 +1,86 @@
+<div class="row-fluid">
+	<div class = "span12" ng-init="peersSipCollapsed=false"> 
+    <div>
+      <div ng-click="peersSipCollapsed = !peersSipCollapsed">
+        <span ng-show="peersSipCollapsed" >[ + ] <span class="badge" data-i18n="_peers.title.sippeers_">SIP peers </span></span>
+        <span ng-hide="peersSipCollapsed" >[ - ] <span class="badge" data-i18n="_peers.title.sippeers_">SIP peers </span><span>
+      </div>
+      <div ng-hide="peersSipCollapsed">    
+        <div ng-repeat="peer in peersSip"> 
+          <span class="span2">
+          <div class="padded">
+          <table class="table table-bordered table-striped">
+           <tr >
+            <th colspan="2" nowrap="nowrap">
+              <span class="dropdown">
+                <a class="dropdown-toggle"> 
+                  <b><span >{{peer.callerid}}</span></b>
+                  <ul class="dropdown-menu">
+                    <li><a ng-click="originate(peer)" data-i18n="_peers.menu.originate_call_">Originate Call</a></li>
+                    <li ng-show="canBeSpyed(peer)"><a ng-click="spyPeer(peer)" data-i18n="_peers.menu.spy_">Spy peer</a></li>
+                    <li><a ng-click="showPeerInfo(peer)" data-i18n="_peers.menu.show_info_">Show Info</a></li>
+                    <li class="devider"></li>
+                    <li><a ng-click="showProperties(peer)" data-i18n="_peers.menu.show_properties_">Properties</a></li>
+                  </ul>
+                </a>
+              </span>
+            </th>
+          </tr>
+          <tr>
+            <td class="status{{peer.status}}" ><span >{{peer.status}}</span></td>
+            <td class="status{{peer.callstatus}}"><span  id="{{peer.peername}}-calls">{{peer.calls}}</span>call(s)</td>
+          </tr>
+        </table> 
+        </div> <!-- padded -->       				
+      </span>
+    </div>        
+  </div>
+</div>
+</div>
+</div>
+
+<div class="row">
+</br>
+</div>
+
+<div class="row-fluid">
+  <div class = "span12" ng-init="iax2SipCollapsed=false"> 
+    <div>
+      <div ng-click="iax2SipCollapsed = !iax2SipCollapsed">
+        <span ng-show="iax2SipCollapsed">[ + ] <span class="badge" data-i18n="_peers.title.iax2peers_">IAX2 peers </span></span>
+        <span ng-hide="iax2SipCollapsed">[ - ] <span class="badge" data-i18n="_peers.title.iax2peers_">IAX2 peers </span><span>
+      </div>
+      <div ng-hide="iax2SipCollapsed">
+        <div ng-repeat="peer in peersIax"> 
+
+              <span class="span2">
+              <div class="padded">
+              <table class="table table-bordered table-striped">
+               <tr >
+                <th colspan="2" nowrap="nowrap">
+                  <span class="dropdown">
+                    <a class="dropdown-toggle"> 
+                      <b><span >{{peer.callerid}}</span></b>
+                      <ul class="dropdown-menu">
+                        <li><a ng-click="originate(peer)">Originate Call</a></li>
+                        <li><a ng-click="showPeerInfo(peer)">Show Info</a></li>
+                        <li class="devider"></li>
+                        <li><a ng-click="showProperties(peer)">Properties</a></li>
+                      </ul>
+                    </a>
+                  </span>
+                </th>
+              </tr>
+              <tr>
+                <td class="status{{peer.status}}" ><span >{{peer.status}}</span></td>
+                <td class="status{{peer.callstatus}}"><span  id="{{peer.peername}}-calls">{{peer.calls}}</span>call(s)</td>
+              </tr>
+            </table> 
+            </div> <!-- padded -->              
+          </span>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

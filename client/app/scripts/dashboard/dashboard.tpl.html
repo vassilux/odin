@@ -1,0 +1,153 @@
+
+<div class="row">
+
+  <div class = "span4" ng-init="astStatCollapsed=false">
+    <div ng-click="astStatCollapsed = !astStatCollapsed" >
+        <span ng-show="astStatCollapsed">[ + ] <span class="badge" data-i18n="_dashboard.asterisk.info.title_">Asterisk statistics </span></span>
+        <span ng-hide="astStatCollapsed">[ - ] <span class="badge" data-i18n="_dashboard.asterisk.info.title_">Asterisk statistics </span><span>
+
+        <div ng-hide="astStatCollapsed">
+          <table class="table table-hover table-bordered table-striped cell-highlight" style="margin-top: 10px" >
+            <tr >
+              <td data-i18n="_dashboard.asterisk.info.version_">Asterisk:</td> <td>{{asteriskInfo.version}}</td>
+            </tr>
+            <tr>
+              <td data-i18n="_dashboard.asterisk.info.uptime_">Up time : </td> <td>{{asteriskInfo.upTime}}</td>
+            </tr>
+            <tr>
+              <td data-i18n="_dashboard.asterisk.info.lastreload_">Last reload : </td> <td>{{asteriskInfo.reloadTime}} </td>
+            </tr>
+            <!--<tr>
+              <td data-i18n="_dashboard.asterisk.info.channels.used_">Channels in use : </td> <td>{{asteriskInfo.channelsInUse}} </td>
+            </tr> -->
+            <tr>
+              <td data-i18n="_dashboard.asterisk.info.active_calls_">Active actives : </td> <td>{{asteriskInfo.activeCalls}} </td>
+            </tr>
+            <tr>
+              <td data-i18n="_dashboard.asterisk.info.processed_calls_">Processed calls : </td> <td>{{asteriskInfo.processedCalls}} </td>
+            </tr>
+          </table>
+        </div>
+    </div>
+  </div>
+
+  <div class = "span8" ng-init="OSStatsCollapsed=false">
+    <div ng-click="OSStatsCollapsed = !OSStatsCollapsed" >
+        <span ng-show="OSStatsCollapsed">[ + ] <span class="badge" data-i18n="_dashboard.os.info.title_">Operating system statistics </span></span>
+        <span ng-hide="OSStatsCollapsed">[ - ] <span class="badge" data-i18n="_dashboard.os.info.title_">Operating system statistics </span><span>
+
+        <div ng-hide="OSStatsCollapsed">
+            <table class="table table-hover table-bordered table-striped cell-highlight" style="margin-top: 10px">
+          <tbody>    
+            <tr>
+              <td data-i18n="_dashboard.os.info.hostname_">Hostname : </td><td>{{osinfostats.hostname}}</td>
+            </tr>
+            <tr>
+              <td data-i18n="_dashboard.os.info.systemtime_">System time : </td><td>{{osinfostats.time.systime}}</td>
+            </tr>
+            <tr>
+              <td data-i18n="_dashboard.os.info.uptime_">Uptime   : </td><td>{{osinfostats.time.uptime}}</td>
+            </tr>
+          </tbody>
+        </table>      
+        <!-- memory parts-->
+        <table class="table table-hover table-bordered table-striped cell-highlight" style="margin-top: 10px">
+          <tbody>    
+            <tr>
+              <td data-i18n="_dashboard.os.info.swap.total_">Swap total : </td><td>{{osinfostats.memory.swap.total}}</td>
+            </tr>
+            <tr>
+              <td data-i18n="_dashboard.os.info.swap.used_">Swap used : </td><td>{{osinfostats.memory.swap.used}}</td>
+            </tr>
+            <tr>
+              <td data-i18n="_dashboard.os.info.ram.total_">Total  RAM : </td><td>{{osinfostats.memory.virtual.total}}</td>
+            </tr>
+
+             <tr>
+              <td data-i18n="_dashboard.os.info.ram.used_">Used   RAM : </td><td>{{osinfostats.memory.virtual.used}}</td>
+            </tr>
+          </tbody>
+        </table>      
+        <!-- -->
+        <!-- hard drives part-->
+        <table class="table table-hover table-bordered table-striped cell-highlight" style="margin-top: 10px">
+              <thead>
+                  <tr>
+                      <th data-i18n="_dashboard.os.info.drive.device_">Device</th>
+                      <th data-i18n="_dashboard.os.info.drive.mount_">Mount</th>
+                      <th data-i18n="_dashboard.os.info.drive.type_">Type</th>
+                      <th data-i18n="_dashboard.os.info.drive.total_">Total</th>
+                      <th data-i18n="_dashboard.os.info.drive.free_">Free</th>
+                      <th data-i18n="_dashboard.os.info.drive.precent_">Precent</th>
+                  </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="disk in osinfostats.disks">
+                  <td>{{disk.device}}</td>
+                  <td>{{disk.mount}}</td>   
+                  <td>{{disk.type}}</td> 
+                  <td>{{disk.total}}</td> 
+                  <td>{{disk.free}}</td> 
+                  <td>{{disk.precent}}</td>           
+                </tr>
+              </tbody>
+          </table> 
+        <!-- end of hard drives part-->
+            <!-- network interfaces part -->
+        <table class="table table-hover table-bordered table-striped cell-highlight" style="margin-top: 10px">
+              <thead>
+                  <tr>
+                      <th data-i18n="_dashboard.os.info.inf.name_">name</th>
+                      <th data-i18n="_dashboard.os.info.inf.address_">address</th>
+                      <th data-i18n="_dashboard.os.info.inf.packets_sent_">packets_sent</th>
+                      <th data-i18n="_dashboard.os.info.inf.packets_recv_">packets_recv</th>
+                      <th data-i18n="_dashboard.os.info.inf.errout_">errout</th>
+                      <th data-i18n="_dashboard.os.info.inf.errin_">errin</th>
+                  </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="inf in osinfostats.infs">
+                  <td>{{inf.name}}</td>
+                  <td>{{inf.addr}}</td>   
+                  <td>{{inf.data.packets_sent}}</td> 
+                  <td>{{inf.data.packets_recv}}</td> 
+                  <td>{{inf.data.errout}}</td> 
+                  <td>{{inf.data.errin}}</td>           
+                </tr>
+              </tbody>
+          </table> 
+        <!-- end of network interfaces part-->
+      </div>
+    </div>
+  </div>
+</div> <!-- row -->
+
+<div class="row">
+</div>
+
+<div class="row">
+<br>
+</div>
+
+<!--
+<div class="row">
+  <div class = "span4" ng-init="clusterStatCollapsed=false">
+    <div ng-click="clusterStatCollapsed = !clusterStatCollapsed" >
+      <span ng-show="clusterStatCollapsed">[ + ] <span class="badge badge-info"> Cluster statistics </span></span>
+      <span ng-hide="clusterStatCollapsed">[ - ] <span class="badge badge-info"> Cluster statistics </span><span>
+
+      <div ng-hide="clusterStatCollapsed">
+        <table class="table table-bordered table-striped cell-highlight" style="margin-top: 20px">
+          <tbody ng-repeat="info in clusterinfo.nodes">
+            <tr>
+              <td>{{info.name}}</td>
+              <td>{{info.status}}</td>
+            </tr>
+          <tbody>
+        </table>
+    </div>
+  </div>
+</div> 
+-->
+<!-- row -->
+

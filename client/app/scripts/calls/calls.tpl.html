@@ -1,0 +1,154 @@
+<div class="row-fluid">
+  <div class = "span3" ng-init="channelsCollapsed=false"> 
+      <div>
+          <div ng-click="channelsCollapsed = !channelsCollapsed">
+            <span ng-show="channelsCollapsed" >[ + ]<span class="badge" data-i18n="_calls.channels.title_"> Channels </span></span>
+            <span ng-hide="channelsCollapsed" >[ - ]<span class="badge" data-i18n="_calls.channels.title_"> Channels </span><span>
+          </div>
+          <div ng-hide="channelsCollapsed">
+            <table class="table table-bordered table-condensed table-striped">
+              <thead>
+                  <tr>
+                      <th data-i18n="_calls.channels.column.channel_">Channel</th>
+                      <th data-i18n="_calls.channels.column.state_">State</th>
+                  </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="chan in channels">
+                  <td>
+                    <!--<span class="btn-group">
+                      <a class="btn btn-primary" href="#"><i class="icon-user icon-white"></i> {{chan.channel}}</a>
+                      <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a ng-click="hangupChannel(chan.channel)"><i class="icon-pencil"></i> Hangup</a></li>
+                        <li class="divider"></li>
+                        <li><a ng-click="showChannelInfo(chan)"><i class="i"></i> Show channel info</a></li>
+                      </ul>
+                    </span>-->
+                    <span class="dropdown">
+                        <a class="dropdown-toggle">
+                          <span >{{chan.channel}}</span>
+                          <ul class="dropdown-menu">
+                            <!-- not yet ready <li><a ng-click="transferChannel(chan.channel)" data-i18n="_calls.channels.menu.transfer_">Transfer</a></li> -->
+                            <li ng-show="!isMonitoredChannel(chan)" ><a ng-click="startMonitor(chan)" data-i18n="_calls.channels.menu.start_monitor_">Start Monitor</a></li>
+
+                             <li><a ng-click="spyChannel(chan)" data-i18n="_calls.channels.spy_">Spy channel</a></li>
+
+                            <li ng-show="isMonitoredChannel(chan)"><a ng-click="stopMonitor(chan)" data-i18n="_calls.channels.menu.stop_monitor_">Stop Monitor</a></li>
+                            <li class="devider"></li>
+                            <li><a ng-click="showChannelInfo(chan)" data-i18n="_calls.channels.menu.show_info_">Show channel info</a></li>
+                            <li><a ng-click="hangupChannel(chan.channel)" data-i18n="_calls.channels.menu.hangup_">Hangup</a></li>
+                            
+                          </ul>
+                        </a>
+                    </span>
+                    
+                  </td>
+                  <td><span class="status{{chan.state}}">{{chan.state}}</span></td>             
+                </tr>
+              </tbody>
+            </table> 
+          </div>  
+      </div>
+    </div>
+
+    <div class = "span4" ng-init="callsCollapsed=false"> 
+      <div>
+          <div ng-click="callsCollapsed = !callsCollapsed">
+            <span ng-show="callsCollapsed" >[ + ]<span class="badge" data-i18n="_calls.calls.title_"> Calls </span></span>
+            <span ng-hide="callsCollapsed" >[ - ]<span class="badge" data-i18n="_calls.calls.title_">Calls </span><span>
+          </div>
+          <div ng-hide="callsCollapsed">
+            <table class="table table-bordered table-condensed table-striped table-hover">
+              <thead>
+                  <tr>
+                      <th data-i18n="_calls.calls.column.source_">Source</th>
+                      <th data-i18n="_calls.calls.column.status_">Status</th>
+                      <th data-i18n="_calls.calls.column.destination_">Destination</th>
+                  </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="call in calls">
+                  <td>
+                    <span class="dropdown">
+                    <a class="dropdown-toggle"> 
+                      <span >
+                         {{call.channel}}</br>{{call.calleridname}} &#60;{{call.calleridnum}}&#62;
+                      </span>
+                      <ul class="dropdown-menu">
+                        <li><a ng-click="transferChannel(call.channel)">Transfer</a></li>
+                        <li><a ng-click="parkChannel(call.channel, call.bridgedchannel)" data-i18n="_calls.calls.menu.park_">Park</a></li>
+                        <li><a ng-click="hangupChannel(call.channel)" data-i18n="_calls.calls.menu.hangup_">Hangup</a></li>
+                        <li class="devider"></li>
+                        <li><a ng-click="showCallInfo(call)" data-i18n="_calls.calls.menu.show_info_">Show call info</a></li>
+                      </ul>
+                    </a>
+                    </span>
+                  </td>
+                  <td><span class="status{{call.status}}">{{call.status}}</span></td>
+                  <td>
+                    <span class="dropdown">
+                    <a class="dropdown-toggle"> 
+                      <span >
+                        {{call.bridgedchannel}}</br>{{call.bridgedidname}} &#60;{{call.bridgedidnum}}&#62;
+                        </span>
+                      <ul class="dropdown-menu">
+                        <li><a ng-click="parkChannel(call.bridgedchannel, call.channel)" data-i18n="_calls.calls.menu.park_">Park</a></li>
+                        <li><a ng-click="hangupChannel(call.bridgedchannel)" data-i18n="_calls.calls.menu.hangup_">Hangup</a></li>
+                        <li class="devider"></li>
+                      </ul>
+                    </a>
+                    </span>
+                  </td>           
+                </tr>
+              </tbody>
+            </table> 
+          </div>  
+      </div>
+  </div>
+  <!-- -->
+  <div class = "span5" ng-init="parkedCallsCollapsed=false"> 
+      <div>
+          <div ng-click="parkedCallsCollapsed = !callsCollapsed">
+            <span ng-show="parkedCallsCollapsed" >[ + ]<span class="badge" data-i18n="_calls.parkedcalls.title_">Parked Calls </span></span>
+            <span ng-hide="parkedCallsCollapsed" >[ - ]<span class="badge" data-i18n="_calls.parkedcalls.title_">Parked Calls </span><span>
+          </div>
+          <div ng-hide="parkedCallsCollapsed">
+            <table class="table table-bordered table-condensed table-striped table-hover">
+              <thead>
+                  <tr>
+                      <th data-i18n="_calls.parkedcalls.column.call_">Parked call</th>
+                      <th data-i18n="_calls.parkedcalls.column.extention_">Extention</th>
+                      <th data-i18n="_calls.parkedcalls.column.from_">Parked from</th>
+                  </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="parkedCall in parkedCalls">
+                  <td>
+                    <span class="dropdown">
+                    <a class="dropdown-toggle"> 
+                      <span >
+                         {{parkedCall.channel}}</br>{{parkedCall.calleridname}} &#60;{{parkedCall.calleridnum}}&#62;
+                      </span>
+                      <ul class="dropdown-menu">
+ 
+                        <li><a ng-click="hangupChannel(parkedCall.channel)" data-i18n="_calls.calls.menu.hangup_">Hangup</a></li>
+                        <li class="devider"></li>
+                        <li><a ng-click="showCallInfo(parkedCall)" data-i18n="_calls.calls.menu.show_info_">Show call info</a></li>
+                      </ul>
+                    </a>
+                    </span>
+                  </td>
+                  <td><span class="statusParked">{{parkedCall.exten}}</span></td>
+                  <td>
+                    <span >
+                        {{parkedCall.channelFrom}}</br>{{parkedCall.calleridnameFrom}} &#60;{{parkedCall.calleridnumFrom}}&#62;
+                    </span>
+                  </td>           
+                </tr>
+              </tbody>
+            </table> 
+          </div>  
+      </div>
+  <!-- -->
+</div>

@@ -1,0 +1,12 @@
+<form>
+	<div class="modal-header">
+		<div class="alert alert-info"><span data-i18n="_users.dialog.remove_user.title_"> User will be removed </span> : {{userToRemove.username}}. </div>
+	</div>
+	<div class="modal-body">
+		<div class="alert alert-warning" data-i18n="_users.dialog.remove_user.warning_"> Are you sure to remove user ?</div>
+	</div>
+	<div class="modal-footer">
+	<button ng-click="close('cancel')" class="btn btn-primary" data-i18n="_users.dialog.remove_user.cancel_btn_">Cancel</button>
+	<button ng-click="close('ok')" class="btn btn-danger btn-primary" data-i18n="_users.dialog.remove_user.ok_btn_">OK</button>
+	</div>
+</form>

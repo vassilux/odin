@@ -1,0 +1,15 @@
+<form name="form" novalidate class="login-form">
+    <div class="modal-header">
+        <h4 data-i18n="_calls.transfer.title_">Transfer call </h4>
+    </div>
+    <div class="modal-body">
+        <div class="alert alert-info"><span data-i18n="_calls.transfer.from_">Transfer from </span> {{currentTransferCall.source}}</div>
+        <div class="alert alert-info" data-i18n="_calls.transfer.to_">Transfer to :</div>
+        <label data-i18n="_calls.transfer.to.destination_">Destination number </label>
+        <input name="login" type="originatecalldestination" ng-model="currentTransferCall.destination" required autofocus>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary login" ng-click="transferCall()" ng-disabled='form.$invalid' data-i18n="_peers.dialog.originate.dial_">Dial</button>
+        <button class="btn btn-warning cancel" ng-click="cancelTransfer()" data-i18n="_peers.dialog.originate.cancel_">Cancel</button>
+    </div>
+</form>

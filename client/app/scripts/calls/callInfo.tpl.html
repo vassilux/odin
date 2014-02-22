@@ -1,0 +1,22 @@
+<form name="form" novalidate class="login-form">
+  <div class="modal-header">
+
+  </div>
+  <div class="modal-body">
+    <div class="alert alert-info"> Call informations </div>
+    <ul>
+      <li>Source  : {{currentCall.calleridname}} {{currentCall.calleridnum}}   </li>
+      <li>Destination : {{currentCall.bridgedidnum}} {{currentCall.bridgedidname}}  </li>
+      <li>Source channel	 : {{currentCall.channel}}      </li>
+      <li>Destination  channel    : {{currentCall.bridgedchannel}}       </li>
+      <li>Seconds  : {{currentCall.seconds}}    </li>
+      <li>Dial time    : {{currentCall.dialtime}}     </li>
+      <li>Status      : {{currentCall.status}}      </li>
+    </ul>
+
+  </div>
+
+  <div class="modal-footer">
+   <button class="btn btn-warning cancel" ng-click="closeCallInfo()">Close</button>
+ </div>
+</form>

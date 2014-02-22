@@ -1,0 +1,15 @@
+<form name="form" novalidate class="login-form">
+    <div class="modal-header">
+        <h4 data-i18n="_peers.dialog.originate.title_">Originate Call</h4>
+    </div>
+    <div class="modal-body">
+        <div class="alert alert-info"><span data-i18n="_peers.dialog.originate.from_">Originate call from </span> {{originateCall.source}}</div>
+        <div class="alert alert-info" data-i18n="_peers.dialog.originate.destination_prompt_">Please enter the destination number :</div>
+        <label data-i18n="_peers.dialog.originate.destination_label_">Destination number </label>
+        <input name="login" type="originatecalldestination" ng-model="originateCall.destination" required autofocus>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary login" ng-click="peerOriginate()" ng-disabled='form.$invalid' data-i18n="_peers.dialog.originate.dial_">Dial</button>
+        <button class="btn btn-warning cancel" ng-click="closePeerOriginate()" data-i18n="_peers.dialog.originate.cancel_">Cancel</button>
+    </div>
+</form>

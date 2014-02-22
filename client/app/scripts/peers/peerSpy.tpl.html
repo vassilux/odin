@@ -1,0 +1,14 @@
+<form name="form" novalidate class="login-form">
+    <div class="modal-header">
+        <h4 data-i18n="_peers.dialog.spy.title_">Spy Peer</h4>
+    </div>
+    <div class="modal-body">
+        <div class="alert alert-info" data-i18n="_peers.dialog.spy.spy_prompt_">Please enter the spyer number :</div>
+        <label data-i18n="_peers.dialog.spy.spyer_number_label_">Spyer number </label>
+        <input name="login" type="originatecalldestination" ng-model="spyer" required autofocus>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary login" ng-click="spyPeer(spyer)" ng-disabled='form.$invalid' data-i18n="_peers.dialog.spy.btn_spy_label_">Spy</button>
+        <button class="btn btn-warning cancel" ng-click="closeSpy()" data-i18n="_peers.dialog.spy.cancel_label_">Cancel</button>
+    </div>
+</form>
