@@ -18,45 +18,76 @@ var info = function() {
 
 var doit = function(host, port, callback) {
     //
-
-    var socket = net.createConnection(port, host, function() {
-        logger.debug("sysinfo created connection.");
-    });
-
-    /**
-     * Send a command to the system info server
-     */
-
     function sendCommand(sock, cmd) {
         var message = JSON.stringify(cmd) + '\r\n';
         sock.write(message);
     }
 
-    socket.on('data', function(data) {
-        // Send the message to end the connection
-        logger.debug("sysinfo write quit command to the server.");
-        callback(data);
-        var cmd = {};
-        cmd.type = 'quit';
-        sendCommand(socket, cmd)
+    try {
+        var socket = new net.Socket();
 
-    }).on('connect', function() {
+        /*var socket = net.createConnection(port, host, function() {
+        logger.debug("sysinfo created connection.");
+    });*/
+
+        /**
+         * Send a command to the system info server
+         */
+
+        socket.connect(port, host, function() {
+            logger.debug("sysinfo connected to the server, send the sysinfo command.");
+            var cmd = {};
+            cmd.type = 'getsysinfo';
+            sendCommand(socket, cmd)
+        });
+
+
+
+        socket.on('data', function(data) {
+            // Send the message to end the connection
+            logger.debug("sysinfo write quit command to the server.");
+            callback(data);
+            var cmd = {};
+            cmd.type = 'quit';
+            sendCommand(socket, cmd)
+
+        })
+        /*.on('connect', function() {
         // Send the request to the server for get the informations
         logger.debug("sysinfo connected to the server, send the sysinfo command.");
         var cmd = {};
         cmd.type = 'getsysinfo';
         sendCommand(socket, cmd)
 
-    }).on('end', function() {
-        logger.debug("sysinfo the connection to the server ended.");
-    });
+    })*/
+        .on('end', function() {
+            logger.debug("sysinfo the connection to the server ended.");
+        }).on('error', function(error) {
+            logger.debug("Try get the system informations from server on address " + host + ' and port ' + port + '. Get an error' + error);
+            return callback('{}');
+        });
+    } catch (e) {
+        logger.debug("Can not connect to the system informations server on address " + host + ' and port ' + port + '.');
+        callback('{}');
+    }
+
 
 
 };
 
 exports.get = function(port, host, callback) {
-    return doit(port, host, function(data) {
-        data.info = info();
-        return callback(data);
-    });
+    try {
+        logger.debug("Try get the system informations from server on address " + host + ' and port ' + port + '.');
+        //return callback('{}');
+
+        return doit(port, host, function(data) {
+            data.info = info();
+            return callback(data);
+        });
+    } catch (e) {
+        logger.error("doit function failed with the exception : " + e + '.');
+        return callback('{}');
+    }
+
+
 };
