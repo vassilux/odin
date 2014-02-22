@@ -1,7 +1,7 @@
 {
   "name": "odin-app-server",
   "description": "Back end server to support our odin application.",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "express": "3.0.6",
