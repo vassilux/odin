@@ -1,0 +1,16 @@
+<VirtualHost *:81>
+	ServerAdmin webmaster@localhost
+
+	DocumentRoot /var/www/odin
+
+        <Directory /var/www/odin>
+                Options SymLinksIfOwnerMatch
+                AllowOverride All
+                Order deny,allow
+                allow from all
+        </Directory>
+
+	
+
+
+</VirtualHost>
