@@ -6,8 +6,7 @@ import logging
 import optparse
 from commons import BasicObject, BasicObjectEncoder, OdinConfigParser
 
-#import log
-#logging.DUMPOBJECTS = True
+logging.DUMPOBJECTS = False
 
 logger = logging.getLogger("odin_ami");
 
