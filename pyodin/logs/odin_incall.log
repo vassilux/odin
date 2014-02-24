@@ -186,3 +186,6 @@ Failure: starpy.error.AGICommandFailure: (511, 'Command Not Permitted on a dead 
 2014-02-21 10:14:42,186 - odin_incall - incallfastagi.py - 172 - DEBUG - IncallAGiFactory : onChannelStatusFinished on channel ['DAHDI/i5/9002-4'] with result [None].
 2014-02-21 10:14:44,188 - odin_incall - incallfastagi.py - 163 - DEBUG - IncallAGiFactory : onWaited on channel 'DAHDI/i5/9002-4'.
 2014-02-21 17:18:32,007 - odin_incall - incallfastagi.py - 83 - DEBUG - Redis : lost connection.
+2014-02-24 08:40:47,319 - odin_incall - incallfastagi.py - 101 - DEBUG - Redis : Connected.
+2014-02-24 08:40:47,327 - odin_incall - incallfastagi.py - 102 - DEBUG - Redis : Resetting reconnection delay
+2014-02-24 08:40:47,351 - odin_incall - incallfastagi.py - 70 - DEBUG - Redis : incomming message [ pattern=subscribe, channel=odin_agi_request_channel message=1 ].

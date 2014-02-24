@@ -4,6 +4,7 @@ This project is has 3 parts.
 Http Server : Web server for monitoring iPBX states by web interface. This application is base inot nodejs.
 OdinAMI : Dispatcher Asterisk AMI Events to the different types of client. REDIS message queue used as message dispatcher.
 OdinF1COM : F1COM server some kind of glue beetwen OdinAMI and F1COM clients
+OdinFastAgi : Incomming calls
 
 ## Web Server
 Nodejs web server based. 

@@ -6336,3 +6336,740 @@
 2014-02-21 17:18:09,951 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
 2014-02-21 17:18:09,955 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:55623] from factory.
 2014-02-22 14:01:27,339 - odin_sys - run_sys.py - 49 - DEBUG - ODINSYS : Server started and listen on the port : 3003
+2014-02-24 08:38:29,781 - odin_sys - run_sys.py - 49 - DEBUG - ODINSYS : Server started and listen on the port : 3003
+2014-02-24 08:39:00,592 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:37355].
+2014-02-24 08:39:00,602 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:39:00,799 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:39:00,804 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:37355] from factory.
+2014-02-24 08:39:09,976 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:37356].
+2014-02-24 08:39:09,986 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:39:10,088 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:39:10,093 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:37356] from factory.
+2014-02-24 08:39:15,556 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:37357].
+2014-02-24 08:39:15,559 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:39:15,671 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:39:15,675 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:37357] from factory.
+2014-02-24 08:39:24,970 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:37358].
+2014-02-24 08:39:24,973 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:39:25,087 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:39:25,090 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:37358] from factory.
+2014-02-24 08:39:30,685 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:37359].
+2014-02-24 08:39:30,688 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:39:30,794 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:39:30,799 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:37359] from factory.
+2014-02-24 08:39:40,106 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:37360].
+2014-02-24 08:39:40,109 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:39:40,218 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:39:40,225 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:37360] from factory.
+2014-02-24 08:39:45,817 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:37364].
+2014-02-24 08:39:45,820 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:39:45,935 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:39:45,939 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:37364] from factory.
+2014-02-24 08:39:55,235 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:37365].
+2014-02-24 08:39:55,241 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:39:55,360 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:39:55,367 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:37365] from factory.
+2014-02-24 08:40:00,962 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:37368].
+2014-02-24 08:40:00,967 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:40:01,083 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:40:01,088 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:37368] from factory.
+2014-02-24 08:40:10,382 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:37369].
+2014-02-24 08:40:10,389 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:40:10,587 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:40:10,589 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:37369] from factory.
+2014-02-24 08:40:16,103 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:37370].
+2014-02-24 08:40:16,118 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:40:16,303 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:40:16,316 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:37370] from factory.
+2014-02-24 08:40:25,600 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:37371].
+2014-02-24 08:40:25,606 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:40:25,759 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:40:25,764 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:37371] from factory.
+2014-02-24 08:40:31,317 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:37372].
+2014-02-24 08:40:31,320 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:40:31,443 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:40:31,445 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:37372] from factory.
+2014-02-24 08:40:40,787 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:37373].
+2014-02-24 08:40:40,790 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:40:40,919 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:40:40,924 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:37373] from factory.
+2014-02-24 08:40:46,464 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:37374].
+2014-02-24 08:40:46,467 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:40:46,591 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:40:46,593 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:37374] from factory.
+2014-02-24 08:40:51,234 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:37376].
+2014-02-24 08:40:51,243 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:40:51,434 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:40:51,446 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:37376] from factory.
+2014-02-24 08:40:54,327 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:37377].
+2014-02-24 08:40:54,332 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:40:54,449 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:40:54,453 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:37377] from factory.
+2014-02-24 08:40:55,935 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:37378].
+2014-02-24 08:40:55,943 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:40:56,060 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:40:56,066 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:37378] from factory.
+2014-02-24 08:41:01,625 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:37379].
+2014-02-24 08:41:01,631 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:41:01,792 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:41:01,796 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:37379] from factory.
+2014-02-24 08:41:06,206 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:37380].
+2014-02-24 08:41:06,209 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:41:06,327 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:41:06,331 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:37380] from factory.
+2014-02-24 08:41:09,290 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:37381].
+2014-02-24 08:41:09,293 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:41:09,414 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:41:09,417 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:37381] from factory.
+2014-02-24 08:41:11,076 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:37382].
+2014-02-24 08:41:11,083 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:41:11,203 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:41:11,207 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:37382] from factory.
+2014-02-24 08:41:16,822 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:37383].
+2014-02-24 08:41:16,828 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:41:17,018 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:41:17,027 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:37383] from factory.
+2014-02-24 08:41:21,341 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:37384].
+2014-02-24 08:41:21,344 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:41:21,462 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:41:21,466 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:37384] from factory.
+2014-02-24 08:41:24,428 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:37385].
+2014-02-24 08:41:24,431 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:41:24,552 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:41:24,556 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:37385] from factory.
+2014-02-24 08:41:26,217 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:37386].
+2014-02-24 08:41:26,224 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:41:26,343 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:41:26,347 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:37386] from factory.
+2014-02-24 08:41:28,272 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:37387].
+2014-02-24 08:41:28,277 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:41:28,467 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:41:28,475 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:37387] from factory.
+2014-02-24 08:41:33,354 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:37388].
+2014-02-24 08:41:33,357 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:41:33,476 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:41:33,480 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:37388] from factory.
+2014-02-24 08:41:43,214 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:37389].
+2014-02-24 08:41:43,217 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:41:43,337 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:41:43,341 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:37389] from factory.
+2014-02-24 08:41:48,306 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:37390].
+2014-02-24 08:41:48,313 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:41:48,434 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:41:48,438 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:37390] from factory.
+2014-02-24 08:41:58,362 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:37391].
+2014-02-24 08:41:58,369 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:41:58,492 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:41:58,494 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:37391] from factory.
+2014-02-24 08:42:03,451 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:34295].
+2014-02-24 08:42:03,458 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:42:03,593 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:42:03,595 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:34295] from factory.
+2014-02-24 08:42:13,508 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:34296].
+2014-02-24 08:42:13,514 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:42:13,634 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:42:13,638 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:34296] from factory.
+2014-02-24 08:42:18,614 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:34297].
+2014-02-24 08:42:18,617 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:42:18,736 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:42:18,738 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:34297] from factory.
+2014-02-24 08:42:28,647 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:34298].
+2014-02-24 08:42:28,659 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:42:28,777 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:42:28,783 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:34298] from factory.
+2014-02-24 08:42:33,753 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:34299].
+2014-02-24 08:42:33,763 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:42:33,965 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:42:33,981 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:34299] from factory.
+2014-02-24 08:42:43,793 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:34300].
+2014-02-24 08:42:43,803 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:42:43,923 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:42:43,928 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:34300] from factory.
+2014-02-24 08:42:48,979 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:34301].
+2014-02-24 08:42:48,983 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:42:49,149 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:42:49,153 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:34301] from factory.
+2014-02-24 08:42:58,938 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:34302].
+2014-02-24 08:42:58,941 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:42:59,065 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:42:59,070 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:34302] from factory.
+2014-02-24 08:43:04,179 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:34303].
+2014-02-24 08:43:04,201 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:43:04,326 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:43:04,338 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:34303] from factory.
+2014-02-24 08:43:14,080 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:34304].
+2014-02-24 08:43:14,087 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:43:14,207 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:43:14,212 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:34304] from factory.
+2014-02-24 08:43:19,340 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:34305].
+2014-02-24 08:43:19,349 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:43:19,470 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:43:19,472 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:34305] from factory.
+2014-02-24 08:43:29,225 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:34306].
+2014-02-24 08:43:29,228 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:43:29,367 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:43:29,372 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:34306] from factory.
+2014-02-24 08:43:34,484 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:34307].
+2014-02-24 08:43:34,487 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:43:34,606 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:43:34,610 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:34307] from factory.
+2014-02-24 08:43:44,380 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:34308].
+2014-02-24 08:43:44,389 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:43:44,565 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:43:44,580 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:34308] from factory.
+2014-02-24 08:43:49,626 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:34309].
+2014-02-24 08:43:49,635 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:43:49,762 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:43:49,767 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:34309] from factory.
+2014-02-24 08:43:59,583 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:34310].
+2014-02-24 08:43:59,586 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:43:59,705 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:43:59,709 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:34310] from factory.
+2014-02-24 08:44:04,779 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:34311].
+2014-02-24 08:44:04,782 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:44:04,901 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:44:04,905 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:34311] from factory.
+2014-02-24 08:44:14,723 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:34312].
+2014-02-24 08:44:14,726 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:44:14,842 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:44:14,847 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:34312] from factory.
+2014-02-24 08:44:19,914 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:34313].
+2014-02-24 08:44:19,923 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:44:20,063 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:44:20,069 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:34313] from factory.
+2014-02-24 08:44:29,866 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:34314].
+2014-02-24 08:44:29,869 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:44:29,987 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:44:29,992 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:34314] from factory.
+2014-02-24 08:44:35,080 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:34315].
+2014-02-24 08:44:35,089 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:44:35,245 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:44:35,252 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:34315] from factory.
+2014-02-24 08:44:44,999 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:34316].
+2014-02-24 08:44:45,013 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:44:45,164 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:44:45,168 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:34316] from factory.
+2014-02-24 08:44:50,257 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:34317].
+2014-02-24 08:44:50,260 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:44:50,378 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:44:50,380 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:34317] from factory.
+2014-02-24 08:45:00,182 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:34318].
+2014-02-24 08:45:00,185 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:45:00,303 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:45:00,308 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:34318] from factory.
+2014-02-24 08:45:05,394 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:34320].
+2014-02-24 08:45:05,397 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:45:05,517 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:45:05,520 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:34320] from factory.
+2014-02-24 08:45:15,320 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:34321].
+2014-02-24 08:45:15,323 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:45:15,442 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:45:15,448 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:34321] from factory.
+2014-02-24 08:45:20,529 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:34322].
+2014-02-24 08:45:20,536 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:45:20,657 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:45:20,659 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:34322] from factory.
+2014-02-24 08:45:30,460 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:34323].
+2014-02-24 08:45:30,463 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:45:30,582 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:45:30,585 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:34323] from factory.
+2014-02-24 08:45:35,673 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:34324].
+2014-02-24 08:45:35,682 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:45:35,830 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:45:35,838 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:34324] from factory.
+2014-02-24 08:45:45,595 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:34325].
+2014-02-24 08:45:45,601 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:45:45,721 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:45:45,725 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:34325] from factory.
+2014-02-24 08:45:50,844 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:34326].
+2014-02-24 08:45:50,847 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:45:50,967 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:45:50,971 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:34326] from factory.
+2014-02-24 08:46:00,753 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:34327].
+2014-02-24 08:46:00,770 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:46:01,079 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:46:01,083 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:34327] from factory.
+2014-02-24 08:46:06,004 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:34328].
+2014-02-24 08:46:06,022 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:46:06,167 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:46:06,171 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:34328] from factory.
+2014-02-24 08:46:16,124 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:34329].
+2014-02-24 08:46:16,131 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:46:16,256 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:46:16,258 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:34329] from factory.
+2014-02-24 08:46:21,185 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:34330].
+2014-02-24 08:46:21,192 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:46:21,342 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:46:21,349 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:34330] from factory.
+2014-02-24 08:46:31,283 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:34331].
+2014-02-24 08:46:31,288 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:46:31,469 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:46:31,475 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:34331] from factory.
+2014-02-24 08:46:36,360 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:34333].
+2014-02-24 08:46:36,367 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:46:36,508 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:46:36,512 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:34333] from factory.
+2014-02-24 08:46:46,522 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:34334].
+2014-02-24 08:46:46,524 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:46:46,803 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:46:46,808 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:34334] from factory.
+2014-02-24 08:46:51,520 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:34335].
+2014-02-24 08:46:51,526 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:46:51,798 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:46:51,812 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:34335] from factory.
+2014-02-24 08:47:01,822 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:34336].
+2014-02-24 08:47:01,829 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:47:01,963 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:47:01,971 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:34336] from factory.
+2014-02-24 08:47:06,828 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52011].
+2014-02-24 08:47:06,835 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:47:06,971 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:47:06,976 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52011] from factory.
+2014-02-24 08:47:16,978 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52012].
+2014-02-24 08:47:16,991 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:47:17,175 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:47:17,179 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52012] from factory.
+2014-02-24 08:47:21,986 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52013].
+2014-02-24 08:47:21,990 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:47:22,110 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:47:22,115 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52013] from factory.
+2014-02-24 08:47:32,188 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52014].
+2014-02-24 08:47:32,191 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:47:32,316 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:47:32,318 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52014] from factory.
+2014-02-24 08:47:37,133 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52015].
+2014-02-24 08:47:37,136 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:47:37,266 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:47:37,270 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52015] from factory.
+2014-02-24 08:47:47,356 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52016].
+2014-02-24 08:47:47,360 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:47:47,490 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:47:47,494 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52016] from factory.
+2014-02-24 08:47:52,279 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52017].
+2014-02-24 08:47:52,282 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:47:52,401 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:47:52,405 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52017] from factory.
+2014-02-24 08:48:02,548 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52018].
+2014-02-24 08:48:02,551 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:48:02,775 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:48:02,786 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52018] from factory.
+2014-02-24 08:48:07,437 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52019].
+2014-02-24 08:48:07,445 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:48:07,586 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:48:07,590 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52019] from factory.
+2014-02-24 08:48:17,791 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52020].
+2014-02-24 08:48:17,801 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:48:17,934 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:48:17,935 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52020] from factory.
+2014-02-24 08:48:22,602 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52021].
+2014-02-24 08:48:22,605 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:48:22,723 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:48:22,728 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52021] from factory.
+2014-02-24 08:48:32,949 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52022].
+2014-02-24 08:48:32,956 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:48:33,087 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:48:33,097 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52022] from factory.
+2014-02-24 08:48:37,735 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52023].
+2014-02-24 08:48:37,741 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:48:37,875 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:48:37,881 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52023] from factory.
+2014-02-24 08:48:48,100 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52027].
+2014-02-24 08:48:48,110 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:48:48,265 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:48:48,270 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52027] from factory.
+2014-02-24 08:48:52,890 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52028].
+2014-02-24 08:48:52,893 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:48:53,025 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:48:53,031 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52028] from factory.
+2014-02-24 08:49:03,278 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52031].
+2014-02-24 08:49:03,281 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:49:03,401 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:49:03,403 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52031] from factory.
+2014-02-24 08:49:08,050 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52032].
+2014-02-24 08:49:08,072 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:49:08,315 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:49:08,317 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52032] from factory.
+2014-02-24 08:49:18,493 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52033].
+2014-02-24 08:49:18,498 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:49:18,657 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:49:18,663 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52033] from factory.
+2014-02-24 08:49:23,329 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52035].
+2014-02-24 08:49:23,332 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:49:23,463 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:49:23,467 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52035] from factory.
+2014-02-24 08:49:33,671 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52036].
+2014-02-24 08:49:33,676 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:49:33,818 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:49:33,822 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52036] from factory.
+2014-02-24 08:49:38,478 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52037].
+2014-02-24 08:49:38,481 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:49:38,597 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:49:38,603 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52037] from factory.
+2014-02-24 08:49:48,832 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52038].
+2014-02-24 08:49:48,842 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:49:49,002 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:49:49,024 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52038] from factory.
+2014-02-24 08:49:53,612 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52039].
+2014-02-24 08:49:53,618 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:49:53,815 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:49:53,845 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52039] from factory.
+2014-02-24 08:50:04,126 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52040].
+2014-02-24 08:50:04,134 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:50:04,374 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:50:04,376 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52040] from factory.
+2014-02-24 08:50:08,828 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52041].
+2014-02-24 08:50:08,833 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:50:09,086 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:50:09,088 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52041] from factory.
+2014-02-24 08:50:19,670 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52042].
+2014-02-24 08:50:19,674 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:50:19,981 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:50:19,983 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52042] from factory.
+2014-02-24 08:50:24,721 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52044].
+2014-02-24 08:50:24,726 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:50:24,964 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:50:24,976 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52044] from factory.
+2014-02-24 08:50:35,048 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52045].
+2014-02-24 08:50:35,054 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:50:35,180 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:50:35,184 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52045] from factory.
+2014-02-24 08:50:40,013 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52046].
+2014-02-24 08:50:40,018 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:50:40,580 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:50:40,591 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52046] from factory.
+2014-02-24 08:50:50,204 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52047].
+2014-02-24 08:50:50,209 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:50:50,401 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:50:50,412 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52047] from factory.
+2014-02-24 08:50:55,616 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52048].
+2014-02-24 08:50:55,629 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:50:55,810 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:50:55,825 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52048] from factory.
+2014-02-24 08:51:05,499 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52049].
+2014-02-24 08:51:05,502 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:51:05,760 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:51:05,768 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52049] from factory.
+2014-02-24 08:51:10,856 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52050].
+2014-02-24 08:51:10,863 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:51:11,089 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:51:11,092 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52050] from factory.
+2014-02-24 08:51:20,787 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52051].
+2014-02-24 08:51:20,796 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:51:21,054 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:51:21,062 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52051] from factory.
+2014-02-24 08:51:26,373 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52052].
+2014-02-24 08:51:26,377 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:51:27,047 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:51:27,049 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52052] from factory.
+2014-02-24 08:51:36,125 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52053].
+2014-02-24 08:51:36,139 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:51:36,636 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:51:36,639 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52053] from factory.
+2014-02-24 08:51:42,092 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52054].
+2014-02-24 08:51:42,097 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:51:42,386 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:51:42,393 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52054] from factory.
+2014-02-24 08:51:51,667 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52056].
+2014-02-24 08:51:51,679 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:51:51,877 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:51:51,896 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52056] from factory.
+2014-02-24 08:51:57,403 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52057].
+2014-02-24 08:51:57,406 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:51:57,603 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:51:57,607 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52057] from factory.
+2014-02-24 08:52:06,905 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:36579].
+2014-02-24 08:52:06,908 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:52:07,224 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:52:07,229 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:36579] from factory.
+2014-02-24 08:52:12,617 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:36580].
+2014-02-24 08:52:12,627 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:52:12,779 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:52:12,785 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:36580] from factory.
+2014-02-24 08:52:22,555 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:36581].
+2014-02-24 08:52:22,560 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:52:22,699 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:52:22,704 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:36581] from factory.
+2014-02-24 08:52:27,797 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:36582].
+2014-02-24 08:52:27,800 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:52:27,933 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:52:27,935 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:36582] from factory.
+2014-02-24 08:52:37,756 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:36583].
+2014-02-24 08:52:37,758 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:52:37,884 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:52:37,887 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:36583] from factory.
+2014-02-24 08:52:42,945 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:36584].
+2014-02-24 08:52:42,948 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:52:43,073 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:52:43,084 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:36584] from factory.
+2014-02-24 08:52:52,910 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:36585].
+2014-02-24 08:52:52,913 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:52:53,121 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:52:53,123 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:36585] from factory.
+2014-02-24 08:52:58,086 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:36586].
+2014-02-24 08:52:58,089 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:52:58,261 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:52:58,276 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:36586] from factory.
+2014-02-24 08:53:08,134 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:36587].
+2014-02-24 08:53:08,146 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:53:08,293 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:53:08,302 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:36587] from factory.
+2014-02-24 08:53:13,295 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:36588].
+2014-02-24 08:53:13,302 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:53:13,436 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:53:13,440 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:36588] from factory.
+2014-02-24 08:53:23,327 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:36589].
+2014-02-24 08:53:23,333 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:53:23,468 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:53:23,473 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:36589] from factory.
+2014-02-24 08:53:28,491 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:36590].
+2014-02-24 08:53:28,521 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:53:28,678 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:53:28,685 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:36590] from factory.
+2014-02-24 08:53:38,527 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:36591].
+2014-02-24 08:53:38,535 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:53:38,711 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:53:38,718 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:36591] from factory.
+2014-02-24 08:53:43,727 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:36592].
+2014-02-24 08:53:43,731 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:53:43,853 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:53:43,857 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:36592] from factory.
+2014-02-24 08:53:53,796 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:36593].
+2014-02-24 08:53:53,806 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:53:53,922 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:53:53,924 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:36593] from factory.
+2014-02-24 08:53:58,866 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:36594].
+2014-02-24 08:53:58,874 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:53:59,012 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:53:59,014 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:36594] from factory.
+2014-02-24 08:54:08,934 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:36595].
+2014-02-24 08:54:08,941 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:54:09,079 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:54:09,084 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:36595] from factory.
+2014-02-24 08:54:14,060 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:36596].
+2014-02-24 08:54:14,067 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:54:14,204 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:54:14,208 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:36596] from factory.
+2014-02-24 08:54:24,093 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:36597].
+2014-02-24 08:54:24,098 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:54:24,215 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:54:24,220 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:36597] from factory.
+2014-02-24 08:54:29,218 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:36598].
+2014-02-24 08:54:29,221 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:54:29,341 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:54:29,346 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:36598] from factory.
+2014-02-24 08:54:39,232 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:36599].
+2014-02-24 08:54:39,239 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:54:39,364 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:54:39,368 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:36599] from factory.
+2014-02-24 08:54:44,356 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:36600].
+2014-02-24 08:54:44,364 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:54:44,541 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:54:44,546 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:36600] from factory.
+2014-02-24 08:54:54,404 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:36601].
+2014-02-24 08:54:54,406 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:54:54,503 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:54:54,508 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:36601] from factory.
+2014-02-24 08:54:59,556 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:36602].
+2014-02-24 08:54:59,567 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:54:59,722 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:54:59,726 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:36602] from factory.
+2014-02-24 08:55:09,519 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:36603].
+2014-02-24 08:55:09,526 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:55:09,666 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:55:09,670 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:36603] from factory.
+2014-02-24 08:55:14,771 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:36604].
+2014-02-24 08:55:14,781 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:55:15,008 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:55:15,023 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:36604] from factory.
+2014-02-24 08:55:24,691 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:36605].
+2014-02-24 08:55:24,696 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:55:24,861 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:55:24,866 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:36605] from factory.
+2014-02-24 08:55:30,022 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:36606].
+2014-02-24 08:55:30,032 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:55:30,155 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:55:30,159 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:36606] from factory.
+2014-02-24 08:55:39,884 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:36608].
+2014-02-24 08:55:39,889 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:55:40,057 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:55:40,070 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:36608] from factory.
+2014-02-24 08:55:45,167 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:36609].
+2014-02-24 08:55:45,175 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:55:45,298 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:55:45,300 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:36609] from factory.
+2014-02-24 08:55:55,071 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:36610].
+2014-02-24 08:55:55,077 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:55:55,236 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:55:55,241 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:36610] from factory.
+2014-02-24 08:56:00,313 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:36611].
+2014-02-24 08:56:00,316 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:56:00,436 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:56:00,440 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:36611] from factory.
+2014-02-24 08:56:10,268 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:36612].
+2014-02-24 08:56:10,274 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:56:10,409 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:56:10,411 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:36612] from factory.
+2014-02-24 08:56:15,449 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:36613].
+2014-02-24 08:56:15,455 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:56:15,591 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:56:15,598 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:36613] from factory.
+2014-02-24 08:56:25,430 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:36617].
+2014-02-24 08:56:25,441 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:56:25,571 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:56:25,575 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:36617] from factory.
+2014-02-24 08:56:30,609 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:36618].
+2014-02-24 08:56:30,617 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:56:30,792 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:56:30,801 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:36618] from factory.
+2014-02-24 08:56:40,586 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:36621].
+2014-02-24 08:56:40,589 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:56:40,714 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:56:40,716 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:36621] from factory.
+2014-02-24 08:56:45,812 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:36622].
+2014-02-24 08:56:45,817 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:56:45,944 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:56:45,948 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:36622] from factory.
+2014-02-24 08:56:55,738 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:36625].
+2014-02-24 08:56:55,749 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:56:55,937 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:56:55,941 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:36625] from factory.
+2014-02-24 08:57:00,974 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:36627].
+2014-02-24 08:57:00,977 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:57:01,104 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:57:01,109 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:36627] from factory.
+2014-02-24 08:57:10,950 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52062].
+2014-02-24 08:57:10,953 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:57:11,105 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:57:11,110 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52062] from factory.
+2014-02-24 08:57:16,118 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52064].
+2014-02-24 08:57:16,121 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:57:16,241 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:57:16,245 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52064] from factory.
+2014-02-24 08:57:26,130 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52066].
+2014-02-24 08:57:26,134 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:57:26,267 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:57:26,271 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52066] from factory.
+2014-02-24 08:57:31,258 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52067].
+2014-02-24 08:57:31,266 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:57:31,401 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:57:31,405 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52067] from factory.
+2014-02-24 08:57:41,316 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52069].
+2014-02-24 08:57:41,322 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:57:41,451 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:57:41,455 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52069] from factory.
+2014-02-24 08:57:46,418 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52070].
+2014-02-24 08:57:46,420 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:57:46,547 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:57:46,551 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52070] from factory.
+2014-02-24 08:57:56,499 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52074].
+2014-02-24 08:57:56,503 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:57:56,638 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:57:56,644 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52074] from factory.
+2014-02-24 08:58:01,564 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52075].
+2014-02-24 08:58:01,567 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:58:01,690 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:58:01,692 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52075] from factory.
+2014-02-24 08:58:11,658 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52076].
+2014-02-24 08:58:11,666 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:58:11,804 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:58:11,808 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52076] from factory.
+2014-02-24 08:58:16,703 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52077].
+2014-02-24 08:58:16,706 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:58:16,824 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:58:16,830 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52077] from factory.
+2014-02-24 08:58:26,819 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52078].
+2014-02-24 08:58:26,823 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:58:26,914 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:58:26,918 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52078] from factory.
+2014-02-24 08:58:31,838 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52079].
+2014-02-24 08:58:31,841 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:58:31,959 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:58:31,963 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52079] from factory.
+2014-02-24 08:58:41,929 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52080].
+2014-02-24 08:58:41,932 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:58:42,051 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:58:42,055 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52080] from factory.
+2014-02-24 08:58:46,981 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52081].
+2014-02-24 08:58:46,988 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:58:47,116 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:58:47,120 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52081] from factory.
+2014-02-24 08:58:57,067 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52082].
+2014-02-24 08:58:57,070 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:58:57,196 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:58:57,200 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52082] from factory.
+2014-02-24 08:59:02,129 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52085].
+2014-02-24 08:59:02,140 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:59:02,259 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:59:02,262 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52085] from factory.
+2014-02-24 08:59:12,207 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52087].
+2014-02-24 08:59:12,210 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:59:12,329 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:59:12,332 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52087] from factory.
+2014-02-24 08:59:17,284 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52088].
+2014-02-24 08:59:17,292 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:59:17,443 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:59:17,447 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52088] from factory.
+2014-02-24 08:59:27,353 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52089].
+2014-02-24 08:59:27,363 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:59:27,555 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:59:27,568 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52089] from factory.
+2014-02-24 08:59:32,466 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52090].
+2014-02-24 08:59:32,482 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:59:32,664 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:59:32,678 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52090] from factory.
+2014-02-24 08:59:42,570 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52091].
+2014-02-24 08:59:42,573 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:59:42,705 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:59:42,711 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52091] from factory.
+2014-02-24 08:59:47,715 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52092].
+2014-02-24 08:59:47,720 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:59:47,845 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:59:47,849 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52092] from factory.
+2014-02-24 08:59:57,722 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52093].
+2014-02-24 08:59:57,731 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 08:59:57,896 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 08:59:57,902 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52093] from factory.
+2014-02-24 09:00:02,862 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52094].
+2014-02-24 09:00:02,870 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 09:00:03,017 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 09:00:03,030 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52094] from factory.
+2014-02-24 09:00:12,910 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52095].
+2014-02-24 09:00:12,913 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 09:00:13,059 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 09:00:13,062 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52095] from factory.
+2014-02-24 09:00:18,045 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52096].
+2014-02-24 09:00:18,048 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 09:00:18,167 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 09:00:18,171 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52096] from factory.
+2014-02-24 09:00:28,072 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52097].
+2014-02-24 09:00:28,082 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 09:00:28,282 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 09:00:28,284 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52097] from factory.
+2014-02-24 09:00:33,182 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52098].
+2014-02-24 09:00:33,193 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 09:00:33,321 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 09:00:33,323 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52098] from factory.
+2014-02-24 09:00:43,296 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52099].
+2014-02-24 09:00:43,303 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 09:00:43,425 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 09:00:43,430 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52099] from factory.
+2014-02-24 09:00:48,335 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52100].
+2014-02-24 09:00:48,338 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 09:00:48,458 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 09:00:48,462 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52100] from factory.
+2014-02-24 09:00:58,451 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52102].
+2014-02-24 09:00:58,454 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 09:00:58,576 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 09:00:58,580 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52102] from factory.
+2014-02-24 09:01:03,472 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52103].
+2014-02-24 09:01:03,483 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 09:01:03,633 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 09:01:03,641 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52103] from factory.
+2014-02-24 09:01:13,590 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52104].
+2014-02-24 09:01:13,592 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 09:01:13,716 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 09:01:13,720 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52104] from factory.
+2014-02-24 09:01:18,645 - odin_sys - network.py - 71 - DEBUG - ODINSYS  : New client connected from [127.0.0.1:52105].
+2014-02-24 09:01:18,648 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"getsysinfo"}'].
+2014-02-24 09:01:18,767 - odin_sys - network.py - 80 - DEBUG - ODINSYS : New data received : ['{"type":"quit"}'].
+2014-02-24 09:01:18,771 - odin_sys - network.py - 76 - INFO - ODINSYS : Connection lost , I remove myself [127.0.0.1:52105] from factory.
