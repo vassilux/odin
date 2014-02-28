@@ -1,1 +1,2 @@
 from incallfastagi import IncallAGiFactory, IncallApplication
+from monitorfastagi import MonitorAGiFactory, MonitorApplication
