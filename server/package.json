@@ -2,26 +2,26 @@
   "name": "odin-app-server",
   "description": "Back end server to support our odin application.",
   "version": "1.0.0",
-  "private": true,
+  "private": "true",
   "dependencies": {
-    "express": "3.0.6",
-    "rewire": "1.0.4",
-    "cookie": "0.0.5",
-    "xtend": "2.0.3",
-    "bcrypt": "0.7.7",
-    "socket.io": "0.9.13",
-    "passport": "0.1.16",
-    "connect": "2.7.3",
-    "redis": "0.8.2",
-    "mongoose": "3.5.9",
-    "connect-redis": "1.4.5",
-    "passport.socketio": "1.0.1",
-    "express-namespace": "0.1.1",
-    "passport-local": "0.1.6",
-    "restler": "2.0.1",
-    "log4js": "0.6.0",
-    "async-0.2.6",
-    "cjson-0.2.1"    
+    "express": "~3.0.6",
+    "rewire": "~1.0.4",
+    "cookie": "~0.0.5",
+    "xtend": "~2.0.3",
+    "bcrypt": "~0.7.7",
+    "socket.io": "~0.9.13",
+    "passport": "~0.1.16",
+    "connect": "~2.7.3",
+    "redis": "~0.8.2",
+    "mongoose": "~3.5.9",
+    "connect-redis": "~1.4.5",
+    "passport.socketio": "~1.0.1",
+    "express-namespace": "~0.1.1",
+    "passport-local": "~0.1.6",
+    "restler": "~2.0.1",
+    "log4js": "~0.6.0",
+    "async": "~0.2.6",
+    "cjson": "~0.2.1"    
 
   },
   "devDependencies": {
@@ -38,7 +38,6 @@
   "directories": {
     "test": "test"
   },
-  "repository": "",
   "keywords": [
     "asterisk",
     "realtime",
