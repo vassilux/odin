@@ -1,0 +1,5 @@
+logs
+*.pyc
+*.deb
+*.tar.gz
+*.log
