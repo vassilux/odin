@@ -543,6 +543,11 @@ class AMIBridge(object):
         self.originateCalls[src] = originateCall #OriginateCall({'src': src, 'dest': dest})
         logger.debug("AMIBridge : Originate call from %s to %s " % (src,dest))
 
+    def transffer_call(self, channel, ext):
+        to_json = {"id": "transfer", "servername": self._asteriskServer, "type": "dial", "user": "f1comami", "source": channel, "destination": ext}
+        message = json.dumps(to_json)
+        self._redisPublisher.publish("odin_ami_request_channel", message)
+    
     def __hangup_call_by_number(self, number):
         '''
         Look for a call by number
@@ -595,7 +600,7 @@ class AMIBridge(object):
 
     def park_call(self, number):
         '''
-        Park a call by called phone number , the call looked inot bridged calls map
+        Park a call by the called phone number , the call looked into bridged calls map
         It is a future of the F1COM protocol the channel is not used.
         '''
         logger.info("AMIBridge : Looking an active call for the number and try to park." % (number))
@@ -609,29 +614,6 @@ class AMIBridge(object):
             done = True
  
         #check if the call existe and return value
-        '''for i in self.bridgedCalls.keys():
-            bridge = self.bridgedCalls[i]
-            channelNumber = self._get_number_from_channel(bridge.bridgedchannel)
-            logger.debug("first pass park_call channel number %s ." % (channelNumber))
-            if channelNumber == number:
-                to_json = {"id": 'parkchannel', "servername": "Server_1", "user": "f1comami", 
-                "channel": bridge.bridgedchannel, "announce" :  bridge.channel}
-                message = json.dumps(to_json)
-                self._redisPublisher.publish("odin_ami_request_channel", message)
-                done = True
-                break
-
-            channeltype, peername = bridge.channel.split('/', 1)
-            channelNumber, dummy = peername.split('-',1)
-            logger.debug("second pass park_call channel number %s ." % (channelNumber))
-            if channelNumber == number:
-                to_json = {"id": 'parkchannel', "servername": "Server_1", "user": "f1comami", 
-                "channel": bridge.channel, "announce" :  bridge.bridgedchannel}
-                message = json.dumps(to_json)
-                self._redisPublisher.publish("odin_ami_request_channel", message)
-                done = True
-                break
-            '''
         if done == True:
             logger.warning("AMIBridge : Park the call for the number %s." % (number)) 
         else:
@@ -649,6 +631,7 @@ class AMIBridge(object):
         done = False
         parkedExten = None
         if external[0] == '@':
+            #
             done = self._callCenter.commut_call(internal, external)
             if done == True:
                 return done
@@ -700,14 +683,6 @@ class AMIBridge(object):
     def __process_incomming_call(self, data):
         logger.debug("AMIBridge : __process_incomming_call %s " % (data))
         self._callCenter.new_call(data)
-        '''uniqueid = data['event']['uniqueid']
-        code = "1ECOUT"
-        extention = data['event']['extention']
-        callcenter = '00'
-        callref = self._astHelper.add_uniqueid(uniqueid)
-        caller = data['event']['calleridnum']
-        self.__send_callcenter_event(code, extention, callcenter, callref, caller)'''
-
 
     #AMI handlers 
     def handler_ami_updatepeer(self, data):

@@ -2,6 +2,17 @@
 # Call Center module , this module is a helper for the F1Com worker.
 # 
 #
+'''
+This is the a dialplan example
+[incomming-calls-for-queue]
+exten = _X.,1,NoOp(incomming-calls-for-queue)
+same => n,Answer
+same => n,UserEvent(incommingcall,Context:from-white-house, channel: ${CHANNEL}, extention:${EXTEN},calleridnum:${CALLERID(num)},calleridname:${CALLERID(name)},uniqueid: ${CDR(uniqueid)})
+same => n,Goto(queues,6500,1)
+same => n,Hangup()
+
+Pay a little attention for include into you dialplan UserEvent like this one and send an incomming call to the queue
+'''
 import os
 import sys
 import re
@@ -14,6 +25,7 @@ import sys, warnings
 import struct
 import logging
 from commons import BasicObject, BasicObjectEncoder, OdinConfigParser, AsteriskHelper
+
 
 
 #logger initialized by main runner module
@@ -171,20 +183,17 @@ class CallCenter(object):
 
 	def commut_call(self, internal, callref):
 		''' 
-		Try to find an incomming call and in the success to send the message to commut 
-		the incomming call to an internal extention
-		Message pusblished to the agi redis channel and catched by the agi part
-		Please see the asterisk dialplan
+		Try to find an incomming call and in the success to execute transffer to the internal given number 
+		Please see the asterisk dialplan 
 		'''
 		done = False
+		logger.debug("CallCenter : CallCenter try to find callref [%s]."%(callref))
 		incall = self.__look_for_call_by_callref(callref)
 		if incall:
 			logger.debug("CallCenter : CallCenter find callref %s and send commut to the internal [%s]."%(callref, internal))
 			done = True
-			done = True
-			to_json = {"id": "commutincall", "channel": incall.channel, "uniqueid": incall.uniqueid, "post" : internal}
-			message = json.dumps(to_json)
-			self._amiBridge._redisPublisher.publish("odin_agi_request_channel", message)
+			#try execute transferring 
+			self._amiBridge.transffer_call(incall.channel, internal)
 		else:
 			logger.debug("CallCenter : CallCenter can't find callref %s and send commut to the internal [%s]." % (callref, internal))
 		#check and log if the callref doen't find

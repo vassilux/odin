@@ -116,6 +116,7 @@ function main()
 	install_node_server
 	install_web_client
 	install_pyodin
+	install -m 0644 /opt/odin/install/odin.logrotate /etc/logrotate.d/odin
 	dprint 0 INFO "Odin installation finished."
 }
 
