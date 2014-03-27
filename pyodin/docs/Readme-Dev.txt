@@ -16,6 +16,8 @@ Install the basicproperty and startpy by hand ...
 cd to package
 python setyp.py install
 
+Install debian packages padoc texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended for generate the documentaiton on html, pdf formats
+
 You are ready to the adventures !!!! 
 
 **** Install applicaitons

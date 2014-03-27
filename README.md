@@ -1,6 +1,7 @@
 # ODIN project
 Monitoring system for Asterisk IPBX.
 This project is has 3 parts
+
 > Http Server: Web server for monitoring iPBX states by web interface. This application is base inot nodejs.
  
 > OdinAMI : Dispatcher Asterisk AMI Events to the different types of client. REDIS message queue used as message dispatcher.
