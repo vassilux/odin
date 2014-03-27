@@ -64,5 +64,5 @@ if [ ! -f "$DEPLOY_FILE_NAME" ]; then
 fi
 
 
-#rm -rf "$DEPLOY_DIR"
+rm -rf "$DEPLOY_DIR"
 echo "Deploy build complete."
