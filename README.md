@@ -1,9 +1,11 @@
 # ODIN project
 Monitoring system for Asterisk IPBX.
-This project is has 3 parts.
-Http Server : Web server for monitoring iPBX states by web interface. This application is base inot nodejs.
-OdinAMI : Dispatcher Asterisk AMI Events to the different types of client. REDIS message queue used as message dispatcher.
-OdinF1COM : F1COM server some kind of glue beetwen OdinAMI and F1COM clients
+This project is has 3 parts
+> Http Server: Web server for monitoring iPBX states by web interface. This application is base inot nodejs.
+ 
+> OdinAMI : Dispatcher Asterisk AMI Events to the different types of client. REDIS message queue used as message dispatcher.
+
+> OdinF1COM : F1COM server some kind of glue beetwen OdinAMI and F1COM clients
 
 ## Web Server
 Nodejs web server based. 
@@ -24,32 +26,34 @@ Please see the configuration file odinf1com.conf into config directory
 
 Configuration of Asterisk dialplan is very important for the application.
 Please pay a littele attention for the dialplan configuration.
-<p>Dialplan example is presented below</p>
-<p><code>
-[incomming-calls-for-queue]
-exten = _X.,1,NoOp(incomming-calls-for-queue)
-same => n,Answer
-same => n,UserEvent(incommingcall,Context:from-white-house, channel: ${CHANNEL}, extention:${EXTEN},calleridnum:${CALLERID(num)},calleridname:${CALLERID(name)},uniqueid: ${CDR(uniqueid)})
-same => n,Goto(queues,6500,1)
-same => n,Hangup()
-</p></code>
-Generated UserEvent is important for the incomming call processing don't forget to include the context to yours spans contexts.
-You must configured a queue like below
-[6500]
-fullname = WaitingQueue
-strategy = ringall
-timeout = 15
-wrapuptime = 15
-autofill = no
-autopause = no
-joinempty = yes
-leavewhenempty = no
-reportholdtime = no
-maxlen = 10
-musicclass = default
-eventwhencalled = yes
+Dialplan example is presented below:
 
-Important thing that provide joinempty = yes queue's parameter for leave the new incomming into the queue on waiting.
+    [incomming-calls-for-queue]
+    exten = _X.,1,NoOp(incomming-calls-for-queue)
+    same => n,Answer
+    same => n,UserEvent(incommingcall,Context:from-white-house, channel: ${CHANNEL},
+    extention:${EXTEN},calleridnum:${CALLERID(num)},calleridname:${CALLERID(name)},uniqueid: ${CDR(uniqueid)})
+    same => n,Goto(queues,6500,1)
+    same => n,Hangup()
+   
+Generated UserEvent is important for the incomming call processing don't forget to include the context to yours spans contexts.
+You must configured a queue like below:
+
+    [6500]
+    fullname = WaitingQueue
+    strategy = ringall
+    timeout = 15
+    wrapuptime = 15
+    autofill = no
+    autopause = no
+    joinempty = yes
+    leavewhenempty = no
+    reportholdtime = no
+    maxlen = 10
+    musicclass = default
+    eventwhencalled = yes
+    
+Important thing that provide <b>joinempty = yes</b> queue's parameter for leave the new incomming into the queue on waiting.
 
 
 ### Installation
