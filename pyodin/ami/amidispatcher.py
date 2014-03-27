@@ -242,6 +242,8 @@ class OdinAMIFacade(object):
             'ParkedCallGiveUp'    : self.handler_event_parked_call_giveup,
             'Alarm'               : self.handler_event_alarm,
             'AlarmClear'          : self.handler_event_alarm_clear,
+            'SpanAlarm'           : self.handler_event_span_alarm,
+            'SpanAlarmClear'      : self.handler_event_span_alarm_clear,
             'UserEvent'           : self.handler_event_user,
             'MonitorStart'        : self.handler_event_monitor_start,
             'MonitorStop'         : self.handler_event_monitor_stop
@@ -456,7 +458,7 @@ class OdinAMIFacade(object):
     def __publishMessage(self, servername, id, objname, obj):
         to_json = {"id": id, "server": servername, objname: obj}
         message = json.dumps(to_json, cls=BasicObjectEncoder)
-        #logger.debug("Server %s :: Publishe message to the redis : %s" % (servername, message))
+        logger.debug("Server %s :: Publish message to the redis : %s" % (servername, message))
         self._redisPublisher.publish("odin_ami_data_channel", message)
 
     ##worker functions
@@ -989,8 +991,32 @@ class OdinAMIFacade(object):
         logger.debug("Server %s :: Processing Event AlarmClear...[%s]" % (ami.servername, event))
         self.__publishMessage(servername, "alarmclear", "alarm", alarm)
 
+    def __send_span_alarm(self, ami, event):
+        '''
+        Formating the received asterisk alarm from AMI into json
+        {"alarmevent": {"privilege": "system,all", "alarm": null, "event": "SpanAlarmClear", 
+            "channel": "6", "objecttype": "AlarmEvent"}, "id": "alarm", "server": "asterisk_1"}
+        '''
+        alarm = BasicObject('AlarmEvent')
+        alarm.privilege = event.get('privilege')
+        alarm.alarm = event.get('alarm')
+        alarm.event = event.get('event')
+        alarm.channel = event.get('span')
+        self.__publishMessage(ami.servername, "alarm", 'alarmevent', alarm)
+
+    def handler_event_span_alarm(self, ami, event):
+        '''
+        '''
+        logger.debug("Server %s :: Processing Event SpanAlarm...[%s]" % (ami.servername, event))
+        self.__send_span_alarm(ami,event)
+
+    def handler_event_span_alarm_clear(self, ami, event):
+        logger.debug("Server %s :: Processing Event SpanAlarmClear...[%s]" % (ami.servername, event))
+        self.__send_span_alarm(ami,event)
+
     def handler_event_user(self, ami, event):
         '''
+        Example user event
         Processing Event AlarmClear...[{'privilege': 'user,all', 'userevent': 'Incomming', 'uniqueid': '1372759809.211', 'event': 'UserEvent', 'context': 'from-trixbox-be'}]
         '''
         logger.debug("Server %s :: Processing Event UserEvent ...[%s]" % (ami.servername, event))
@@ -1004,10 +1030,6 @@ class OdinAMIFacade(object):
         userevent.channel = event.get('channel', '')
         #
         self.__publishMessage(ami.servername, "userevent", "event", userevent)
-        '''userevent.context = event.get('context')
-        userevent.extention = event.get('extention')
-        userevent.calleridnum = event.get('calleridnum')
-        userevent.calleridname = event.get('calleridname')'''
 
     def handler_event_monitor_start(self, ami, event):
         logger.debug("Server %s :: Processing Event StartMonitor " % ami.servername)

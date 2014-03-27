@@ -14,6 +14,7 @@ import struct
 import logging
 import logging.config
 from commons import BasicObject, BasicObjectEncoder, OdinConfigParser
+from ConfigParser import NoOptionError
 
 
 #Initialise logger from the configuration file , each part of the applicaiton ami and f1com server has a own logger configuration
@@ -107,10 +108,7 @@ class RedisSubFactory(redis.SubscriberFactory):
         return proto
 
     def start(self):
-        redis_host  = config.get("redis","redis_host")
-        redis_port  = int(config.get("redis","redis_port"))
         self.connector = reactor.connectTCP(self.host, self.port, self)
-
 
     def stop(self):
         # TODO: must check if figure out correct way to close
@@ -158,9 +156,24 @@ def run_f1com_srv():
     #
     config_file = os.path.join(sys.path[0],'../conf/odinf1com.conf')
     config.read(config_file)
-    redis_host  = config.get("redis","redis_host")
-    redis_port  = int(config.get("redis","redis_port"))
-    f1com_port  = int(config.get("f1com","f1com_bind_port"))
+    #default values initialized butn nod used. I kill process can be better that run with default
+    redis_host = "localhost"
+    redis_port = 6379
+    f1com_port = 3002
+    try:
+        redis_host  = config.get("redis","redis_host")
+        redis_port  = int(config.get("redis","redis_port"))
+    except NoOptionError:
+        logger.error("F1COM : Parameter redis_host or  redis_port missing. \
+            Please check the configuration file odinf1com.conf. Value redis_host or  redis_port missing from the section redis.")
+        reactor.stop()
+    #
+    try:
+        f1com_port  = int(config.get("f1com","f1com_bind_port"))
+    except NoOptionError:
+        logger.error("F1COM : Parameter f1com_bind_port missing. \
+            Please check the configuration file odinf1com.conf. Value f1com_bind_port missing from the section f1com.")
+        reactor.stop()
     #
     redisSubsFactory = RedisSubFactory(redis_host, redis_port);
     redisSubsFactory.start()
@@ -177,12 +190,11 @@ def run_f1com_srv():
         logger.info("run_srv : customHandler got signal : %s." % signum )
         amiBridge.stop()
         redisSubsFactory.stop()
-        #db.disconnect()
         reactor.callFromThread(reactor.stop) # to stop twisted code when in the reactor loop
     #install signal handler 
     signal.signal(signal.SIGINT, customHandler)
     #
-   
+
 
 if __name__ == '__main__':
     reactor.callWhenRunning(run_f1com_srv)

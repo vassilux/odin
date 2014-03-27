@@ -16,8 +16,14 @@ Monitor the states of an Asterisk IPBX to different type of clent and accept(dis
 
 ### OdinFCOM
 Python twisted server.
-Its role is to manage F1COM protocol for outgoing and incomming calls
-Pay attention to the dialplan.
+Its role is to manage F1COM protocol for outgoing and incomming calls.
+Configuration file contains values for different parameters.
+Theses parameters are divided into several sections.
+Section names and settings are very meaningful to use.
+Please see the configuration file odinf1com.conf into config directory
+
+Configuration of Asterisk dialplan is very important for the application.
+Please pay a littele attention for the dialplan configuration.
 Dialplan example is presented below
 
 [incomming-calls-for-queue]
@@ -43,7 +49,7 @@ maxlen = 10
 musicclass = default
 eventwhencalled = yes
 
-Imporatn thing that provide joinempty = yes queue's parameter for leave the new incomming into the queue on waiting.
+Important thing that provide joinempty = yes queue's parameter for leave the new incomming into the queue on waiting.
 
 
 ### Installation

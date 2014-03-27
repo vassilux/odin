@@ -16,6 +16,7 @@ import json
 import sys, warnings
 import struct
 from commons import BasicObject, BasicObjectEncoder, OdinConfigParser, AsteriskHelper
+from ConfigParser import NoOptionError
 from callcenter import CallCenter
 
 #logger initialized by main runner module
@@ -46,6 +47,7 @@ except ImportError:
 #
 #gloval variables
 MY_SITE_IDENTIFICATION="F1COMAMI"
+MY_ALARM_SPAN = "SPANAL"
 #Indicate that some F1COM messages can'be changed
 F1_COMPATIBLE=True
 #
@@ -361,16 +363,35 @@ class AMIBridge(object):
         super(AMIBridge, self).__init__()
         ## Initialize logger
         global logger
+        #
+        global MY_SITE_IDENTIFICATION
+        global MY_ALARM_SPAN
+        try:
+            MY_SITE_IDENTIFICATION = config.get("global","site_id")
+        except NoOptionError:
+            logger.warning("AMIBridge : Parameter site_id missing. \
+                Please check the configuration file odinf1com.conf. Value site_id missing from the section global")
+        #
+        try:
+            MY_ALARM_SPAN = config.get('f1com', 'alarm_span_code')
+        except NoOptionError:
+            logger.warning("AMIBridge : Parameter site_id missing. \
+                Please check the configuration file odinf1com.conf. Value site_id missing from the section global")
+        #
         self._redisPublisher = redisPublisher
         self.originateCalls = {}
         self.channels       = {}
         self.bridgedCalls   = {}
         self.parkedCalls    = {}
-        #helper for boilerplate astertisk operations
-        #self._astHelper     = AsteriskHelper()
+        #
         self._callCenter    = CallCenter(self)
         #
-        self._asteriskServer = config.get("global", "asterisk")
+        try:
+            self._asteriskServer = config.get("global", "asterisk")
+        except NoOptionError:
+            logger.error("AMIBridge : Parameter asterisk missing. \
+                Please check the configuration file odinf1com.conf. Value asterisk missing from the section global")
+            reactor.stop()
         #
         self.amiDataHandlers = {
             'createchannel'    : self.handler_ami_createchannel,
@@ -382,7 +403,8 @@ class AMIBridge(object):
             'updatepeer'       : self.handler_ami_updatepeer,
             'createparkedcall' : self.handler_ami_createparkedcall,
             'removeparkedcall' : self.handler_ami_removeparkedcall,
-            'userevent'        : self.handler_ami_userevent
+            'userevent'        : self.handler_ami_userevent,
+            'alarm'            : self.handler_ami_alarm
 
         }
 
@@ -866,53 +888,32 @@ class AMIBridge(object):
 
     def handler_ami_userevent(self, data):
         '''
-        {u'server': u'Server_1', u'event': {u'uniqueid': u'1372777119.249', u'calleridnum': u'', 
-        u'context': u'from-trixbox-be', u'calleridname': u'', u'type': u'incommingcall', 
-        u'objecttype': u'UserEvent'}, u'id': u'userevent'} 
-        '''
-        
+        Handler for user event from asterisk dialplan
+        Therea are different type of events to idicate what I must do :-)
+        AMI is boss for me 
+        '''        
         type = data['event']['type']
         if type == 'incommingcall':
             self.__process_incomming_call(data)
 
 
+    def handler_ami_alarm(self, data):
+        '''
+        Handler for alarm events from asterisk
+        '''
+        eventType = data['alarmevent']['event']
+        type = '0'
+        pstn = '1'
+        code = "SPANAL"
+        if eventType == 'SpanAlarm':
+            type = '1'
 
-
-
-#
-def run_f1com_srv():
-    global MY_SITE_IDENTIFICATION
-    config_file = "odinf1com.conf"
-    config.read(config_file)
-    redis_host  = config.get("redis","redis_host")
-    redis_port  = int(config.get("redis","redis_port"))
-    f1com_port  = int(config.get("f1com","f1com_bind_port"))
-    MY_SITE_IDENTIFICATION = config.get("global","site_id")
-    #
-    redisSubsFactory = RedisSubFactory(redis_host, redis_port);
-    redisSubsFactory.start()
-    redisPublisher = OdinRedisPublisher(redis_host, redis_port)
-    redisPublisher.start()
-    amiBridge = AMIBridge(config, redisPublisher)
-    redisSubsFactory.set_ami_worker(amiBridge)
-    factory = F1ComFactory()
-    factory.set_ami_worker(amiBridge)
-    amiBridge.set_f1com_factory(factory)
-    reactor.listenTCP(f1com_port,factory)
-    #
-    def customHandler(signum, stackframe):
-        logger.info("I got signal : %s." % signum )
-        amiBridge.stop()
-        redisSubsFactory.stop()
+        elif eventType == 'SpanAlarmClear':
+            type = '2'
+        else:
+            logger.warning("AMIBridge : handler_ami_alarm can not find type for the alarm event [%s]."% (data))
+            return
         #
-        reactor.callFromThread(reactor.stop) # to stop twisted code when in the reactor loop
-    #install signal handler 
-    signal.signal(signal.SIGINT, customHandler)
-    #
-   
-
-if __name__ == '__main__':
-    reactor.callWhenRunning(run_f1com_srv)
-    reactor.run()
-    logger.info("I finished my job, bye.")    
-
+        optional = "#SITE=%s#TEXT=%s" % (data['server'], '%s')
+        self.send_alarm_event(type, code, pstn,optional)
+#
