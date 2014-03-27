@@ -1,10 +1,25 @@
 # 'Makefile'
-MARKDOWN = pandoc --from markdown --to html --standalone 
-all: $(patsubst %.md,%.html,$(wildcard *.md)) Makefile
+#HTML := $(patsubst %.md,%.html,$(wildcard *.md))
+PDF := $(patsubst %.md,%.pdf,$(wildcard *.md))
+HTML := $(patsubst %.md,%.html,$(wildcard *.md))
+
+all: $(HTML) $(PDF)
+
+doc-html: $(HTML)
+
+doc-pdf: $(PDF)
+#
+%.html: %.md
+	pandoc $< -o $@
+
+%.pdf: %.md
+	pandoc $< -o $@
 
 clean:
-    rm -f $(patsubst %.md,%.html,$(wildcard *.md))
-    rm -f *.bak *~
+	rm -f $(PDF)
+	rm -f $(HTML)
+	rm -f *.bak *~
 
-%.html: %.md
-    $(MARKDOWN) $< --output $@
+rebuild: clean all
+
+

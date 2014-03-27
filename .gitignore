@@ -5,3 +5,5 @@ logs
 *.log
 docs
 bower_components
+Readme.pdf
+Readme.html

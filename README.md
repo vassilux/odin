@@ -16,7 +16,7 @@ Python twisted server based on starpy.
 Monitor the states of an Asterisk IPBX to different type of clent and accept(dispatch) request to Asterisk IPBX. 
 
 
-### OdinFCOM
+### OdinF1COM
 Python twisted server.
 Its role is to manage F1COM protocol for outgoing and incomming calls.
 Configuration file contains values for different parameters.
@@ -66,7 +66,7 @@ Please read Readme.txt file into docs folder
 
       server/              --> Nodejs web server 
 
-      odinami/             --> AMI and F1COM servers
+      pyodin/             --> AMI and F1COM servers
  
       scripts/            -->  Test scripts, not for production
       
