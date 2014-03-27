@@ -13,6 +13,7 @@ import json
 from commons import OdinConfigParser
 from ami import OdinAMIFacade
 import logging.config
+from ConfigParser import NoOptionError
 #Initialise logger from the configuration file , each part of the applicaiton ami and f1com server has a own logger configuration
 #print "path : %s"%os.path.join(sys.path[0],'../conf/odinamilogger.conf')
 logging.config.fileConfig(os.path.join(sys.path[0],'../conf/odinamilogger.conf'))
@@ -103,8 +104,6 @@ class RedisSubFactory(redis.SubscriberFactory):
         return proto
 
     def start(self):
-    	redis_host  = config.get("redis","redis_host")
-    	redis_port  = int(config.get("redis","redis_port"))
         self.connector = reactor.connectTCP(self.host, self.port, self)
 
 
@@ -145,38 +144,20 @@ class OdinRedisPublisher(object):
 	def publish(self,channel,message):
 		self.db.publish(channel,message)
 
-		
-##
-## Daemonizer
-##
-#MONAST_PID_FILE = '%s/.monast.pid' % sys.argv[0].rsplit('/', 1)[0]
-AMIWORKER_PID_FILE = '/var/run/odinami.pid'
-def createDaemon():
-	if os.fork() == 0:
-		os.setsid()
-		if os.fork() == 0:
-			os.chdir(os.getcwd())
-			os.umask(0)
-		else:
-			os._exit(0)
-	else:
-		os._exit(0)
-	
-	pid = os.getpid()
-	print '\nAMIWORKER daemonized with pid %s' % pid
-	f = open(AMIWORKER_PID_FILE, 'w')
-	f.write('%s' % pid)
-	f.close()
 
-
-##
-## Main
-##
 def run_srv():
 	config_file = os.path.join(sys.path[0],'../conf/odinami.conf')
 	config.read(config_file)
-	redis_host  = config.get("redis","redis_host")
-	redis_port  = int(config.get("redis","redis_port"))
+	#default values initialized butn nod used. I kill process can be better that run with default
+	redis_host = "localhost"
+	redis_port = 6379
+	try:
+	    redis_host  = config.get("redis","redis_host")
+	    redis_port  = int(config.get("redis","redis_port"))
+	except NoOptionError:
+	    logger.error("ODINAMI : Parameter redis_host or  redis_port missing. \
+	        Please check the configuration file odinf1com.conf. Value redis_host or  redis_port missing from the section redis.")
+	    reactor.stop()
 	#
 	redisSubsFactory = RedisSubFactory(redis_host, redis_port);
 	redisSubsFactory.start()

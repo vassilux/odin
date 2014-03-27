@@ -110,7 +110,7 @@ class ServerObject(BasicObject):
 
 
 class OdinAMIProtocol(manager.AMIProtocol):
-    """docstring for OdinAMIProtocol"""
+    """ odinami communication protocol """
     def connectionLost(self, reason):
         """Connection lost, clean up callbacks"""
         for key,callable in self.actionIDCallbacks.items():
@@ -192,7 +192,7 @@ class OdinAMIFactory(manager.AMIFactory):
     amiWorker  = None
     servername = None
     protocol   = OdinAMIProtocol
-    """docstring for ClassName"""
+    """odinami twisted factory"""
     def __init__(self, servername, username, password, amiWorker):
         self.servername = servername
         self.amiWorker  = amiWorker
@@ -213,7 +213,7 @@ class OdinAMIFactory(manager.AMIFactory):
         logger.error("Server %s :: I'm disconnecting..." % (self.servername))
         
 class OdinAMIFacade(object):
-    """docstring for OdinAMIFacade"""
+    """Facade pattern implementaiton for odinami"""
     servers            = {}
 
     def __init__(self, config, redisPublisher):
@@ -221,7 +221,6 @@ class OdinAMIFacade(object):
         ## Initialize logger
         global logger
         self._redisPublisher = redisPublisher
-        logger.debug('amifacade ctor')
         self.eventHandlers = {
             'Reload'              : self.handler_event_reload,
             'PeerEntry'           : self.handler_event_peer_entry,
@@ -229,7 +228,6 @@ class OdinAMIFacade(object):
             'Newchannel'          : self.handler_event_newchannel,
             'Newstate'            : self.handler_event_newstate,
             'Rename'              : self.handler_event_rename,
-            #'Masquerade'          : self.handlerEventMasquerade,
             'NewCallerid'         : self.handler_event_newcallerid,
             'Hangup'              : self.handler_event_hangup,
             'Dial'                : self.handler_event_dial,
@@ -288,8 +286,6 @@ class OdinAMIFacade(object):
             self.servers[servername].password         = config.get(server, 'password')
             self.servers[servername].default_context  = config.get(server, 'default_context')
             self.servers[servername].transfer_context = config.get(server, 'transfer_context')
-            #self.servers[servername].meetme_context   = config.get(server, 'meetme_context')
-            #self.servers[servername].meetme_prefix    = config.get(server, 'meetme_prefix')
             
             self.servers[servername].connected        = False
             self.servers[servername].factory          = OdinAMIFactory(servername, username, password, self)
@@ -297,7 +293,6 @@ class OdinAMIFacade(object):
             self.servers[servername].taskCheckStatus  = task.LoopingCall(self.taskCheckStatus, servername)
             
             self.servers[servername].status              = BasicObject()
-            #self.servers[servername].status.meetmes      = {}
             self.servers[servername].status.channels     = {}
             self.servers[servername].status.bridges      = {}
             self.servers[servername].status.peers        = {
@@ -308,7 +303,6 @@ class OdinAMIFacade(object):
             }
             self.servers[servername].peergroups          = {}
             self.servers[servername].displayUsers        = {}
-            #self.servers[servername].displayMeetmes      = {}
             self.servers[servername].displayQueues       = {}
             self.servers[servername].status.queues       = {}
             self.servers[servername].status.queueMembers = {}
@@ -393,46 +387,51 @@ class OdinAMIFacade(object):
         
     
     def __start(self):
-        logger.info("Starting Odin Asterisk Services...")
+        """Initialize connections to asterisk servers"""
         for servername in self.servers:
             reactor.callWhenRunning(self.connect, servername)
 
     def stop(self):
+        """Begin deconnections from asterisk servers"""
         for servername in self.servers:
             server = self.servers.get(servername)
             if server.connected:
                 server.factory.disconnect()
     
     def __connected__(self, ami, servername):
-        logger.info("Server %s :: Marking as connected..." % servername)
+        """Callback for a successful asterisk connection"""
+        logger.info("Server %s :: Server connected." % servername)
         ami.servername   = servername
         server           = self.servers.get(servername)
         server.connected = True
         server.ami       = ami
         
-        ## Request Server Version
+        
         def _onCoreShowVersion(result):
-            versions = [1.4, 1.6, 1.8]
-            logger.info("Server %s :: %s" %(servername, result[0]))
-            for version in versions:
-                if "Asterisk %s" % version in result[0]:
-                    server.version = version
-                    break
+            """ Process server version request """
+            logger.debug("Server %s :: Server version : %s" %(servername, result[0]))
+            #try take the version of the conencted asterisk server
+            tokens = result[0].split()
+            if len(tokens) > 2:
+                server.version = tokens[1]
+            #
+            logger.info("Server %s :: Connected and running the asterisk version : %s." %(servername, server.version))
+            #register handlers 
             for event, handler in self.eventHandlers.items():
                 logger.debug("Server %s :: Registering EventHandler for %s" % (servername, event))
                 server.ami.registerEvent(event, handler)
-            logger.debug("Server %s :: Starting Task Check Status..." % servername)
+            #initialize the asterisk check task
             server.taskCheckStatus.start(TASK_CHECK_STATUS_INTERVAL, False)
             self._requestAsteriskConfig(servername)
-            
+        #    
         server.pushTask(server.ami.command, 'core show version') \
             .addCallbacks(_onCoreShowVersion, self._onAmiCommandFailure, errbackArgs = (servername, "Error Requesting Asterisk Version"))
         
     def __disconnected__(self, servername):
+        """Disconnect callback for the given servername"""
         server = self.servers.get(servername)
         if server.connected:
-            logger.info("Server %s :: Marking as disconnected..." % servername)
-            logger.debug("Server %s :: Stopping Task Check Status..." % servername)
+            logger.info("Server %s :: Server disconnected now." % servername)
             server.clearCalls()
             if server.taskCheckStatus.running:
                 server.taskCheckStatus.stop()
@@ -440,6 +439,7 @@ class OdinAMIFacade(object):
         server.ami       = None
     
     def connect(self, servername):
+        """Initialize the connection to the asterisk server """
         server = self.servers.get(servername)
         logger.info("Server %s :: Trying to connect to AMI at %s:%d" % (servername, server.hostname, server.hostport))
         df = server.factory.login(server.hostname, server.hostport)
@@ -448,22 +448,30 @@ class OdinAMIFacade(object):
         return df
     
     def onLoginSuccess(self, ami, servername):
+        """ """
         logger.info("Server %s :: AMI Connected..." % (servername))
         self.__connected__(ami, servername)
         
     def onLoginFailure(self, reason, servername):
-        logger.error("Server %s :: Odin Asterisk facade AMI Failed to Login, reason: %s" % (servername, reason.getErrorMessage()))
+        """Failed login callback, the tcp connection closed"""
+        logger.error("Server %s :: Odin failed to Login, reason: %s" % (servername, reason.getErrorMessage()))
         self.__disconnected__(servername)
+
     ## transport helper functions
     def __publishMessage(self, servername, id, objname, obj):
+        """Helper for send a json message to ami channel subscribers """
         to_json = {"id": id, "server": servername, objname: obj}
         message = json.dumps(to_json, cls=BasicObjectEncoder)
         logger.debug("Server %s :: Publish message to the redis : %s" % (servername, message))
         self._redisPublisher.publish("odin_ami_data_channel", message)
 
-    ##worker functions
-    ## Channels 
+    #############################################################################
+    # Workers functions                                                         #
+    #                                                                           #
+    #############################################################################
+    ### Channels 
     def _createChannel(self, servername, **kw):
+        """Create a new channel for the given servername """
         server        = self.servers.get(servername)
         uniqueid      = kw.get('uniqueid')
         channel       = kw.get('channel')
@@ -479,7 +487,7 @@ class OdinAMIFacade(object):
             chan.monitor      = kw.get('monitor', False)
             chan.spy          = kw.get('spy', False)
             chan.starttime    = time.time()
-            
+            #
             logger.debug("Server %s :: Channel create: %s (%s) %s", servername, uniqueid, channel, _log)
             server.status.channels[uniqueid] = chan
             #notify http clients
@@ -497,6 +505,7 @@ class OdinAMIFacade(object):
         return False
     
     def _lookupChannel(self, servername, chan):
+        """Lookup a channel  return the valid channel on Success otherwise None"""
         server  = self.servers.get(servername)
         channel = None
         for uniqueid, channel in server.status.channels.items():
@@ -505,6 +514,7 @@ class OdinAMIFacade(object):
         return channel
     
     def _updateChannel(self, servername, **kw):
+        """Update the channel status for the given servername """
         uniqueid = kw.get('uniqueid')
         channel  = kw.get('channel')
         _log     = kw.get('_log', '')
@@ -519,13 +529,8 @@ class OdinAMIFacade(object):
                             chan.__dict__[k] = v
                         else:
                             logger.warning("Server %s :: Channel %s (%s) does not have attribute %s", servername, uniqueid, chan.channel, k)
-                #notify clients
-                ##self.http._addUpdate(servername = servername, subaction = 'Update', **chan.__dict__.copy())
                 #notify http clients
                 self.__publishMessage(servername, "updatechannel", "channel", chan)
-                #to_json=[]
-                #to_json.append({"id": "ami:updatechannel", "server": servername, "channel" : chan})
-                #self._redisPublisher.publish("odin_ami_data_channel", json.dumps(to_json, cls=BasicObjectEncoder))
                 #
                 if logging.DUMPOBJECTS:
                     logger.debug("Object Dump:%s", chan)
@@ -535,6 +540,7 @@ class OdinAMIFacade(object):
             logger.exception("Server %s :: Unhandled exception updating channel: %s (%s)", servername, uniqueid, channel)
             
     def _removeChannel(self, servername, **kw):
+        """Remove the channel from the channels of the given servername"""
         uniqueid = kw.get('uniqueid')
         channel  = kw.get('channel')
         _log     = kw.get('_log', '')
@@ -563,8 +569,9 @@ class OdinAMIFacade(object):
         except:
             logger.exception("Server %s :: Unhandled exception removing channel: %s (%s)", servername, uniqueid, channel)
     
-    ## Bridges
+    ### Bridges
     def _createBridge(self, servername, **kw):
+        """Create a bridge for the given server """
         server          = self.servers.get(servername)
         uniqueid        = kw.get('uniqueid')
         channel         = kw.get('channel')
@@ -665,9 +672,10 @@ class OdinAMIFacade(object):
         except:
             logger.exception("Server %s :: Unhandled exception removing bridge: %s (%s) with %s (%s)", servername, uniqueid, channel, bridgeduniqueid, bridgedchannel)
 
-    ##
-    ## Event Handlers
-    ##
+    #############################################################################
+    # Event Handlers                                                            #
+    #                                                                           #
+    #############################################################################
     def handler_event_reload(self, ami, event):
         logger.debug("Server %s :: Processing Event Reload..." % ami.servername)        
         server = self.servers.get(ami.servername)
@@ -749,7 +757,7 @@ class OdinAMIFacade(object):
             server.pushTask(server.ami.command, command) \
                 .addCallbacks(onShowPeer, self._onAmiCommandFailure, \
                     errbackArgs = (ami.servername, "Error Executting Command '%s'" % command))
-    #
+    
     def handler_event_peer_status(self, ami, event):
         logger.debug("Server %s :: Processing Event PeerStatus..." % ami.servername)
         channel = event.get('peer')
@@ -865,7 +873,6 @@ class OdinAMIFacade(object):
                 _log            = "-- Link"
             )
         
-        # TODO Detect QueueCall
 
     def handler_event_unlink(self, ami, event):
         logger.debug("Server %s :: Processing Event Unlink..." % ami.servername)
@@ -884,7 +891,6 @@ class OdinAMIFacade(object):
             _log            = "-- Status changed to Unlink"
         )
         
-        # Detect QueueCall
 
     def handler_event_bridge(self, ami, event):
         logger.debug("Server %s :: Processing Event Bridge..." % ami.servername)
@@ -903,23 +909,6 @@ class OdinAMIFacade(object):
             _log     = "-- Hangup"
         )
         
-        # Detect QueueCall
-        """queueCall = server.status.queueCalls.get(uniqueid)
-        if queueCall:
-            log.debug("Server %s :: Queue update, call hangup: %s -> %s", ami.servername, queueCall.client.get('queue'), uniqueid)
-            del server.status.queueCalls[uniqueid]
-            if queueCall.member:
-                self.http._addUpdate(servername = ami.servername, action = "RemoveQueueCall", uniqueid = uniqueid, queue = queueCall.client.get('queue'), location = queueCall.member.get('location'))
-                queue = server.status.queues.get(queueCall.client.get('queue'))
-                queue.completed += 1
-                self.http._addUpdate(servername = ami.servername, subaction = 'Update', **queue.__dict__.copy())
-            if logging.DUMPOBJECTS:
-                log.debug("Object Dump:%s", queueCall)
-        # Detect QueueClient
-        for qname, clientuniqueid in server.status.queueClients.items():
-            if clientuniqueid == uniqueid:
-                self._updateQueue(ami.servername, queue = qname, event = "Leave", uniqueid = uniqueid, _log = "By Channel Hangup")  
-        """
 
     def handler_event_dial(self, ami, event):
         logger.debug("Server %s :: Processing Event Dial..." % ami.servername)
@@ -966,10 +955,7 @@ class OdinAMIFacade(object):
         self._removeParkedCall(ami.servername, **event)
 
     def handler_event_alarm(self, ami, event):
-        '''
-        Example 
-        Alarm... [{'privilege': 'system,all', 'alarm': 'Red Alarm', 'event': 'Alarm', 'channel': '4'}]
-        '''
+        """Handle an alarm event from the asterisk server """
         alarm = {}
         alarm.privilege = event.get('privilege')
         alarm.alarm = event.get('alarm')
@@ -979,6 +965,7 @@ class OdinAMIFacade(object):
         self.__publishMessage(servername, "alarm", "alarm", alarm)
 
     def handler_event_alarm_clear(self, ami, event):
+        """handle a clear alarm event from the asterisk server """
         '''
         Example
         AlarmClear...[{'privilege': 'system,all', 'event': 'AlarmClear', 'channel': '4'}]
@@ -992,11 +979,7 @@ class OdinAMIFacade(object):
         self.__publishMessage(servername, "alarmclear", "alarm", alarm)
 
     def __send_span_alarm(self, ami, event):
-        '''
-        Formating the received asterisk alarm from AMI into json
-        {"alarmevent": {"privilege": "system,all", "alarm": null, "event": "SpanAlarmClear", 
-            "channel": "6", "objecttype": "AlarmEvent"}, "id": "alarm", "server": "asterisk_1"}
-        '''
+        """Send a json message to the redis channel for the given alarm event"""
         alarm = BasicObject('AlarmEvent')
         alarm.privilege = event.get('privilege')
         alarm.alarm = event.get('alarm')
@@ -1005,20 +988,17 @@ class OdinAMIFacade(object):
         self.__publishMessage(ami.servername, "alarm", 'alarmevent', alarm)
 
     def handler_event_span_alarm(self, ami, event):
-        '''
-        '''
+        """Handle asterisk a span alarm """
         logger.debug("Server %s :: Processing Event SpanAlarm...[%s]" % (ami.servername, event))
         self.__send_span_alarm(ami,event)
 
     def handler_event_span_alarm_clear(self, ami, event):
+        """Handle a clear span alarm """
         logger.debug("Server %s :: Processing Event SpanAlarmClear...[%s]" % (ami.servername, event))
         self.__send_span_alarm(ami,event)
 
     def handler_event_user(self, ami, event):
-        '''
-        Example user event
-        Processing Event AlarmClear...[{'privilege': 'user,all', 'userevent': 'Incomming', 'uniqueid': '1372759809.211', 'event': 'UserEvent', 'context': 'from-trixbox-be'}]
-        '''
+        """Handle asterisk UserEvent, used for different type of notifications"""
         logger.debug("Server %s :: Processing Event UserEvent ...[%s]" % (ami.servername, event))
         userevent = BasicObject('UserEvent')
         userevent.type = event.get('userevent', '')
@@ -1087,7 +1067,6 @@ class OdinAMIFacade(object):
             'peers': {},
             'channels': [],
             'bridges': [],
-            #'meetmes': [],
             'queues': [],
             'queueMembers': [],
             'queueClients': [],
@@ -1099,12 +1078,10 @@ class OdinAMIFacade(object):
         channels = []
         queues = {}
         for tech, peerlist in server.status.peers.items():
-            #tmp[servername]['peers'][tech] = []
             peers[tech] = []
             for peername, peer in peerlist.items():
-                #tmp[servername]['peers'][tech].append(peer.__dict__)
                 peers[tech].append(peer.__dict__)
-            #tmp[servername]['peers'][tech].sort(lambda x, y: cmp(x.get(self.sortPeersBy), y.get(self.sortPeersBy)))
+            #
             peers[tech].sort(lambda x, y: cmp(x.get(self.sortPeersBy), y.get(self.sortPeersBy)))
         ## Channels
         for uniqueid, channel in server.status.channels.items():
@@ -1118,11 +1095,7 @@ class OdinAMIFacade(object):
             tmp[servername]['bridges'].append(bridge.__dict__)
         tmp[servername]['bridges'].sort(lambda x, y: cmp(x.get('seconds'), y.get('seconds')))
         tmp[servername]['bridges'].reverse()
-        #tmp[servername]['bridges'].sort(lambda x, y: cmp(x.get('dialtime'), y.get('dialtime')))
-        ## Meetmes
-        #for meetmeroom, meetme in server.status.meetmes.items():
-        #    tmp[servername]['meetmes'].append(meetme.__dict__)
-        #tmp[servername]['meetmes'].sort(lambda x, y: cmp(x.get('meetme'), y.get('meetme')))
+        #
         ## Parked Calls
         for channel, parked in server.status.parkedCalls.items():
             tmp[servername]['parkedCalls'].append(parked.__dict__)
@@ -1132,7 +1105,7 @@ class OdinAMIFacade(object):
             tmp[servername]['queues'].append(queue.__dict__)
             #queues.append(queue.__dict__)
         tmp[servername]['queues'].sort(lambda x, y: cmp(x.get('queue'), y.get('queue')))
-        #queues.sort(lambda x, y: cmp(x.get('queue'), y.get('queue')))
+        #
         for (queuename, membername), member in server.status.queueMembers.items():
             member.pausedur = int(time.time() - member.pausedat)
             tmp[servername]['queueMembers'].append(member.__dict__)
@@ -1162,9 +1135,8 @@ class OdinAMIFacade(object):
         logger.info("I posted the serverstatus message %s to the user." % (username))   
                      
     def request_handler_originate(self, request):
-        ''' Process originate request, the request must have the source with the channel type. 
-            The type "dial" used and must be initialized by the call applicant.
-        '''
+        """Process originate request, the request must have the source with the channel type."""
+        """Type "dial" used and must be initialized by the call application"""
         logger.info("request_handler_originate")
         servername  = request['servername']
         server      = self.servers.get(servername)
@@ -1220,10 +1192,9 @@ class OdinAMIFacade(object):
                 .addErrback(self._onAmiCommandFailure, servername, "Error Executting Client Action Originate: %s" % (logs[idx]))
 
     def request_handler_hangupchannel(self, request):
-        ''' Process hangup of the channel '''
+        """Process hangup of the channel"""
         servername  = request['servername']
-        channel     = request['channel']
-        
+        channel     = request['channel']        
         logger.info("Server %s :: Executting client request Hangup: %s..." % (servername, channel))
         server = self.servers.get(servername)
         server.pushTask(server.ami.hangup, channel) \
@@ -1245,17 +1216,6 @@ class OdinAMIFacade(object):
         extraExten    = None
         extraContext  = None
         extraPriority = None
-        '''
-        if type == "meetme":
-            extraChannel = action['extrachannel'][0]
-            exten        = "%s%s" % (server.meetme_prefix, exten)
-            context      = server.meetme_context
-            
-            if server.version == 1.8: ## Asterisk 1.8 requires some extra params
-                extraExten    = exten
-                extraContext  = context
-                extraPriority = priority
-        '''
         logger.info("Server %s :: Executting Client Action Transfer: %s -> %s@%s..." % (servername, channel, exten, context))
         server.pushTask(server.ami.redirect, channel, context, exten, priority, extraChannel, extraContext, extraExten, extraPriority) \
             .addErrback(self._onAmiCommandFailure, servername, "Error Executting Client Action Transfer: %s -> %s@%s" % (channel, exten, context))
@@ -1441,13 +1401,6 @@ class OdinAMIFacade(object):
 
         ## Clear Server Status
         toRemove = []
-        '''
-        for meetmeroom, meetme in server.status.meetmes.items():
-            if not meetme.forced:
-                toRemove.append(meetmeroom)
-        for meetmeroom in toRemove:
-            del server.status.meetmes[meetmeroom]
-        '''
         server.status.channels.clear()
         server.status.bridges.clear()
         server.status.queues.clear()
@@ -1561,10 +1514,10 @@ class OdinAMIFacade(object):
             .addCallbacks(onStatusComplete, self._onAmiCommandFailure, errbackArgs = (servername, "Error Requesting Channels Status"))
 
 
-    ##
-    ## Helpers
-    ##
-    ##
+    #############################################################################
+    ## Helpers                                                                 ##
+    ##                                                                         ##
+    #############################################################################
 
     ## Parked Calls
     def _createParkedCall(self, servername, **kw):
@@ -1620,6 +1573,9 @@ class OdinAMIFacade(object):
     
     ## Users/Peers
     def _createPeer(self, servername, **kw):
+        '''
+        Create a new peer
+        '''
         server      = self.servers.get(servername)
         channeltype = kw.get('channeltype')
         peername    = kw.get('peername')
@@ -1681,34 +1637,34 @@ class OdinAMIFacade(object):
 
 
     def _updatePeer(self, servername, **kw):
-            channeltype = kw.get('channeltype')
-            peername    = kw.get('peername')
-            _log        = kw.get('_log', '')
-            try:
-                peer = self.servers.get(servername).status.peers.get(channeltype, {}).get(peername)
-                if peer:
-                    logger.debug("Server %s :: Updating User/Peer %s/%s %s", servername, channeltype, peername, _log)
-                    for k, v in kw.items():
-                        if k == '_action':
-                            if v == 'increaseCallCounter':
-                                peer.calls += 1
-                            elif v == 'decreaseCallCounter':
-                                peer.calls -= 1
-                        # Ignore callerid on forced peers
-                        if k == "callerid" and peer.forcedCid:
-                            continue
-                        # Update peer
-                        if k not in ('_log', '_action'): 
-                            if peer.__dict__.has_key(k):
-                                peer.__dict__[k] = v
-                            else:
-                                log.warning("Server %s :: User/Peer %s/%s does not have attribute %s", servername, channeltype, peername, k)
-                    #prepare message to the clients
-                    #to_json={"id": "updatepeer", "server": servername, "peer" : peer}
-                    #message = json.dumps(to_json, cls=BasicObjectEncoder)
-                    #self._redisPublisher.publish("odin_ami_data_channel", message)
-                    self.__publishMessage(servername, "updatepeer", "peer", peer)
-                else:
-                    logger.warning("Server %s :: User/Peer not found: %s/%s", servername, channeltype, peername)
-            except:
-                logger.exception("Server %s :: Unhandled exception updating User/Peer: %s/%s", servername, channeltype, peername)
+        '''
+        Update peers states
+        '''
+        channeltype = kw.get('channeltype')
+        peername    = kw.get('peername')
+        _log        = kw.get('_log', '')
+        try:
+            peer = self.servers.get(servername).status.peers.get(channeltype, {}).get(peername)
+            if peer:
+                logger.debug("Server %s :: Updating User/Peer %s/%s %s", servername, channeltype, peername, _log)
+                for k, v in kw.items():
+                    if k == '_action':
+                        if v == 'increaseCallCounter':
+                            peer.calls += 1
+                        elif v == 'decreaseCallCounter':
+                            peer.calls -= 1
+                    # Ignore callerid on forced peers
+                    if k == "callerid" and peer.forcedCid:
+                        continue
+                    # Update peer
+                    if k not in ('_log', '_action'): 
+                        if peer.__dict__.has_key(k):
+                            peer.__dict__[k] = v
+                        else:
+                            log.warning("Server %s :: User/Peer %s/%s does not have attribute %s", servername, channeltype, peername, k)
+                #
+                self.__publishMessage(servername, "updatepeer", "peer", peer)
+            else:
+                logger.warning("Server %s :: User/Peer not found: %s/%s", servername, channeltype, peername)
+        except:
+            logger.exception("Server %s :: Unhandled exception updating User/Peer: %s/%s", servername, channeltype, peername)

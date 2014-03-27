@@ -7,6 +7,9 @@ all: $(HTML) $(PDF)
 
 doc-html: $(HTML)
 
+package: $(HTML) $(PDF)
+	./prepare_deploy.sh
+
 doc-pdf: $(PDF)
 #
 %.html: %.md
