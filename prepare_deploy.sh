@@ -19,7 +19,8 @@ fi
 #
 mkdir "$DEPLOY_DIR"
 #
-cp -aR client/app "$DEPLOY_DIR"
+mkdir "$DEPLOY_DIR/client"
+cp -aR client/app "$DEPLOY_DIR/client"
 cp -aR install "$DEPLOY_DIR"
 cp -aR pyodin "$DEPLOY_DIR"
 cp -aR server "$DEPLOY_DIR"
@@ -32,6 +33,8 @@ rm -rf "$DEPLOY_DIR/pyodin/conf/odinincall.conf"
 rm -rf "$DEPLOY_DIR/pyodin/conf/odinsys.conf"
 rm -rf "$DEPLOY_DIR/pyodin/conf/odinsyslogger.conf"
 rm -rf "$DEPLOY_DIR/pyodin/test"
+
+rm -rf "$DEPLOY_DIR/client/app/config.json"
 
 rm -rf "$DEPLOY_DIR/server/test"
 rm -rf "$DEPLOY_DIR/server/logs/*.log"
@@ -61,5 +64,5 @@ if [ ! -f "$DEPLOY_FILE_NAME" ]; then
 fi
 
 
-rm -rf "$DEPLOY_DIR"
+#rm -rf "$DEPLOY_DIR"
 echo "Deploy build complete."
