@@ -24,15 +24,15 @@ Please see the configuration file odinf1com.conf into config directory
 
 Configuration of Asterisk dialplan is very important for the application.
 Please pay a littele attention for the dialplan configuration.
-Dialplan example is presented below
-
+<p>Dialplan example is presented below</p>
+<p><code>
 [incomming-calls-for-queue]
 exten = _X.,1,NoOp(incomming-calls-for-queue)
 same => n,Answer
 same => n,UserEvent(incommingcall,Context:from-white-house, channel: ${CHANNEL}, extention:${EXTEN},calleridnum:${CALLERID(num)},calleridname:${CALLERID(name)},uniqueid: ${CDR(uniqueid)})
 same => n,Goto(queues,6500,1)
 same => n,Hangup()
-
+</p></code>
 Generated UserEvent is important for the incomming call processing don't forget to include the context to yours spans contexts.
 You must configured a queue like below
 [6500]
