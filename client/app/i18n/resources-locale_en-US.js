@@ -403,6 +403,11 @@
         "description":"Stop channel/call monitoring(recording)"
     },
     {
+        "key":"_calls.channels.spy_",
+        "value": "Listen conversation",
+        "description":"Spy a channel"
+    },
+    {
         "key":"_calls.calls.title_",
         "value": "Calls",
         "description":"Calls table title."

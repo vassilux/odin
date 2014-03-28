@@ -414,6 +414,11 @@
         "value": "Arrêter enregistrement",
         "description":"Stop channel/call monitoring(recording)"
     },
+     {
+        "key":"_calls.channels.spy_",
+        "value": "Ecoute conversation",
+        "description":"Spy a channel"
+    },
     {
         "key":"_calls.calls.title_",
         "value": "Appels",
