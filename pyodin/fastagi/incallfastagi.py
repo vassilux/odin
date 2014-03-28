@@ -20,14 +20,10 @@ from starpy import fastagi
 import logging, time
 import logging.config
 import json
-
+from pymongo import MongoClient
+import txredisapi as redis
 #
 logger = logging.getLogger( 'odin_incall' )
-#
-try:
-    import txredisapi as redis
-except Exception, e:
-    print "PYF1COM ERROR: Module txredisapi not found."
 
 
 def testFunction( agi ):
@@ -219,7 +215,16 @@ class DialPlan( object ):
 		self.application.removeDialPlan(channel)
 		return self.agi.finish()
 
+class MongoAdapter(object):
+	"""docstring for MongoAdapter"""
+	def __init__(self, host, port):
+		super(MongoAdapter, self).__init__()
+		self.host = host
+		self.port = port
 
+	def connect(self):
+		self._client = MongoClient(self.host, self.port)
+		
 class IncallApplication(object):
 	"""docstring for IncallApplication"""	
 	def __init__(self):
@@ -255,6 +260,8 @@ class IncallAGiFactory(fastagi.FastAGIFactory):
 	"""docstring for ClassName"""
 	def __init__(self, dialplan, redis_host, redis_port):
 		fastagi.FastAGIFactory.__init__(self, dialplan)
+		self.mongoAdapter = MongoAdapter("localhost",27017)
+		self.mongoAdapter.connect()
 		self.lc = task.LoopingCall(self.check_calls)
 		self.lc.start(10)
 		self._redisFactory = RedisSubFactory(redis_host, redis_port)

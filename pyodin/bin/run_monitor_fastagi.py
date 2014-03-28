@@ -16,6 +16,7 @@ import logging.config
 from commons import BasicObject, BasicObjectEncoder, OdinConfigParser
 from fastagi import MonitorAGiFactory, MonitorApplication
 
+
 #Initialise logger from the configuration file , each part of the applicaiton ami and f1com server has a own logger configuration
 logging.config.fileConfig(os.path.join(sys.path[0],'../conf/odinamilogger.conf'))
 #
@@ -46,6 +47,18 @@ except Exception, e:
 config = OdinConfigParser()
 #
 
+def testFunction( agi ):
+	"""Demonstrate simplistic use of the AGI interface with sequence of actions"""
+	log.debug( 'testFunction' )
+	def setX( ):
+		return agi.setVariable( 'this"toset', 'That"2set' )
+	def getX( result ):
+		return agi.getVariable( 'this"toset' )
+	def onX( value ):
+		print 'Retrieved value', value 
+		reactor.stop()
+	return setX().addCallback( getX ).addCallbacks( onX, onX )
+
 def run_fast_srv():
 	config_file = os.path.join(sys.path[0],'../conf/odinmonitor.conf')
 	config.read(config_file)
@@ -61,3 +74,14 @@ if __name__ == "__main__":
 	#so far so good 
 	reactor.callWhenRunning(run_fast_srv)
 	reactor.run()
+'''
+	logging.basicConfig()
+	fastagi.log.setLevel( logging.DEBUG )
+	#monitorStrategy = MonitorStrategy()
+	APPLICATION = MyMonitorApplication()
+	APPLICATION.handleCallsFor( 's', testFunction)
+	#APPLICATION.handleCallsFor( 'h', monitorStrategy.on_hangup_call)
+	APPLICATION.agiSpecifier.run( APPLICATION.dispatchIncomingCall )
+	print 'start'
+	reactor.run()
+'''

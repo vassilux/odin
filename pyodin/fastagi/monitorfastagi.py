@@ -22,17 +22,13 @@ from starpy import fastagi
 import logging, time
 import logging.config
 import json
-import txmongo 
-#
-mongo_host= "localhost"
-mongo_port= 27017
+from pymongo import MongoClient
+import txredisapi as redis
 #
 logger = logging.getLogger('odin_monitor')
 #
-try:
-    import txredisapi as redis
-except Exception, e:
-    print "PYF1COM ERROR: Module txredisapi not found."
+MIXMONITOR_DIR="/home/vassilux/rc1_test"
+#
 
 class RedisSubsProtocol(redis.SubscriberProtocol):
     def connectionMade(self):
@@ -101,7 +97,7 @@ class RedisSubFactory(redis.SubscriberFactory):
     def process_action(self, action):
         pass
 
-class DialPlan( object ):
+class MonitorStarter( object ):
 	""" Incomming calls """
 	def __init__( self, application, agi ):
 		"""Store the AGI instance for later usage """
@@ -110,8 +106,48 @@ class DialPlan( object ):
 
 	def start( self ):
 		"""Begin the dial-plan-like operations"""
-		logger.debug("DialPlan : Answer a new incomming call for channel [%s]", self.agi.variables['agi_channel'])
-		return self.agi.answer().addCallbacks( self.onAnswered, self.answerFailure )
+		channel = self.agi.variables['agi_channel']
+		file='''%s/%s ''' % (MIXMONITOR_DIR, channel)
+		'''seq = fastagi.InSequence( )
+		seq.append( self.agi.wait, 1 )
+		seq.append( self.agi.streamFile, 'hello-world' )		
+		seq.append( self.agi.setVariable, 'MONITOR_CALL_FILE_NAME', file)
+		seq.append( self.agi.finish, )
+		'''
+		logger.debug("DialPlan : Answer a new incomming call for channel [%s]", channel)
+		return self.agi.setVariable('MONITOR_CALL_FILE_NAME', file).addCallbacks(self.onSetMonitorFile, self.onSetMonitorFileFailure)
+		#return self.agi.answer().addCallbacks( self.onAnswered, self.answerFailure )
+
+	def onSetMonitorFile(self, result):
+		priority = 999 #int(self.agi.variables['agi_priority']) + 999
+		logger.warn( 
+			"""SetPriority : %d""", 
+			priority
+		)
+		return self.agi.setPriority(priority).addCallbacks(self.onSetPriority, self.onSetPriorityFailure)
+		#df = self.agi.streamFile( 'hello-world' )
+		#return df.addCallback( self.onPlayFinished )
+
+	def onSetPriority(self, result):
+		logger.warn( 
+			"""onSetPriority to onSetPriorityFailure channel %r: %s""", 
+			self.agi.variables['agi_channel'], result,
+		)
+		return self.agi.finish()
+
+	def onSetPriorityFailure(self, reason):
+		logger.warn( 
+			"""Unable to onSetPriorityFailure channel %r: %s""", 
+			self.agi.variables['agi_channel'], reason.getTraceback(),
+		)
+		return self.agi.finish()
+
+	def onSetMonitorFileFailure(self, raison):
+		logger.warn( 
+			"""Unable to set MONITOR_CALL_FILE_NAME variable  channel %r: %s""", 
+			self.agi.variables['agi_channel'], reason.getTraceback(),
+		)
+		return self.agi.finish()
 
 	def answerFailure( self, reason ):
 		"""Deal with a failure to answer"""
@@ -119,55 +155,51 @@ class DialPlan( object ):
 			"""Unable to answer channel %r: %s""", 
 			self.agi.variables['agi_channel'], reason.getTraceback(),
 		)
-		return self.__removeFromApplication()
+		return self.agi.finish()
 
 	def onAnswered( self, resultLine ):
 		"""We've managed to answer the channel, yay!"""
-		df = self.agi.streamFile( 'pls-wait-connect-call' )
+		df = self.agi.streamFile( 'hello-world' )
 		return df.addCallback( self.onPlayFinished )
 
 	def onPlayFinished(self, result):
-		logger.debug("MonitorAGiFactory : PlayFinished for the channel [%s]."%(self.agi.variables['agi_channel']))
+		channel = self.agi.variables['agi_channel']
+		logger.debug("MonitorAGiFactory : PlayFinished for the channel [%s]."%(channel))
 		return self.agi.finish()
-
-	def onDial(self, reason):
-		''' '''
-		logger.debug("MonitorAGiFactory : onDial finished with result [%s] for the channel [%s]."%(reason, self.agi.variables['agi_channel']))
-		#return self.__removeFromApplication()
-		df = defer.Deferred()
-		reactor.callLater(1.0, df.callback, 0)
-		return df
-	
-
-	def onDialFailed(self, reason):
-		''' '''
-		logger.warn( 
-			"""Unable to dial channel %r: %s""", 
-			self.agi.variables['agi_channel'], reason.getTraceback(),
-		)
-		return self.__removeFromApplication()
-		
-	def onHangupFailure( self, reason ):
-		"""Failed trying to hang up"""
-		logger.warn( 
-			"""Unable to hang up channel %r: %s""", 
-			self.agi.variables['agi_channel'], reason.getTraceback(),
-		)
-
-
-	def commutCall(self, request):
-		''' Communt incomming call to the operator '''
-		post = request['post']
-		df = self.agi.execute( 'Dial', 'SIP/' + post ).addErrback(self.onDialFailed,
-			).addCallbacks(
-				self.onDial, self.onDialFailed,
-			)
 
 	def __removeFromApplication(self):
 		''' '''
 		channel = self.agi.variables['agi_channel']
 		self.application.removeDialPlan(channel)
 		return self.agi.finish()
+
+class MonitorFinisher( object ):
+	""" Incomming calls """
+	def __init__( self, application, agi ):
+		"""Store the AGI instance for later usage """
+		self.application = application
+		self.agi = agi 
+
+	def start( self ):
+		"""Begin the dial-plan-like operations"""
+		logger.debug("RecordStateChecker : Check monitor state for channel [%s]", self.agi.variables['agi_channel'])
+		return self.agi.wait( 2.0 ).addCallback( self.onWaited )
+	
+	def onWaited( self, result ):
+		"""We've finished waiting, tell the user the number"""
+		channel = self.agi.variables['agi_channel']
+		logger.debug("RecordStateChecker : onWaited on channel finished%r."%(self.agi.variables['agi_channel']))
+		return self.agi.finish()
+
+	def onStopMonitorComplete():
+		return self.agi.finish()	
+
+	def __removeFromApplication(self):
+		''' '''
+		channel = self.agi.variables['agi_channel']
+		self.application.removeDialPlan(channel)
+		return self.agi.finish()
+
 
 
 class MonitorApplication(object):
@@ -181,24 +213,27 @@ class MonitorApplication(object):
 
 	@defer.inlineCallbacks
 	def connectToMongt(self):
-		self.mongoConn = yield txmongo.MongoConnection(mongo_host, mongo_port)
+		#self.mongoConn = yield txmongo.MongoConnection(mongo_host, mongo_port)
+		pass
 
 
 	def __call__(self, agi):
 		channel = agi.variables['agi_channel']
 		logger.debug("MonitorApplication : Incomming call for the channel [%s] comming.", channel)
-		self.count = self.count + 1
-		dp = DialPlan(self, agi)		
-		self.inCalls[channel] = dp
-		df = dp.start()
-		logger.debug("MonitorApplication : DialPlan started for the channel [%s].", channel)
-		return df
+		extension = agi.variables['agi_extension']
+		logger.debug("MonitorApplication : Incomming call for the extension [%s] comming.", extension)
+		if extension == 'h':
+			logger.debug("MonitorApplication : Incomming call for the channel [%s] comming.", channel)
+			dp = MonitorFinisher(self,agi)
+			df = dp.start()
+		else:
+			self.count = self.count + 1
+			dp = MonitorStarter(self, agi)		
+			self.inCalls[channel] = dp
+			df = dp.start()
+			logger.debug("MonitorApplication : RecordStarter started for the channel [%s].", channel)
+			return df
 
-	def commutCall(self, request):
-		channel = request['channel']
-		if channel:
-			dp = self.inCalls[channel]
-			dp.commutCall(request)
 
 	def removeDialPlan(self, channel):
 		if self.inCalls.has_key(channel):
@@ -236,3 +271,29 @@ class MonitorAGiFactory(fastagi.FastAGIFactory):
         		reactor.callWhenRunning(self.mainFunction.commutCall, request)
         	else:
         		logger.error("MonitorAGiFactory : Can't find the request handler %s" %(requestId))
+
+'''
+class MonitorStrategy(object):
+	"""docstring for MonitorStrategy"""
+	def __init__(self):
+		pass
+
+	def on_start_call(self):
+		channel = self.agi.variables['agi_channel']
+		logger.debug("MonitorStrategy : on_start_call channel=%s." % (channel) )
+
+	def on_hangup_call(self):
+		channel = self.agi.variables['agi_channel']
+		logger.debug("MonitorStrategy : on_hangup_call channel=%s." % (channel) )
+		pass
+
+		
+
+class MyMonitorApplication(UtilApplication):
+	"""docstring for MonitorApplication"""
+	def __init__(self):
+		self.configFiles = ['/home/vassilux/Projects/odin/config/odinmonitor.conf']
+		print 'UtilApplication'
+		UtilApplication.__init__(self)
+
+'''		

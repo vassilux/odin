@@ -16,20 +16,11 @@
               <tbody>
                 <tr ng-repeat="chan in channels">
                   <td>
-                    <!--<span class="btn-group">
-                      <a class="btn btn-primary" href="#"><i class="icon-user icon-white"></i> {{chan.channel}}</a>
-                      <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
-                      <ul class="dropdown-menu">
-                        <li><a ng-click="hangupChannel(chan.channel)"><i class="icon-pencil"></i> Hangup</a></li>
-                        <li class="divider"></li>
-                        <li><a ng-click="showChannelInfo(chan)"><i class="i"></i> Show channel info</a></li>
-                      </ul>
-                    </span>-->
                     <span class="dropdown">
                         <a class="dropdown-toggle">
                           <span >{{chan.channel}}</span>
                           <ul class="dropdown-menu">
-                            <!-- not yet ready <li><a ng-click="transferChannel(chan.channel)" data-i18n="_calls.channels.menu.transfer_">Transfer</a></li> -->
+                            <li><a ng-click="transferChannel(chan.channel)" data-i18n="_calls.channels.menu.transfer_">Transfer</a></li>
                             <li ng-show="!isMonitoredChannel(chan)" ><a ng-click="startMonitor(chan)" data-i18n="_calls.channels.menu.start_monitor_">Start Monitor</a></li>
 
                              <li><a ng-click="spyChannel(chan)" data-i18n="_calls.channels.spy_">Spy channel</a></li>
