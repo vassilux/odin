@@ -67,7 +67,7 @@ def run_fast_srv():
 	redis_host  = config.get("redis","redis_host")
 	redis_port  = int(config.get("redis","redis_port"))
 	logger.debug("MonitorAGiFactory : Starting fastagi server on %s:%d." % (fastagi_addr, fastagi_port))
-	f = MonitorAGiFactory(MonitorApplication(), redis_host, redis_port)
+	f = MonitorAGiFactory(MonitorApplication(config), redis_host, redis_port)
 	reactor.listenTCP(fastagi_port, f, 50, fastagi_addr)
 
 if __name__ == "__main__":

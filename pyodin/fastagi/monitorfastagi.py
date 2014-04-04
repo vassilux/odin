@@ -1,20 +1,12 @@
 #! /usr/bin/env python
 '''
-exten = _4XXX,1,NoOp(from-trixbox-be-by-sda)
-same => n,Set(TIMEOUT(absolute)=300)
-same => n,UserEvent(incommingcall,Context:from-trixbox-be,extention:${EXTEN},calleridnum:${CALLERID(num)},calleridname:${CALLERID(name)},uniqueid: ${CDR(uniqueid)})
-;same => n,SIPAddHeader(Call-Info: 192.168.3.107\;answer-after=3)
-;same => n,SIPAddHeader(Alert-Info: 192.168.3.107\;info=alert-autoanswer\;delay=3)
-same => n,AGI(agi://127.0.0.1:4575)
-same => n,Hangup()
-;same => n,Dial(SIP/6000)
-
-Can be a useful link
-https://github.com/lorea/rtcheckcalls/tree/master/obelisk
+The agi script works with  the dialplan macro [macro-record-enable]
+Set the variable  MIXMON_DIR into the globals section of the extentions.conf file : something like /data/audio/
+Channel variable MONITOR_CALL_FILE_NAME initialized by agi script and used by macro to start monitor for given channel.
+Extention 999 used by agi to go vers start monitor into macro-record-enable
+Redis channel odin_ami_data_channel used for communicaiton with f1com driver or other system to notificaitons
 
 '''
-
-"""Provide a trivial date-and-time service"""
 import os
 import sys
 from twisted.internet import reactor,protocol, task, defer
@@ -24,11 +16,28 @@ import logging.config
 import json
 from pymongo import MongoClient
 import txredisapi as redis
+import json
+
+try:
+    from twisted.enterprise import adbapi
+except ImportError:
+    print "MONITORFASTAGI :: Can't import twisted.enterprise."
+    sys.exit(1)
+try:
+    from twistar.registry import Registry
+    from twistar.dbobject import DBObject
+except ImportError:
+    print "MONITORFASTAGI :: Can't import twistar."
+    sys.exit(1)
 #
 logger = logging.getLogger('odin_monitor')
 #
 MIXMONITOR_DIR="/home/vassilux/rc1_test"
+#the priority to jump into macro-record-enable
+MACRO_RECORD_PRIORITY=999
 #
+REDIS_NOTIFICATION_CHANNEL='odin_ami_data_channel'
+		
 
 class RedisSubsProtocol(redis.SubscriberProtocol):
     def connectionMade(self):
@@ -44,8 +53,6 @@ class RedisSubsProtocol(redis.SubscriberProtocol):
         else :
             data = json.loads(message)
             logger.info("Redis : the message type  %s ignored." %(data['id']))
-
-
 
     def connectionLost(self, reason):
         logger.debug("Redis : lost connection.")
@@ -97,83 +104,111 @@ class RedisSubFactory(redis.SubscriberFactory):
     def process_action(self, action):
         pass
 
-class MonitorStarter( object ):
+class OdinRedisPublisher(object):
+    """docstring for OdinRedisPublisher"""
+    def __init__(self, redis_host, redis_port):
+        self.redis_host = redis_host
+        self.redis_port = redis_port
+
+    def start(self):
+        #
+        reactor.callWhenRunning(self._start)
+
+    @defer.inlineCallbacks
+    def _start(self):
+        self.db = yield redis.Connection(self.redis_host, self.redis_port, reconnect=True)
+
+    def stop(self):
+        self.db.disconnect()
+
+    def publish(self,channel,message):
+        self.db.publish(channel,message)
+
+#
+
+class RecordStrategy(object):
+	"""docstring for RecordStrategy"""
+	def __init__(self):
+		super(RecordStrategy).__init__()
+		self.arg = arg
+
+	def can_be_register(callerid, extension):
+		must_be_register = False
+		if callerid == '9002' or extension == '1157':
+			must_be_register = True
+		return must_be_register
+
+
+class MonitorStarting( object ):
 	""" Incomming calls """
 	def __init__( self, application, agi ):
 		"""Store the AGI instance for later usage """
 		self.application = application
 		self.agi = agi 
 
+
 	def start( self ):
 		"""Begin the dial-plan-like operations"""
+		value='RECORD_ALL'
+		return self.application.get_dbpool().runQuery("SELECT * FROM configs WHERE variable LIKE '%s'"%(value)).addCallbacks(self.on_done_recorde_value, self.on_done_recorde_value_failure)
+
+	def on_done_recorde_value(self, param):
+		logger.debug("MonitorStarting :: Recording object from the database [%s]", param)
 		channel = self.agi.variables['agi_channel']
-		file='''%s/%s ''' % (MIXMONITOR_DIR, channel)
-		'''seq = fastagi.InSequence( )
-		seq.append( self.agi.wait, 1 )
-		seq.append( self.agi.streamFile, 'hello-world' )		
-		seq.append( self.agi.setVariable, 'MONITOR_CALL_FILE_NAME', file)
-		seq.append( self.agi.finish, )
-		'''
-		logger.debug("DialPlan : Answer a new incomming call for channel [%s]", channel)
-		return self.agi.setVariable('MONITOR_CALL_FILE_NAME', file).addCallbacks(self.onSetMonitorFile, self.onSetMonitorFileFailure)
-		#return self.agi.answer().addCallbacks( self.onAnswered, self.answerFailure )
+		if param != None and param[0][2] == 'True':
+			fileid = self.agi.variables['agi_uniqueid'].replace('.','')
+			self.monitor_file="%s.wav" % (fileid)
+			return self.agi.setVariable('MONITOR_CALL_FILE_NAME', self.monitor_file).addCallbacks(self.on_set_monitor_file, self.on_set_monitor_fileFailure)
+		else:
+			logger.debug("MonitorStarting :: Recording skipped for the channel [%s]", channel)
+			return self.agi.finish()
 
-	def onSetMonitorFile(self, result):
-		priority = 999 #int(self.agi.variables['agi_priority']) + 999
-		logger.warn( 
-			"""SetPriority : %d""", 
-			priority
-		)
-		return self.agi.setPriority(priority).addCallbacks(self.onSetPriority, self.onSetPriorityFailure)
-		#df = self.agi.streamFile( 'hello-world' )
-		#return df.addCallback( self.onPlayFinished )
-
-	def onSetPriority(self, result):
-		logger.warn( 
-			"""onSetPriority to onSetPriorityFailure channel %r: %s""", 
-			self.agi.variables['agi_channel'], result,
-		)
+	def on_done_recorde_value_failure(self, reason):
+		channel = self.agi.variables['agi_channel']
+		logger.debug("MonitorStarting :: Failure get parameter RECORD_ALL with cause [%s] for the channel [%s]", reason, channel)
 		return self.agi.finish()
 
-	def onSetPriorityFailure(self, reason):
+
+	def on_set_monitor_file(self, result):
+		"""Insert a record to the rc1 Histroique database table"""
+		dnid = self.agi.variables['agi_dnid'][-4:]
+		query= "INSERT INTO rc1.Historique (NoTrans, Start, Stop, FileName, StartLong, Duration, CallerID, SDA, F1, XISDN) \
+			VALUES ('asterisk_1', Now(), Now(), '%s', 0, '0', '%s', '%s', '1', '1')" % (self.monitor_file, self.agi.variables['agi_callerid'], dnid)
+		#
+		return self.application.get_dbpool().runQuery(query).addCallbacks(self.on_done_insert_histo, self.on_done_insert_histo_failure)
+
+	def on_done_insert_histo(self, result):
+		"""Change the dialplan priority to 999, used in the macro"""
+		priority = MACRO_RECORD_PRIORITY
+		return self.agi.setPriority(priority).addCallbacks(self.on_set_priority, self.on_set_priority_failure)
+
+	def on_done_insert_histo_failure(self, reason):
+		logger.error("MonitorStarting :: Unable to insert the new record into the table Historique for channel %r cause : %s", self.agi.variables['agi_channel'], reason.getTraceback())
+		return self.agi.finish()
+
+	def on_set_priority(self, result):
+		'''send the start recording call message '''
+		message = self.application.build_message('RecordStart', self.monitor_file, self.agi.variables['agi_callerid'])
+		self.application.send_record_message(message)
+		return self.agi.finish()
+
+	def on_set_priority_failure(self, reason):
 		logger.warn( 
-			"""Unable to onSetPriorityFailure channel %r: %s""", 
+			"""Unable to set priority for channel %r: %s""", 
 			self.agi.variables['agi_channel'], reason.getTraceback(),
 		)
 		return self.agi.finish()
 
-	def onSetMonitorFileFailure(self, raison):
+	def on_set_monitor_fileFailure(self, raison):
 		logger.warn( 
 			"""Unable to set MONITOR_CALL_FILE_NAME variable  channel %r: %s""", 
 			self.agi.variables['agi_channel'], reason.getTraceback(),
 		)
 		return self.agi.finish()
 
-	def answerFailure( self, reason ):
-		"""Deal with a failure to answer"""
-		logger.warn( 
-			"""Unable to answer channel %r: %s""", 
-			self.agi.variables['agi_channel'], reason.getTraceback(),
-		)
-		return self.agi.finish()
 
-	def onAnswered( self, resultLine ):
-		"""We've managed to answer the channel, yay!"""
-		df = self.agi.streamFile( 'hello-world' )
-		return df.addCallback( self.onPlayFinished )
 
-	def onPlayFinished(self, result):
-		channel = self.agi.variables['agi_channel']
-		logger.debug("MonitorAGiFactory : PlayFinished for the channel [%s]."%(channel))
-		return self.agi.finish()
-
-	def __removeFromApplication(self):
-		''' '''
-		channel = self.agi.variables['agi_channel']
-		self.application.removeDialPlan(channel)
-		return self.agi.finish()
-
-class MonitorFinisher( object ):
+class MonitorEnding( object ):
 	""" Incomming calls """
 	def __init__( self, application, agi ):
 		"""Store the AGI instance for later usage """
@@ -183,117 +218,121 @@ class MonitorFinisher( object ):
 	def start( self ):
 		"""Begin the dial-plan-like operations"""
 		logger.debug("RecordStateChecker : Check monitor state for channel [%s]", self.agi.variables['agi_channel'])
-		return self.agi.wait( 2.0 ).addCallback( self.onWaited )
+		return self.agi.getVariable('MONITOR_CALL_FILE_NAME').addCallbacks( self.on_get_monotor_variable, self.on_get_monotor_variable_failure)
 	
-	def onWaited( self, result ):
-		"""We've finished waiting, tell the user the number"""
+	def on_get_monotor_variable( self, result ):
+		"""Get the value of the MONITOR_CALL_FILE_NAME variable"""
 		channel = self.agi.variables['agi_channel']
-		logger.debug("RecordStateChecker : onWaited on channel finished%r."%(self.agi.variables['agi_channel']))
+		if result == None or result == '':
+			return self.agi.finish()
+		#
+		self.monitor_file = result
+		return self.agi.getVariable('CDR(billsec)').addCallbacks( self.on_get_duration, self.on_get_duration_failure)
+
+	def on_get_duration(self, result):
+		"""Update a record into the rc1 database for the call duration and the end timestamp."""
+		"""CDR field billsec used as the duration value."""
+		dnid = self.agi.variables['agi_dnid'][-4:]
+		query= "UPDATE rc1.Historique SET Stop = Now(), Duration='%s' WHERE FileName='%s' AND CallerID='%s' AND SDA='%s'" % (result, self.monitor_file, self.agi.variables['agi_callerid'], dnid)
+		#
+		logger.debug("MonitorEnding : on_get_monotor_variable on channel finished [%r] with duration [%ss]."%(self.agi.variables['agi_channel'],result))
+		return self.application.get_dbpool().runQuery(query).addCallbacks(self.on_done_update_histo, self.on_done_update_histo_failure)
+
+	def on_get_duration_failure(self, reason):
+		"""Failure to get the duration from CDR. Finish the agi."""
+		logger.error( 
+			"""MonitorEnding :: Failure to get the call duration for the channel [%s] with reason [%r].""", 
+			self.agi.variables['agi_channel'], reason.getTraceback(),
+		)
 		return self.agi.finish()
 
-	def onStopMonitorComplete():
-		return self.agi.finish()	
-
-	def __removeFromApplication(self):
-		''' '''
-		channel = self.agi.variables['agi_channel']
-		self.application.removeDialPlan(channel)
+	def on_done_update_histo(self, result):
+		"""Send the notification message to the redis channel."""
+		message = self.application.build_message('RecordEnd', self.monitor_file, self.agi.variables['agi_callerid'])
+		self.application.send_record_message(message)
 		return self.agi.finish()
 
+	def on_done_update_histo_failure(self, reason):
+		logger.error( 
+			"""MonitorEnding :: Failure udpate a record into rc1 historique table for the channel [%s] with reason [%r].""", 
+			self.agi.variables['agi_channel'], reason.getTraceback(),
+		)
+		return self.agi.finish()
 
+	def on_get_monotor_variable_failure( self, raison ):
+		channel = self.agi.variables['agi_channel']
+		logger.debug("MonitorEnding :: Failure to get the channel variable MONITOR_CALL_FILE_NAME for channel [%s] with raison [%s]."%(channel, raison))
+		return self.agi.finish()
 
 class MonitorApplication(object):
-	"""docstring for MonitorApplication"""	
-	def __init__(self):
-		self.count = 0
-		self.inCalls = {}
-		logger.debug("MonitorApplication : init.")
-		#self.mongoConn = yield txmongo.MongoConnection(mongo_host, mongo_port)
-		#self.mongoColl = self.mongoColl.odin.monitor
-
-	@defer.inlineCallbacks
-	def connectToMongt(self):
-		#self.mongoConn = yield txmongo.MongoConnection(mongo_host, mongo_port)
-		pass
-
+	"""Application bridge to register call.Provides 2 types of dialplan loginc base into extentions."""	
+	def __init__(self, config):
+		self.config = config
+		try:
+		    self.asterisk_server = config.get("global", "asterisk")
+		    self.site_id = config.get("global", "site_id")
+		    self.id_char = config.get("global", "id_char")
+		except NoOptionError:
+		    logger.error("MonitorApplication :: Failure to initialize. Please check parameters asterisk : [%s] site_id: [%s], id_char: [%s]." %(self.asterisk_server, self.site_id , self.id_char))
+		    reactor.stop()
+		#
+		self._dbpool = adbapi.ConnectionPool(config.get("database", "driver"), user=config.get("database", "user"), passwd=config.get("database", "password"), db=config.get("database", "schema"),)
 
 	def __call__(self, agi):
 		channel = agi.variables['agi_channel']
-		logger.debug("MonitorApplication : Incomming call for the channel [%s] comming.", channel)
 		extension = agi.variables['agi_extension']
-		logger.debug("MonitorApplication : Incomming call for the extension [%s] comming.", extension)
+		logger.debug("MonitorApplication :: New call for the channel [%s] and extension [%s].", channel, extension)
 		if extension == 'h':
-			logger.debug("MonitorApplication : Incomming call for the channel [%s] comming.", channel)
-			dp = MonitorFinisher(self,agi)
+			logger.debug("MonitorApplication :: It is end of the call , initialize the MonitorEnding for the channel [%s] comming.", channel)
+			dp = MonitorEnding(self,agi)
 			df = dp.start()
 		else:
-			self.count = self.count + 1
-			dp = MonitorStarter(self, agi)		
-			self.inCalls[channel] = dp
+			dp = MonitorStarting(self, agi)		
 			df = dp.start()
 			logger.debug("MonitorApplication : RecordStarter started for the channel [%s].", channel)
 			return df
 
+	def set_monitor_factory(self, factory):
+		""" set the factory instance """
+		self.factory = factory
 
-	def removeDialPlan(self, channel):
-		if self.inCalls.has_key(channel):
-			del self.inCalls[channel]
-			self.count = self.count - 1
-			logger.warn("MonitorApplication : Incomming call for the channel [%s] removed.", channel)
-		else:
-			logger.warn("MonitorApplication : Can't find an incomming call for the channel [%s].", channel)
-		
+	def get_dbpool(self):
+		return self._dbpool
+
+
+	#############################################################################
+	# Workers functions                                                         #
+	#                                                                           #
+	#############################################################################
+	def build_message(self, event, file, calleridnum):
+		"""Create a json string for given event """
+		logger.debug("MonitorApplication :: file argument : [%s].", file)
+		#keep the compatibility with current rc1
+		filerc1style='I%s' % (file.replace('.wav',''))
+		alarmevent = {'privilege': 'system,all', 'alarm': 'record', 'event': event, 'file': filerc1style, 'calleridnum': calleridnum}
+		to_json = {"id": 'alarm', "server": "asterisk_1", "user": "f1comami", 
+		    "alarmevent": alarmevent}
+		message = json.dumps(to_json)
+		return message
+
+	def send_record_message(self, message):
+		"""Send the message into redis specialized channel for notify start of the recording process"""
+		self.factory.send_record_message(message)
+	
 
 class MonitorAGiFactory(fastagi.FastAGIFactory):
-	"""docstring for ClassName"""
+	"""Monitor factory provides the possibility to register a call"""
 	def __init__(self, dialplan, redis_host, redis_port):
 		fastagi.FastAGIFactory.__init__(self, dialplan)
-		self.lc = task.LoopingCall(self.check_calls)
-		self.lc.start(10)
+		dialplan.set_monitor_factory(self)
 		self._redisFactory = RedisSubFactory(redis_host, redis_port)
 		self._redisFactory.set_agi_worker(self)
 		self._redisFactory.start()
-		fastagi.log.setLevel( logging.DEBUG )
+		self._redisPublisher = OdinRedisPublisher(redis_host, redis_port)
+		self._redisPublisher.start()
 
-	def check_calls(self):
-		#logger.debug( 'check_calls' )
-		pass
+	def send_record_message(self, message):
+		"""Publish the given message tho the redis channel """
+		logger.debug( 'MonitorAGiFactory :: send record notification : [%s]' %(message) )
+		self._redisPublisher.publish(REDIS_NOTIFICATION_CHANNEL, message)
 
-	def process_agi_request(self, data):
-		logger.debug("MonitorAGiFactory : Get request from odin server.")
-		request = json.loads(data)
-		requestId = request['id']
-		if requestId == None:
-			logger.error("MonitorAGiFactory : Can not find request id, the request ignored.")
-		else:
-			logger.info("MonitorAGiFactory : I'm processing request : %s" % (requestId))
-        	if requestId == "commutincall" :
-        		reactor.callWhenRunning(self.mainFunction.commutCall, request)
-        	else:
-        		logger.error("MonitorAGiFactory : Can't find the request handler %s" %(requestId))
-
-'''
-class MonitorStrategy(object):
-	"""docstring for MonitorStrategy"""
-	def __init__(self):
-		pass
-
-	def on_start_call(self):
-		channel = self.agi.variables['agi_channel']
-		logger.debug("MonitorStrategy : on_start_call channel=%s." % (channel) )
-
-	def on_hangup_call(self):
-		channel = self.agi.variables['agi_channel']
-		logger.debug("MonitorStrategy : on_hangup_call channel=%s." % (channel) )
-		pass
-
-		
-
-class MyMonitorApplication(UtilApplication):
-	"""docstring for MonitorApplication"""
-	def __init__(self):
-		self.configFiles = ['/home/vassilux/Projects/odin/config/odinmonitor.conf']
-		print 'UtilApplication'
-		UtilApplication.__init__(self)
-
-'''		

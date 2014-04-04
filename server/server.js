@@ -12,7 +12,8 @@ var express = require('express'),
   cjson = require('cjson'),
   config = cjson.load('./config/config.json'),
   cors = require('./lib/cors'),
-  sysinfo = require('./lib/sysinfo');
+  sysinfo = require('./lib/sysinfo'),
+  mysqlBridge = require('./lib/mysql-bridge');
 
 require('express-namespace');
 require('./lib/response');
@@ -92,6 +93,7 @@ app.use(function(req, res, next) {
   }
   next();
 });
+
 
 /**
  * Helper to make a call from a http request
@@ -358,6 +360,10 @@ app.put('/api/users/:username', function(req, res) {
 
 });
 
+//add rc1 crud's routes
+//must be added before app.all
+mysqlBridge.init(app, 'root', 'lepanos', '127.0.0.1', 'rc1')
+/** **/
 
 // This route deals enables HTML5Mode by forwarding missing files to the index.html
 app.all('/*', function(req, res) {
@@ -367,6 +373,8 @@ app.all('/*', function(req, res) {
     root: config.server_distFolder
   });
 });
+
+
 
 // A standard error handler - it picks up any left over errors and returns a nicely formatted http 500 error
 app.use(express.errorHandler({

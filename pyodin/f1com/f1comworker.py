@@ -905,15 +905,27 @@ class AMIBridge(object):
         type = '0'
         pstn = '1'
         code = "SPANAL"
+        record = ""
         if eventType == 'SpanAlarm':
             type = '1'
 
         elif eventType == 'SpanAlarmClear':
             type = '2'
-        else:
+        elif eventType == 'RecordStart':
+            type = '1'
+            code = 'RECORD'
+            record = '#ENREGISTREMENT=%s'%(data['alarmevent']['file'])
+        elif eventType == 'RecordEnd':
+            type = '2'
+            code = 'RECORD'
+            record = '#ENREGISTREMENT=%s'%(data['alarmevent']['file'])
+        else :
             logger.warning("AMIBridge : handler_ami_alarm can not find type for the alarm event [%s]."% (data))
             return
         #
-        optional = "#SITE=%s#TEXT=%s" % (data['server'], '%s')
+        optional = "#SITE=%s#TEXT=%s" % (data['server'], data['alarmevent']['event'])
+        if len(record) > 0:
+            optional = optional + record
+        #
         self.send_alarm_event(type, code, pstn,optional)
 #

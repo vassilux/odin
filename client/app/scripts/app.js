@@ -14,6 +14,8 @@ angular.module('app', ['ui.directives', 'localization', 'ui.bootstrap', 'ui.boot
   'services.breadcrumbs',
   'users',
   'users.services',
+  'recorder',
+  'recorder.services',
   'authentication',
   'services.i18nNotifications',
   'services.localizedMessages'

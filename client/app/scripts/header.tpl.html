@@ -7,7 +7,6 @@
                <li ng-class="{active:isNavbarActive('dashboard')}" ><a href="/dashboard" data-i18n="_header.menu.dashboard_">Dashboard</a></li>
                <li ng-class="{active:isNavbarActive('peers')}"><a href="/peers" data-i18n="_header.menu.peers_">Peers</a></li>
                <li ng-class="{active:isNavbarActive('calls')}"><a href="/calls" data-i18n="_header.menu.calls_">Calls</a></li>
-
                </li>
                <li class="dropdown">
                     <a id="languagemenu" role="button" class="dropdown-toggle" data-i18n="_header.menu.languages_">Language<b class="caret"></b></a>
@@ -20,10 +19,10 @@
                 <li class="dropdown" ng-class="{active:isNavbarActive('admin'), open:isAdminOpen}" ng-show="currentUser.isAdmin()">
                     <a id="adminmenu" role="button" class="dropdown-toggle" ng-click="isAdminOpen=!isAdminOpen" data-i18n="_header.menu.admin_">Admin<b class="caret"></b></a>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="adminmenu1">
-                        <li><a tabindex="-1" href="/users" ng-click="isAdminOpen=false" data-i18n="_header.menu.admin.users_">Users</a></li>
-                        <!--
-                        <li><a tabindex="-1" href="/admin/configuration" ng-click="isAdminOpen=false" data-i18n="_header.menu.admin.configuration_">Configuration</a></li>
-                        -->
+                        <li><a tabindex="-1" href="/users" ng-click="isAdminOpen=false" data-i18n="_header.menu.admin.users_">Users</a>
+                        </li>                        
+                        <li><a tabindex="-1" href="/recorder" ng-click="isAdminOpen=false">Recorder</a></li>
+                        
                     </ul>
                 </li>
 

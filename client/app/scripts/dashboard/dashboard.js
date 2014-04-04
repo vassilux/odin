@@ -83,6 +83,9 @@ angular.module('dashboard', [])
     $scope.fetchSysInfo();
 
     function processSysInfoCallback(status, data) {
+      if(data == undefined || data.message == undefined || data.message.asterisk == undefined){
+        return;
+      }
       $scope.asteriskInfo = angular.copy(data.message.asterisk);
       $scope.osinfostats = angular.copy(data.message);
     }
