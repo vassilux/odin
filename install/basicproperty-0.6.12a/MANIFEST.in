@@ -1,0 +1,23 @@
+include MANIFEST.in
+include license.txt
+include readme.txt
+include setup.py
+
+recursive-include basicproperty *
+include basicproperty/tests *
+
+recursive-include wxoo *
+include wxoo/tests/*
+include wxoo/demo/*
+
+recursive-include basictypes *
+include basictypes/tests/*
+
+exclude wxoo/resources/*
+
+exclude *CVS*
+exclude *Cvs*
+exclude *.scc
+exclude *.pyc
+exclude *.pyo
+exclude *.cvsignore

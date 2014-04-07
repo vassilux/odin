@@ -1,0 +1,20 @@
+Metadata-Version: 1.0
+Name: basicproperty
+Version: 0.6.12a
+Summary: Core data-types and property classes
+Home-page: http://basicproperty.sourceforge.net/
+Author: Mike C. Fletcher
+Author-email: mcfletch@users.sourceforge.net
+License: BSD-style, see license.txt for details
+Download-URL: https://sourceforge.net/project/showfiles.php?group_id=87034
+Description: Core data-types and property classes
+        
+        BasicProperty and BasicTypes provide the core datatypes for
+        both wxoo and the PyTable RDBMS Wrapper project.
+        
+Keywords: descriptor,property,basicproperty,coerce,propertied,enumeration
+Platform: Any
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Intended Audience :: Developers

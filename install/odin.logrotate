@@ -1,0 +1,10 @@
+/opt/odin/pyodin/logs/*.log /opt/odin/server/logs/* {
+	daily
+	maxage 7
+	missingok
+	rotate 7
+	compress
+	delaycompress
+	notifempty
+	create 640 root root
+} 

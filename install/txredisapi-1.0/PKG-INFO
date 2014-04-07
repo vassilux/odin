@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: txredisapi
+Version: 1.0
+Summary: non-blocking redis client for python
+Home-page: http://github.com/fiorix/txredisapi
+Author: Alexandre Fiori
+Author-email: fiorix@gmail.com
+License: http://www.apache.org/licenses/LICENSE-2.0
+Description: UNKNOWN
+Platform: UNKNOWN

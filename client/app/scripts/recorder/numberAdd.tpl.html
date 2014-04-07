@@ -1,0 +1,24 @@
+<form name="form" class="form-horizontal">
+    <div class="modal-header">
+        <div class="alert alert-info" data-i18n="_recorder.dialog.edit_number.title_">Add number</div>
+    </div>
+    <div class="modal-body">
+
+        <label>Number</label>
+        <input class="span2" type="text" name="number" ng-model="numberToAdd.number" placeholder="Please provide the number" required>
+        <span ng-show="showError('number', 'required')" class="help-inline">This field is required.</span>
+        <span ng-show="showError('number', 'number')" class="help-inline">Please enter a valid username.</span>
+        <span ng-show="showError('number', 'number')" class="help-inline">This username is not available - please enter another.</span>
+        <label>Comments</label>
+        <input class="span2" type="text" name="comments" ng-model="numberToAdd.comments" required>
+        </br>
+        </br>
+        <label>Recorded</label>
+        <input type="checkbox" ng-model="numberToAdd.recorded" ng-true-value="1" ng-false-value="0">
+
+    </div>
+    <div class="modal-footer">
+        <button ng-click="add()" class="btn btn-primary" data-i18n="_users.dialog.edit_number.add_btn_">Add</button>
+        <button ng-click="close()" class="btn" data-i18n="_users.dialog.add_number.cancel_btn_">Close</button>
+    </div>
+</form>

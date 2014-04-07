@@ -82,8 +82,6 @@ class RedisSubFactory(redis.SubscriberFactory):
         return proto
 
     def start(self):
-        #redis_host  = config.get("redis","redis_host")
-        #redis_port  = int(config.get("redis","redis_port"))
         self.connector = reactor.connectTCP(self.host, self.port, self)
 
 
@@ -150,15 +148,17 @@ class MonitorStarting( object ):
 	def start( self ):
 		"""Begin the dial-plan-like operations"""
 		value='RECORD_ALL'
-		return self.application.get_dbpool().runQuery("SELECT * FROM configs WHERE variable LIKE '%s'"%(value)).addCallbacks(self.on_done_recorde_value, self.on_done_recorde_value_failure)
+		return self.application.get_dbpool().runQuery("SELECT * FROM settings WHERE variable LIKE '%s'"%(value)).addCallbacks(self.on_done_recorde_value, self.on_done_recorde_value_failure)
 
-	def on_done_recorde_value(self, param):
-		logger.debug("MonitorStarting :: Recording object from the database [%s]", param)
+	def on_done_recorde_value(self, result):
+		logger.debug("MonitorStarting :: Recording object from the database [%s]", result)
 		channel = self.agi.variables['agi_channel']
-		if param != None and param[0][2] == 'True':
-			fileid = self.agi.variables['agi_uniqueid'].replace('.','')
-			self.monitor_file="%s.wav" % (fileid)
-			return self.agi.setVariable('MONITOR_CALL_FILE_NAME', self.monitor_file).addCallbacks(self.on_set_monitor_file, self.on_set_monitor_fileFailure)
+		if result != None :
+			self._recordAll = True
+			dnid = self.agi.variables['agi_dnid'][-4:]
+			cid = self.agi.variables['agi_callerid']
+			sql = "SELECT * FROM rc1.recordNumbers WHERE number LIKE '%s' OR number LIKE '%s'"%(dnid, cid)
+			return self.application.get_dbpool().runQuery(sql).addCallbacks(self.on_done_did_callerid, self.on_done_did_callerid_failure)
 		else:
 			logger.debug("MonitorStarting :: Recording skipped for the channel [%s]", channel)
 			return self.agi.finish()
@@ -166,6 +166,29 @@ class MonitorStarting( object ):
 	def on_done_recorde_value_failure(self, reason):
 		channel = self.agi.variables['agi_channel']
 		logger.debug("MonitorStarting :: Failure get parameter RECORD_ALL with cause [%s] for the channel [%s]", reason, channel)
+		return self.agi.finish()
+
+	def on_done_did_callerid(self, result):
+		fileid = self.agi.variables['agi_uniqueid'].replace('.','')
+		if result == None:
+			return self.agi.finish()
+		#
+		for number in result:
+			logger.debug("MonitorStarting :: on_done_did_callerid check  number [%r]", number)
+			logger.debug("MonitorStarting :: on_done_did_callerid check  number[3] [%r]", number[3])
+			if number[3] == 0 and self._recordAll == True:
+				return self.agi.finish()
+			if number[3] == 1 and self._recordAll == False:
+				break;
+
+		self.monitor_file="%s.wav" % (fileid)
+		return self.agi.setVariable('MONITOR_CALL_FILE_NAME', self.monitor_file).addCallbacks(self.on_set_monitor_file, self.on_set_monitor_fileFailure)
+
+	def on_done_did_callerid_failure(self, reason):
+		dnid = self.agi.variables['agi_dnid'][-4:]
+		cid = self.agi.variables['agi_callerid']
+		channel = self.agi.variables['agi_channel']
+		logger.warning("MonitorStarting :: Failure get recording configuration for DID [%s] and CID [%s] with reason [%s] on the channel", dnid, cid, reason, channel)
 		return self.agi.finish()
 
 
@@ -249,7 +272,7 @@ class MonitorEnding( object ):
 	def on_done_update_histo(self, result):
 		"""Send the notification message to the redis channel."""
 		message = self.application.build_message('RecordEnd', self.monitor_file, self.agi.variables['agi_callerid'])
-		self.application.send_record_message(message)
+		#self.application.send_record_message(message)
 		return self.agi.finish()
 
 	def on_done_update_histo_failure(self, reason):
@@ -260,8 +283,6 @@ class MonitorEnding( object ):
 		return self.agi.finish()
 
 	def on_get_monotor_variable_failure( self, raison ):
-		channel = self.agi.variables['agi_channel']
-		logger.debug("MonitorEnding :: Failure to get the channel variable MONITOR_CALL_FILE_NAME for channel [%s] with raison [%s]."%(channel, raison))
 		return self.agi.finish()
 
 class MonitorApplication(object):

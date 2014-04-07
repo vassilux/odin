@@ -1,0 +1,2 @@
+"""extension-specific property classes
+"""

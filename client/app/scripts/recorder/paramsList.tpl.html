@@ -1,0 +1,39 @@
+<div class="row">
+
+    <div class="span9">
+        <span class="badge">Recorde all :</span>&nbsp;
+        <input type="checkbox" ng-model="recordAll.value" ng-true-value="True" ng-false-value="False" ng-click="changeRecordAll()">
+        </br>
+        </br>
+        <table class="table table-bordered table-condensed table-striped table-hover">
+            <thead>
+                <tr>
+                    <!-- <th ng-class="{active:false}" data-i18n="_recorder.column.id_">ID</th> -->
+                    <th data-i18n="_recorder.column.number_">Number</th>
+                    <th data-i18n="_recorder.column.comments_">Comments</th>
+                    <th data-i18n="_recorder.column.recorded_">Recorded</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="number in numbers">
+                    <!--<td>{{number.id}}</td> -->
+                    <td>{{number.number}}</td>
+                    <td>{{number.comments}}</td>
+                    <td>
+                        <input type="checkbox" ng-model="number.recorded" ng-true-value="1" ng-false-value="0" ng-disabled="number.recorded">
+                    </td>
+                    <td>
+                        <button class="btn edit" ng-click="edit(number)" data-i18n="_recorder.number.edit_">Edit</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger remove" ng-click="remove(number)" data-i18n="_recorder.number.remove_">Remove</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="well">
+            <button class="btn edit " ng-click="addNumber()" data-i18n="_recorder.number.add_">New Number</button>
+        </div>
+
+    </div>
+</div>

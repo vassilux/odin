@@ -1,0 +1,8 @@
+setup.cfg
+setup.py
+txredisapi.py
+txredisapi.egg-info/PKG-INFO
+txredisapi.egg-info/SOURCES.txt
+txredisapi.egg-info/dependency_links.txt
+txredisapi.egg-info/requires.txt
+txredisapi.egg-info/top_level.txt
