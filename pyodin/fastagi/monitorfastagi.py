@@ -14,7 +14,6 @@ from starpy import fastagi
 import logging, time
 import logging.config
 import json
-from pymongo import MongoClient
 import txredisapi as redis
 import json
 
@@ -23,12 +22,13 @@ try:
 except ImportError:
     print "MONITORFASTAGI :: Can't import twisted.enterprise."
     sys.exit(1)
-try:
+'''try:
     from twistar.registry import Registry
     from twistar.dbobject import DBObject
 except ImportError:
     print "MONITORFASTAGI :: Can't import twistar."
     sys.exit(1)
+'''
 #
 logger = logging.getLogger('odin_monitor')
 #
@@ -297,7 +297,7 @@ class MonitorApplication(object):
 		    logger.error("MonitorApplication :: Failure to initialize. Please check parameters asterisk : [%s] site_id: [%s], id_char: [%s]." %(self.asterisk_server, self.site_id , self.id_char))
 		    reactor.stop()
 		#
-		self._dbpool = adbapi.ConnectionPool(config.get("database", "driver"), user=config.get("database", "user"), passwd=config.get("database", "password"), db=config.get("database", "schema"),)
+		self._dbpool = adbapi.ConnectionPool(config.get("database", "driver"), user=config.get("database", "user"), passwd=config.get("database", "password"), db=config.get("database", "schema"),cp_reconnect=True, cp_good_sql='select * from settings')
 
 	def __call__(self, agi):
 		channel = agi.variables['agi_channel']

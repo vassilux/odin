@@ -7,3 +7,9 @@ docs
 bower_components
 Readme.pdf
 Readme.html
+MySQL-python*
+basicproperty*
+mongo-async-python*
+pymongo*
+starpy*
+txredisapi*

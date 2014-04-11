@@ -5,6 +5,7 @@
 
 var mysql = require('mysql')
 var dbcrud = require('dbcrud')
+var ConnectionConfig = require('mysql/lib/ConnectionConfig')
 
 var recorderModel = {
     recordNumbers: {
@@ -45,26 +46,49 @@ var recorderModel = {
 var mySqlBridge = {
     init: function(app, user, password, host, database) {
         var url = 'mysql://' + user + ':' + password + '@' + host + '/' + database;
-        mysqlClient = mysql.createConnection(url);
-        dbcrud = require('dbcrud').init(mysqlClient, database, recorderModel);
-        
-        //very ... bad
-        app.del('/rc1/recordNumbers/:id', function(req, res) {
-            var id = req.params.id;
+        var mysqlConnectionConfig = new ConnectionConfig(url);
+        //var pool = mysql.createPool(mysqlConnectionConfig);
+        connection = mysql.createConnection(url);
+        dbcrud = require('dbcrud').init(connection, database, recorderModel);
+            log = true;
+            //very ... bad
+            app.del('/rc1/recordNumbers/:id', function(req, res) {
+                var id = req.params.id;
 
-            res.contentType('json');
-            var sql = "delete from recordNumbers where id = " + dbcrud.client.escape(id);
-            console.log("query " + sql + "\n");
+                res.contentType('json');
+                var sql = "delete from recordNumbers where id = " + dbcrud.client.escape(id);
+                console.log("query " + sql + "\n");
 
-            dbcrud.client.query(sql, function(error, data, fields) {
-                res.send("");
+                dbcrud.client.query(sql, function(error, data, fields) {
+                    res.send("");
+
+                });
+
+
+            });
+            //
+            dbcrud.addRoutes(app);
+       /* pool.getConnection(function(err, connection){
+            if(err) throw err;
+            //
+            
+            //
+            connection.on('error', function(err) {
+                if (!err.fatal) {
+                    return;
+                }
+                if (err.code !== 'PROTOCOL_CONNECTION_LOST') {
+                    throw err;
+                }
+
+                if (log) {
+                    console.log('Re-connecting lost connection: ' + err.stack);
+                }
 
             });
 
-
-        });
-        //
-        dbcrud.addRoutes(app);
+        });//pool.Connection*/
+        
     }
 
 };
