@@ -68,26 +68,6 @@ var mySqlBridge = {
             });
             //
             dbcrud.addRoutes(app);
-       /* pool.getConnection(function(err, connection){
-            if(err) throw err;
-            //
-            
-            //
-            connection.on('error', function(err) {
-                if (!err.fatal) {
-                    return;
-                }
-                if (err.code !== 'PROTOCOL_CONNECTION_LOST') {
-                    throw err;
-                }
-
-                if (log) {
-                    console.log('Re-connecting lost connection: ' + err.stack);
-                }
-
-            });
-
-        });//pool.Connection*/
         
     }
 
