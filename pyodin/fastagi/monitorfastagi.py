@@ -97,7 +97,7 @@ class RedisSubFactory(redis.SubscriberFactory):
         if self.incallWorker != None:
             self.incallWorker.process_agi_request(data)
         else:
-            logger.error("Redis : RedisSubFactory can't got the amiworker instance")
+            logger.error("Redis : RedisSubFactory can't get the amiworker instance")
 
     def process_action(self, action):
         pass
@@ -250,7 +250,16 @@ class MonitorEnding( object ):
 			return self.agi.finish()
 		#
 		self.monitor_file = result
+		return self.agi.setVariable('CDR(recordfile)', self.monitor_file).addCallbacks(self.on_set_cdr_record_file, self.on_set_cdr_record_file_failure)
+		
+	def on_set_cdr_record_file(self, result):
 		return self.agi.getVariable('CDR(billsec)').addCallbacks( self.on_get_duration, self.on_get_duration_failure)
+
+	def on_set_cdr_record_file_failure(self, reason):
+		logger.error( 
+			"""MonitorEnding :: Failure to set the cdr recordfile field for the channel [%s] with reason [%r].""", 
+			self.agi.variables['agi_channel'], reason.getTraceback(),
+		)
 
 	def on_get_duration(self, result):
 		"""Update a record into the rc1 database for the call duration and the end timestamp."""
