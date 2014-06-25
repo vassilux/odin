@@ -11,6 +11,9 @@
 ########################################################################################## 
 
 source /usr/src/scripts/common
+MYSQL_ROOT_PW=lepanos
+RC1_DB_USER=sa
+RC1_DB_PASSWORD=ESI
 
 function install_system_packages(){
 	dprint 0 INFO "Install system's packages"
@@ -23,6 +26,18 @@ function install_system_packages(){
     		echo $CMD
 			y2continue
 	} fi
+}
+
+function install_rc1_database(){
+	dprint 0 INFO "Do you want to install rc1 mysql database?[Y/n]"
+	read resp
+	if [ "$resp" = "Y" -o "$resp" = "y" ]; then
+		echo "CREATE DATABASE IF NOT EXISTS rc1;" | mysql -u root -p${MYSQL_ROOT_PW}
+		echo "GRANT ALL PRIVILEGES ON rc1.* TO ${RC1_DB_USER}@localhost IDENTIFIED BY '${RC1_DB_PASSWORD}';" | mysql -u root -p${MYSQL_ROOT_PW}
+		#
+		mysql -u${RC1_DB_USER} -p${RC1_DB_PASSWORD} rc1 < RC1.sql
+	fi
+
 }
 
 function install_node_server(){

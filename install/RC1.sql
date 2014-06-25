@@ -1,33 +1,10 @@
--- phpMyAdmin SQL Dump
--- version 3.3.7deb6
--- http://www.phpmyadmin.net
---
--- Host: localhost
--- Generation Time: Aug 10, 2011 at 09:52 AM
--- Server version: 5.1.57
--- PHP Version: 5.3.6-6~dotdeb.1
+delimiter $$
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+CREATE DATABASE `rc1` /*!40100 DEFAULT CHARACTER SET latin1 */$$
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-
---
--- Database: `RC1`
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table `Historique`
---
-
-CREATE TABLE IF NOT EXISTS `Historique` (
+CREATE TABLE `Historique` (
   `NoTrans` varchar(30) DEFAULT NULL,
-  `Start` datetime DEFAULT NULL,
+  `Start` varchar(19) DEFAULT NULL,
   `Stop` varchar(20) DEFAULT NULL,
   `FileName` varchar(50) DEFAULT NULL,
   `StartLong` int(11) DEFAULT NULL,
@@ -38,6 +15,40 @@ CREATE TABLE IF NOT EXISTS `Historique` (
   `XISDN` int(11) DEFAULT NULL,
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=78 ;
+) ENGINE=MyISAM AUTO_INCREMENT=546 DEFAULT CHARSET=latin1$$
+
+CREATE
+DEFINER=`root`@`192.168.%`
+TRIGGER `rc1`.`timestampinserter`
+BEFORE INSERT ON `rc1`.`Historique`
+FOR EACH ROW
+SET NEW.Start = DATE_FORMAT(NEW.Start, '%d/%m/%Y %H:%i:%s')
+$$
+
+CREATE
+DEFINER=`root`@`192.168.%`
+TRIGGER `rc1`.`timestampper`
+BEFORE UPDATE ON `rc1`.`Historique`
+FOR EACH ROW
+SET NEW.Stop = DATE_FORMAT(NEW.Stop, '%d/%m/%Y %H:%i:%s')
+$$
+
+CREATE TABLE `settings` (
+  `id` int(11) NOT NULL,
+  `variable` varchar(45) DEFAULT NULL,
+  `value` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1$$
+
+CREATE TABLE `recordNumbers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(45) DEFAULT NULL,
+  `comments` varchar(120) DEFAULT NULL,
+  `recorded` tinyint(1) DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1 COMMENT='DID or external numbers'$$
+
+
+
 
 

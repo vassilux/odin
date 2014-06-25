@@ -362,7 +362,7 @@ app.put('/api/users/:username', function(req, res) {
 
 //add rc1 crud's routes
 //must be added before app.all
-mysqlBridge.init(app, 'root', 'lepanos', '127.0.0.1', 'rc1')
+mysqlBridge.init(app, 'root', 'lepanos', '192.168.3.20', 'rc1')
 /** **/
 
 // This route deals enables HTML5Mode by forwarding missing files to the index.html
