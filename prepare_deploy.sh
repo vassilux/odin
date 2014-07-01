@@ -32,6 +32,7 @@ rm -rf "$DEPLOY_DIR/pyodin/conf/odinf1com.conf"
 rm -rf "$DEPLOY_DIR/pyodin/conf/odinincall.conf"
 rm -rf "$DEPLOY_DIR/pyodin/conf/odinsys.conf"
 rm -rf "$DEPLOY_DIR/pyodin/conf/odinsyslogger.conf"
+rm -rf "$DEPLOY_DIR/pyodin/conf/odinmonitor.conf"
 rm -rf "$DEPLOY_DIR/pyodin/test"
 
 rm -rf "$DEPLOY_DIR/client/app/config.json"
