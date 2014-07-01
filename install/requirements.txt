@@ -1,0 +1,11 @@
+MySQL-python==1.2.3
+Twisted==14.0.0
+argparse==1.2.1
+basicproperty==0.6.12a
+distribute==0.6.24
+psutil==2.1.1
+pymongo==2.7.1
+starpy==1.0.2
+txredisapi==1.0
+wsgiref==0.1.2
+zope.interface==4.1.1
