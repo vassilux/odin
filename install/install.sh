@@ -11,21 +11,23 @@
 ########################################################################################## 
 
 source /usr/src/scripts/common
+#Debian specific 
+source /etc/bash_completion.d/virtualenvwrapper
+
 MYSQL_ROOT_PW=lepanos
 RC1_DB_USER=sa
 RC1_DB_PASSWORD=ESI
 
 function install_system_packages(){
 	dprint 0 INFO "Install system's packages"
-	PACKAGES="python-dev python-twisted supervisor launchtool python-setuptools python-pip"	
+	PACKAGES="python-dev python-twisted supervisor launchtool python-setuptools python-pip redis-server mongodb python-virtualenv virtualenvwrapper"	
 	
 	CMD=`apt-get -y install ${PACKAGES} `
 	if [ $? != 0 ]; then
-	{
-			dprint 0 INFO "Package installation failed"
-    		echo $CMD
-			y2continue
-	} fi
+		dprint 0 INFO "Package installation failed"
+		echo $CMD
+		y2continue
+	fi
 }
 
 function install_rc1_database(){
@@ -41,83 +43,43 @@ function install_rc1_database(){
 }
 
 function install_node_server(){
-
+	echo ""
+	#if [ $(dpkg-query -W -f='${Status') node 2>/dev/null | grep -c "ok installed") -eq 0 ]; then
+	# dprint 0 INFO "Node package is not installed. Try install the node pacakge.";
+	# dpkg -i /usr/src/programs/node_*
+	#else
+	#	dprint 0 INFO "Node package is already installed. Skip thist step";	
+   # fi
 }
 
 function install_web_client(){
-
+	echo ""
 }
 
 function install_pyodin(){
-	dprint 0 INFO "Do you have http proxy in the network ?"
-	dprint 0 INFO "In this case you must configure the proxy settings for pip like this : http://[adr_proxy]:[port_proxy]";
+	#dprint 0 INFO "Do you have http proxy in the network ?"
+	#dprint 0 INFO "In this case you must configure the proxy settings for pip like this : http://[adr_proxy]:[port_proxy]";
 	#
-	ki="n"
-  	read proxy
-  	if [[ "${proxy}" == "" ]]; then
-  			dprint 0 INFO "Proxy configuration skipped."	
-  	else
-    	export http_proxy="${proxy}"
-    	export https_proxy="${proxy}"
-    	dprint 0 INFO "Proxy for pip package manager configured ${proxy}."
+	#ki="n"
+  	#read proxy
+  	#if [[ "${proxy}" == "" ]]; then
+  	#		dprint 0 INFO "Proxy configuration skipped."	
+  	#else
+    #	export http_proxy="${proxy}"
+    #	export https_proxy="${proxy}"
+    #	dprint 0 INFO "Proxy for pip package manager configured ${proxy}."
+  	#fi
+  	if [ ! -f /opt/odin/install/requirements.txt ]; then
+  		dprint 0 ERROR "Can't find requirements.txt file. Installation must be stopped."
+  		exit 0;
   	fi
-}
 
-function install_redis()
-{
-	cd /opt/odin/install
-	if [ ! -f /opt/odin/install/redis-server_2%3a2.4.15-1~bpo60+2_i386.deb ]; then
-	 dprint 0 INFO "Error can't find redis-server_2%3a2.4.15-1~bpo60+2_i386.deb into vor install directory";
-	 exit;
-	else
-		dpkg -i redis-server_2%3a2.4.15-1~bpo60+2_i386.deb	
-    fi
-
-}
-
-function install_mongodb()
-{
-	cd /opt/odin/install
-	if [ ! -f /opt/odin/install/mongodb-10gen_2.2.0_i386.deb ]; then
-	 dprint 0 INFO "Error can't find mongodb-10gen_2.2.0_i386.deb into vor install directory";
-	 exit;
-	else
-		dpkg -i mongodb-10gen_2.2.0_i386.deb	
-    fi
-
-}
-
-
-function install_node()
-{
-	cat /etc/kesix/kesix-addons|grep nodejs &>/dev/null
-	res=$?
-	pause
-	if [ ! $res -eq 0 ]; then
-		cp /usr/src/programs/node-${NODEJS_VER}.tar.gz /usr/src/node-${NODEJS_VER}.tar.gz
-		cd /usr/src
-		tar xvzf /usr/src/node-${NODEJS_VER}.tar.gz
-		cd node-${NODEJS_VER}
-		./configure
-		make
-		make install
-		dprint 0 INFO "nodejs installed."
-		dprint 0 INFO "Do you have http proxy in the network ?"
-		dprint 0 INFO "In this case you must configure the proxy settings for nodejs like this : http://[adr_proxy]:[port_proxy]";
-		#
-		ki="n"
-  		read proxy
-  		if [[ "${proxy}" == "" ]]; then
-  			dprint 0 INFO "Proxy configuration skipped."	
-  		else
-  			npm config set strict-ssl false
-    		npm config set proxy ${proxy}
-    		dprint 0 INFO "Proxy for nodejs package manager configured ${proxy}."
-  		fi
-  		dprint 0 INFO "I will install forever."
-  		npm install -g forever
-  		PKGNAME=node-${NODEJS_VER}
-	fi
+  	if [ ! -d /opt/odin/install/packages ]; then
+  		dprint 0 ERROR "Can't find the packages local directory into your system. Installation must be stopped."
+  		exit 0;
+  	fi
+  	mkvirtualenv --no-site-packages odin
+  	pip install -r requirements.txt --find-links=file:///opt/odin/install/packages
 }
 
 
@@ -125,13 +87,10 @@ function main()
 {
 	dprint 0 INFO "Odin installation started."
 	install_system_packages
-	install_node
-	install_redis
-	install_mongodb
-	install_node_server
-	install_web_client
+	#install_node_server
+	#install_web_client
 	install_pyodin
-	install -m 0644 /opt/odin/install/odin.logrotate /etc/logrotate.d/odin
+	#install -m 0644 /opt/odin/install/odin.logrotate /etc/logrotate.d/odin
 	dprint 0 INFO "Odin installation finished."
 }
 
