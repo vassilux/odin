@@ -59,14 +59,17 @@ You must configured a queue like below:
 Important thing that provide <b>joinempty = yes</b> queue's parameter for leave the new incomming into the queue on waiting.
 
 ### OdinMonitoring, a call audio recorder RC1 compatible.
-Please install samba package for use a windows shared folder
-This is a debian command : <b>apt-get install smbclient cifs-utils</b>
-FastAGI server pyhton twisted based.
-Please read the following notes :
+Please install samba package for use a windows shared folder, this is a good choise to save disk space" of the iPBX host.
+Example for debian based OS : <b>apt-get install smbclient cifs-utils</b>
 
-You can use samba to mount a shared Windows directory like the follow example :
+MySql driver must be installed into Windows host.
+Source ODBC must be created, please check user's rights of the mysql server.
+
+Example to mount a windows shared folder :
 
       mount -t cifs //192.168.3.97/RC1/Db/Data/Audio /home/rc1/ -o username=toto,password=tata,file_mode=0777,dir_mode=0777 where 192.168.3.81 is the windows host et RC1 a shared folder.
+
+iPBX dialplan configuration :
 
 Edit the global section into extentions.conf file and ajust or create variables :
 
