@@ -60,7 +60,7 @@ Important thing that provide <b>joinempty = yes</b> queue's parameter for leave 
 
 ### OdinMonitoring, a call audio recorder RC1 compatible.
 Please install samba package for use a windows shared folder
-This is a debian command : apt-get install smbclient cifs-utils
+This is a debian command : <b>apt-get install smbclient cifs-utils</b>
 FastAGI server pyhton twisted based.
 Please read the following notes :
 
