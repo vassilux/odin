@@ -121,7 +121,13 @@ Example :
 
 
 ### Installation
-Please read Readme.txt file into docs folder
+Please transfer odin_[version].tar.gz into /opt directory of the target host.
+
+Execute tar xvzf odin_[version].tar.gz 
+
+Change the directory  : cd /opt/odin/install
+
+Execute ./install.sh and follow instructions.
 
 ## Directory Layout
 
