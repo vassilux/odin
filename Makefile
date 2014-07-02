@@ -3,7 +3,7 @@
 PDF := $(patsubst %.md,%.pdf,$(wildcard *.md))
 HTML := $(patsubst %.md,%.html,$(wildcard *.md))
 
-all: $(HTML) $(PDF)
+all: $(HTML) $(PDF) package
 
 doc-html: $(HTML)
 
