@@ -123,7 +123,7 @@ Example :
 
 
 ### Installation
-Please transfer odin_[version].tar.gz into /opt directory of the target host.
+Please transfer odin_[version].tar.gz file into /opt directory of the target host.
 
 Execute tar xvzf odin_[version].tar.gz 
 
