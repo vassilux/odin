@@ -18,5 +18,5 @@
     "mysql_port" : "3306",
     "mysql_user" : "root",
     "mysql_password": "lepanos",
-    "mysql_db_rc1": "rc1
+    "mysql_db_rc1": "rc1"
 }
