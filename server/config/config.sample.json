@@ -11,5 +11,12 @@
     "server_listenPort": "3001",                                   // The port on which the server is to listen (means that the app is at http://localhost:3000 for instance)
     "server_distFolder": "../client/app",  // The folder that contains the application files (note that the files are in a different repository) - relative to this file
     "server_staticUrl": "/static",                               // The base url from which we serve static files (such as js, css and images)
-    "server_cookieSecret": "odin-app"                         // The secret for encrypting the cookie
+    "server_cookieSecret": "odin-app",                         // The secret for encrypting the cookie,
+    "sysinfosrv_adr": "localhost",      //system server address,
+    "sysinfosrv_port": "3003",          //system server address
+    "mysql_host": "127.0.0.1",
+    "mysql_port" : "3306",
+    "mysql_user" : "root",
+    "mysql_password": "lepanos",
+    "mysql_db_rc1": "rc1"
 }

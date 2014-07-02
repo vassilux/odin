@@ -7,7 +7,7 @@
 // In this case it is a simple value service.
 var services = angular.module('app.services', []);
 
-services.value('version', '1.0.0');
+services.value('version', '1.0.1');
 
 var ScopedSocket = function(socket, $rootScope) {
   this.socket = socket;

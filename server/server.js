@@ -218,7 +218,7 @@ app.get('/admin-user', function(req, res) {
  *
  */
 app.get('/sysinfo', function(req, res) {
-  sysinfo.get('localhost', 3003, function(data) {
+  sysinfo.get(config.sysinfosrv_adr, config.sysinfosrv_port, function(data) {
     console.log("data : " + data);
     res.contentType('json');
     res.send(data);
@@ -362,7 +362,7 @@ app.put('/api/users/:username', function(req, res) {
 
 //add rc1 crud's routes
 //must be added before app.all
-mysqlBridge.init(app, 'root', 'lepanos', '192.168.3.20', 'rc1')
+mysqlBridge.init(app, config.mysql_user, config.mysql_password, config.mysql_host, config.mysql_db_rc1)
 /** **/
 
 // This route deals enables HTML5Mode by forwarding missing files to the index.html

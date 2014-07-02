@@ -11,7 +11,7 @@ DEPLOY_DIR="odin"
 
 VER_MAJOR="1"
 VER_MINOR="0"
-VER_PATCH="0"
+VER_PATCH="1"
 
 if [ -d "$DEPLOY_DIR" ]; then
     rm -rf  "$DEPLOY_DIR"
@@ -25,7 +25,12 @@ cp -aR install "$DEPLOY_DIR"
 cp -aR pyodin "$DEPLOY_DIR"
 cp -aR server "$DEPLOY_DIR"
 
-rm -rf "$DEPLOY_DIR/pyodin/logs/*.log"
+rm -rf "$DEPLOY_DIR/pyodin/logs/odin_ami.log"
+rm -rf "$DEPLOY_DIR/pyodin/logs/odin_callcenter.log"
+rm -rf "$DEPLOY_DIR/pyodin/logs/odin_f1com.log"
+rm -rf "$DEPLOY_DIR/pyodin/logs/odin_incall.log"
+rm -rf "$DEPLOY_DIR/pyodin/logs/odin_monitor.log"
+rm -rf "$DEPLOY_DIR/pyodin/logs/odin_sys.log"
 rm -rf "$DEPLOY_DIR/pyodin/conf/odinami.conf"
 rm -rf "$DEPLOY_DIR/pyodin/conf/odinamilogger.conf"
 rm -rf "$DEPLOY_DIR/pyodin/conf/odinf1com.conf"

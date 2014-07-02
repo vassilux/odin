@@ -1,7 +1,5 @@
 delimiter $$
 
-CREATE DATABASE `rc1` /*!40100 DEFAULT CHARACTER SET latin1 */$$
-
 CREATE TABLE `Historique` (
   `NoTrans` varchar(30) DEFAULT NULL,
   `Start` varchar(19) DEFAULT NULL,
@@ -18,7 +16,7 @@ CREATE TABLE `Historique` (
 ) ENGINE=MyISAM AUTO_INCREMENT=546 DEFAULT CHARSET=latin1$$
 
 CREATE
-DEFINER=`root`@`192.168.%`
+DEFINER=`root`@`%`
 TRIGGER `rc1`.`timestampinserter`
 BEFORE INSERT ON `rc1`.`Historique`
 FOR EACH ROW
@@ -26,7 +24,7 @@ SET NEW.Start = DATE_FORMAT(NEW.Start, '%d/%m/%Y %H:%i:%s')
 $$
 
 CREATE
-DEFINER=`root`@`192.168.%`
+DEFINER=`root`@`%`
 TRIGGER `rc1`.`timestampper`
 BEFORE UPDATE ON `rc1`.`Historique`
 FOR EACH ROW
