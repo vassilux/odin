@@ -2,7 +2,7 @@
     "ODIN_LOG_LEVEL": "DEBUG",
     "OS_ANALYZER_LOG_LEVEL":"DEBUG",
     "redis_host" : "127.0.0.1",
-	  "redis_port" : "6379",
+	"redis_port" : "6379",
   	"mongo_dbUrl": "127.0.0.1", // The base url of the MongoLab DB server
   	"mongo_user": "admin",
   	"mongo_password": "admin",
