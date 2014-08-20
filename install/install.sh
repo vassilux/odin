@@ -92,6 +92,8 @@ function install_pyodin(){
   		exit 0;
   	fi
   	mkvirtualenv --no-site-packages odin
+    pip install /opt/odin/install/packages/basicproperty-0.6.12a.tar.gz
+    pip install /opt/odin/install/packages/starpy-1.0.2.tar.gz
   	pip install -r requirements.txt --find-links=file:///opt/odin/install/packages
   	#configuration part
   	if [ ! -f /opt/odin/pyodin/conf/odinamilogger.conf ]; then
