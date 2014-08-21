@@ -46,25 +46,19 @@ var recorderModel = {
 var mySqlBridge = {
     init: function(app, user, password, host, database) {
         var url = 'mysql://' + user + ':' + password + '@' + host + '/' + database;
+        app.logger.debug('Initialize mysql bridge with : ' + url);
         var mysqlConnectionConfig = new ConnectionConfig(url);
-        //var pool = mysql.createPool(mysqlConnectionConfig);
         connection = mysql.createConnection(url);
         dbcrud = require('dbcrud').init(connection, database, recorderModel);
             log = true;
             //very ... bad
             app.del('/rc1/recordNumbers/:id', function(req, res) {
                 var id = req.params.id;
-
                 res.contentType('json');
                 var sql = "delete from recordNumbers where id = " + dbcrud.client.escape(id);
-                console.log("query " + sql + "\n");
-
                 dbcrud.client.query(sql, function(error, data, fields) {
                     res.send("");
-
                 });
-
-
             });
             //
             dbcrud.addRoutes(app);

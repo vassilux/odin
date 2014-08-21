@@ -603,5 +603,35 @@
         "key":"_users.dialog.remove_user.ok_btn_",
         "value": "OK",
         "description":"OK dialog button"
+    },
+    {
+        "key":"_recorder.column.number_",
+        "value": "Numèro",
+        "description":"Recorder column number"
+    },
+    {
+        "key":"_recorder.column.comments_",
+        "value": "Commenetaire",
+        "description":"Recorder column comments"
+    },
+    {
+        "key":"_recorder.column.recorded_",
+        "value": "Enregisré",
+        "description":"Recorder column recorded"
+    },
+    {
+        "key":"_recorder.number.edit_",
+        "value": "Editer",
+        "description":"Recorder edit button"
+    },
+    {
+        "key":"_recorder.number.remove_",
+        "value": "Supprimer",
+        "description":"Recorder remove button"
+    },
+    {
+        "key":"_recorder.number.add_",
+        "value": "Ajouter nouveau numèro",
+        "description":"Recorder add new number button"
     }
 ]

@@ -618,5 +618,36 @@
         "key":"_users.dialog.remove_user.ok_btn_",
         "value": "OK",
         "description":"OK dialog button"
+    },
+    {
+        "key":"_recorder.column.number_",
+        "value": "Number",
+        "description":"Recorder column number"
+    },
+    {
+        "key":"_recorder.column.comments_",
+        "value": "Comments",
+        "description":"Recorder column comments"
+    },
+    {
+        "key":"_recorder.column.recorded_",
+        "value": "Recorded",
+        "description":"Recorder column recorded"
+    },
+    {
+        "key":"_recorder.number.edit_",
+        "value": "Edit",
+        "description":"Recorder edit button"
+    },
+    {
+        "key":"_recorder.number.remove_",
+        "value": "Remove",
+        "description":"Recorder remove button"
+    },
+    {
+        "key":"_recorder.number.add_",
+        "value": "Add new number",
+        "description":"Recorder add new number button"
     }
+    
 ]

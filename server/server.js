@@ -49,6 +49,7 @@ var sessionStore = exports.sessionStore = new RedisStore({
 
 /** **/
 var app = express();
+app.logger = logger
 
 
 // Serve up the favicon
@@ -368,7 +369,7 @@ mysqlBridge.init(app, config.mysql_user, config.mysql_password, config.mysql_hos
 // This route deals enables HTML5Mode by forwarding missing files to the index.html
 app.all('/*', function(req, res) {
   // Just send the index.html for other files to support HTML5Mode
-  console.log("send index.html");
+  logger.debug('send index.html : ');
   res.sendfile('index.html', {
     root: config.server_distFolder
   });
