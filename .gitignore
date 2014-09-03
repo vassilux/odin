@@ -3,7 +3,6 @@ logs
 *.deb
 *.tar.gz
 *.log
-docs
 bower_components
 Readme.pdf
 Readme.html

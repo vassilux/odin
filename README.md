@@ -124,6 +124,47 @@ Example :
      same => n,Macro(record-rc1-converter)
      same => n,NoOp(Monitor file hangup : ${MIXMON_DIR}${MONITOR_CALL_FILE_NAME})
 
+Dialplan example :
+
+    [from-external-recording]
+    exten = _X.,1,NoOp(from-external-recording : ${CALLERID(all)})
+    same => n,Macro(record-enable)
+    same => n,NoOp(Monitor file :${MIXMON_DIR}${MONITOR_CALL_FILE_NAME})
+    ;same => n,Set(CHANNEL(hangup_handler_push)=hangup-handler,s,1)
+    same => n,Set(TIMEOUT(absolute)=60)
+    same => n,Dial(SIP/6005&SIP/6006,60,tTkK)
+    same => n,Hangup()
+    exten = h,1,Macro(record-stop)
+    same => n,Macro(record-rc1-converter)
+    same => n,NoOp(Monitor file hangup : ${MIXMON_DIR}${MONITOR_CALL_FILE_NAME})
+
+    [from-external-f1com]
+    exten = _X.,1,NoOp(from-external-recording-f1com : ${CALLERID(all)})
+    same => n,UserEvent(incommingcall,Context:from-external, channel: ${CHANNEL}, extention:${EXTEN},calleridnum:${CALLERID(num)},calleridname:${CALLERID(name)},uniqueid: ${CDR(uniqueid)})
+    same => n,Macro(record-enable)
+    same => n,NoOp(Monitor file :${MIXMON_DIR}${MONITOR_CALL_FILE_NAME})
+    ;same => n,Set(CHANNEL(hangup_handler_push)=hangup-handler,s,1)
+    same => n,AGI(agi://127.0.0.1:4575)
+    same => n,Set(TIMEOUT(absolute)=60)
+    same => n,Goto(queues,6500,1)
+    same => n,Hangup()
+    exten = h,1,Macro(record-stop)
+    same => n,Macro(record-rc1-converter)
+    same => n,NoOp(Monitor file hangup : ${MIXMON_DIR}${MONITOR_CALL_FILE_NAME})
+
+
+    [hangup-handler]
+    exten => s,1,NoOp(Hangup handler)
+    same=> n,Macro(record-stop)
+    same=> n,Macro(record-rc1-converter)
+    same=> n,Return()
+
+
+    [from-somewhere]
+    include = parkedcalls
+    ;exten = _X.,1,Goto(from-external-f1com,${EXTEN},1)
+    exten = _X.,1,Goto(from-external-recording,${EXTEN},1)
+
 
 ### Installation
 Please transfer odin_[version].tar.gz file into /opt directory of the target host.

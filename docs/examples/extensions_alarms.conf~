@@ -1,0 +1,239 @@
+;!
+;! Automatically generated configuration file
+;! Filename: extensions.conf (/etc/asterisk/extensions_alarms.conf)
+;! Generator: Manager
+;! Creation Date: Fri Jun 27 11:20:25 2014
+;!
+;
+
+[test-teletech-alarm-call]
+;exten => 2543,1,Answer
+exten => 2543,1,Set(CALLERID(name)=toto)
+same => n,Set(TEMPNUM=${CALLERID(num)})
+same => n,Set(TEMPNAME="Loup to kesix")
+same => n,Set(CALLERID(name)=${TEMPNAME}-${TEMPNUM})
+same => n,Set(TIMEOUT(absolute)=180)
+same => n,Dial(SIP/g200beprovider/0493940385,,M(teletech1AlarmCall))
+same => n,Hangup
+
+
+[test-teletech-alive-call]
+exten => 2544,1,Answer
+exten => 2544,n,Set(TIMEOUT(absolute)=180)
+exten => 2544,n,Dial(${XOIP_SPAN}/4001,,M(teletechAliveCall))
+exten => 2544,n,Hangup
+
+[test-anep-vigile]
+exten => 2545,1,Answer
+exten => 2545,n,Set(TIMEOUT(absolute)=180)
+exten => 2545,n,Dial(Zap/g14/4004,,M(anepVigile))
+exten => 2545,n,Hangup
+
+[test-safeline-unit_test]
+exten => 2546,1,Answer
+exten => 2546,n,Set(TIMEOUT(absolute)=180)
+exten => 2546,n,Dial(Zap/g14/4002,,M(safelinetype2))
+exten => 2546,n,Hangup
+
+[test-rem5ev]
+exten => 2547,1,Answer
+exten => 2547,n,Set(TIMEOUT(absolute)=180)
+exten => 2547,n,Dial(Zap/g14/4005,,M(macro-rem5ev_psgblock))
+exten => 2547,n,Hangup
+
+
+[test-windcrest]
+exten => 2548,1,Answer
+exten => 2548,n,Set(TIMEOUT(absolute)=180)
+exten => 2548,n,Dial(Zap/g14/4006,,M(windcrest_alarme_routine_call))
+exten => 2548,n,Hangup
+
+
+
+[test-anep-vigile-tsut]
+exten => 2549,1,Answer
+exten => 2549,n,Set(TIMEOUT(absolute)=180)
+exten => 2549,n,Dial(Zap/g14/4004,,M(anepVigile_tsut))
+exten => 2549,n,Hangup
+
+
+[test-memco]
+exten => 2550,1,Answer
+exten => 2550,n,Set(TIMEOUT(absolute)=180)
+exten => 2550,n,Dial(Zap/g14/4007,,M(memco_call))
+exten => 2550,n,Hangup
+
+[macro-teletechAlarm128]
+exten => s,1,Wait(2)
+exten => s,n,Read(F1Response||2)
+exten => s,n,SendDTMF(*2201*87654321*128*106#)
+;wait for full duplex
+exten => s,n,Read(F1Response||8)
+;exten => s,n,GotoIf($["${F1Response}" = "*00*042#"]?F1OK:F1KO)
+;exten => s,n(F1OK),NoOp(Send ack ) 
+exten => s,n,SendDTMF(1)
+; - Leave it commented out to bridge the call
+exten => s,n,SetVar(MACRO_RESULT=CONTINUE)
+;exten => s,n(F1KO),Hangup
+
+
+[macro-teletechAliveCall]
+exten => s,1,Wait(1)
+;exten => s,n,SendDTMF(*2200*12345678*093#)
+exten => s,n,SendDTMF(#*2100*111111*062#)
+exten => s,1,Wait(3)
+exten => s,n,SendDTMF(1)
+exten => s,1,Wait(3)
+exten => s,n,SendDTMF(1)
+exten => s,1,Wait(3)
+exten => s,n,SendDTMF(1)
+exten => s,Wait(20)
+exten => s,n,SetVar(MACRO_RESULT=CONTINUE)
+
+
+
+[macro-teletech32AlarmCall]
+exten => s,1,Wait(2)
+exten => s,n,Read(F1Response||2)
+exten => s,n,SendDTMF(B*2201*11324198*32*093#)
+;wait for full duplex
+exten => s,n,Read(F1Response||8)
+;exten => s,n,GotoIf($["${F1Response}" = "*00*042#"]?F1OK:F1KO)
+;exten => s,n(F1OK),NoOp(Send ack ) 
+exten => s,n,SendDTMF(1)
+; - Leave it commented out to bridge the call
+exten => s,n,SetVar(MACRO_RESULT=CONTINUE)
+;exten => s,n(F1KO),Hangup
+
+[macro-teletech1AlarmCall]
+exten => s,1,Wait(2)
+exten => s,n,Read(F1Response)
+exten => s,n,SendDTMF(B*2201*11324198*1*089#)
+;wait for full duplex
+exten => s,n,Read(F1Response)
+;exten => s,n,GotoIf($["${F1Response}" = "*00*042#"]?F1OK:F1KO)
+;exten => s,n(F1OK),NoOp(Send ack ) 
+exten => s,n,SendDTMF(1)
+; - Leave it commented out to bridge the call
+exten => s,Wait(20)
+;exten => s,n,SetVar(MACRO_RESULT=CONTINUE)
+;exten => s,n(F1KO),Hangup
+
+
+[macro-anepVigile]
+exten => s,1,Read(F1Response||1)
+exten => s,n,SendDTMF(37049442)
+;wait for full duplex
+exten => s,n,Read(F1Response||1)
+exten => s,n,SendDTMF(C6C2A300B2510031C0A0)
+exten => s,n,Read(F1Response||1)
+exten => s,n,SendDTMF(10)
+exten => s,n,Wait(1)
+exten => s,n,SendDTMF(A21C192100)
+exten => s,n,SetVar(MACRO_RESULT=CONTINUE)
+
+
+[macro-safelinetype2]
+exten => s,1,Wait(5)
+exten => s,n,Read(F1Response||1)
+exten => s,n,SendDTMF(DD2B027672811002#)
+exten => s,n,Read(F1Response||1)
+exten => s,n,SendDTMF(D2B027672811002#)
+exten => s,n,SetVar(MACRO_RESULT=CONTINUE)
+
+[macro-safelinetype_batery_fault]
+exten => s,1,Wait(1)
+exten => s,n,SendDTMF(2B027672811002#)
+exten => s,n,SetVar(MACRO_RESULT=CONTINUE)
+
+[macro-safelinetype_data_call]
+exten => s,1,Wait(1)
+exten => s,n,SendDTMF(2B123456786003)
+exten => s,n,SetVar(MACRO_RESULT=CONTINUE)
+
+[macro-safelinetype_start_alarm]
+exten => s,1,Wait(1)
+exten => s,n,SendDTMF(2B02728130031)
+exten => s,n,SetVar(MACRO_RESULT=CONTINUE)
+
+[macro-safelinetype_end_alarm]
+exten => s,1,Wait(1)
+exten => s,n,SendDTMF(2B027281400C1)
+exten => s,n,SetVar(MACRO_RESULT=CONTINUE)
+
+[macro-safelinetype_routine_call]
+exten => s,1,Wait(1)
+exten => s,n,SendDTMF(38027672812C)
+exten => s,n,SetVar(MACRO_RESULT=CONTINUE)
+
+[macro-rem5ev_psgblock]
+exten => s,1,Wait(1)
+exten => s,n,SendDTMF(bd*01*78615*00*2015*bd)
+exten => s,1,Wait(10)
+exten => s,n,SetVar(MACRO_RESULT=CONTINUE)
+
+[macro-rem5ev_test]
+exten => s,1,Wait(1)
+exten => s,n,SendDTMF(#01*76436*00*4004)
+exten => s,1,Wait(10)
+exten => s,n,SetVar(MACRO_RESULT=CONTINUE)
+
+[macro-windcrest_alarme_echo]
+exten => s,n,Wait(1)
+exten => s,1,NoOp(start windcrest test alarme echo)
+exten => s,n,Read(F1Response||1)
+exten => s,n,SendDTMF(177204770001)
+exten => s,n,Wait(5)
+;wait for secode invitaiton
+exten => s,n,Read(F1Response||1)
+exten => s,n,SendDTMF(3177204770001)
+exten => s,n,Read(F1Response||1)
+exten => s,n,Wait(3)
+
+[macro-windcrest_alarme_routine_call]
+exten => s,1,NoOp(start windcrest test routin call)
+exten => s,n,Wait(15)
+exten => s,n,SendDTMF(3138204770000)
+;wait for secode invitaiton
+;exten => s,n,Read(F1Response||1)
+exten => s,n,Wait(3)
+exten => s,n,SendDTMF(3138204770000)
+exten => s,n,Read(F1Response||1)
+exten => s,n,Wait(10)
+
+
+[macro-windcrest_alarme]
+exten => s,1,NoOp(start windcrest test alarme echo)
+exten => s,n,Read(F1Response||1)
+exten => s,n,SendDTMF(138204770000)
+;wait for secode invitaiton
+exten => s,n,Read(F1Response||1)
+exten => s,n,SendDTMF(138204770000)
+exten => s,n,Read(F1Response||1)
+exten => s,n,Wait(3)
+
+[macro-anepVigile_tsut]
+exten => s,1,Read(F1Response||1)
+exten => s,n,SendDTMF(37049)
+exten => s,n,Wait(1)
+exten => s,n,SendDTMF(442)
+;wait for full duplex
+exten => s,n,Read(F1Response||1)
+exten => s,n,SendDTMF(C6C2A300B2510031C0A0)
+exten => s,n,Read(F1Response||1)
+exten => s,n,SendDTMF(10)
+exten => s,n,Wait(1)
+exten => s,n,SendDTMF(A21C192100)
+
+
+[macro-memco_call]
+exten => s,1,NoOp(start memco test)
+exten => s,n,Wait(1)
+;wait for secode invitaiton
+:exten => s,n,SendDTMF(A401123450040771#)
+exten => s,n,SendDTMF(A4010001029380009219#)
+;exten => s,n,SendDTMF(A4010000018400020727#)
+;exten => s,n,SendDTMF(A401018400020727#)
+;exten => s,n,Read(F1Response||1)
+exten => s,n,SendDTMF(B11#)
+exten => s,n,Wait(3)
