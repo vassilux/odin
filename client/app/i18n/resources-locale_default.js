@@ -648,6 +648,11 @@
         "key":"_recorder.number.add_",
         "value": "Add new number",
         "description":"Recorder add new number button"
+    },
+    {
+        "key":"_recorder.dialog.edit_number.title_",
+        "value": "Number edition",
+        "description":"Number edition dialog caption"
     }
-    
+   
 ]

@@ -631,7 +631,12 @@
     },
     {
         "key":"_recorder.number.add_",
-        "value": "Ajouter nouveau numèro",
+        "value": "Ajouter nouveau numéro",
         "description":"Recorder add new number button"
+    },
+    {
+        "key":"_recorder.dialog.edit_number.title_",
+        "value": "Edition de numéro",
+        "description":"Number edition dialog caption"
     }
 ]
