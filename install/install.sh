@@ -10,7 +10,7 @@
 # Last modified : 2014-02-20 14:00:00 
 ########################################################################################## 
 
-source /usr/src/scripts/common
+#source /usr/src/scripts/common
 #Debian specific 
 source /etc/bash_completion.d/virtualenvwrapper
 
@@ -18,9 +18,18 @@ MYSQL_ROOT_PW=lepanos
 RC1_DB_USER=sa
 RC1_DB_PASSWORD=ESI
 
+function dprint()
+{
+  tput setb 1
+  level="$1"
+  dtype="$2"
+  value="$3"
+  echo -e "\e[00;31m $dtype:$level $value \e[00m" >&2
+}
+
 function install_system_packages(){
 	dprint 0 INFO "Install system's packages"
-	PACKAGES="python-dev python-twisted supervisor launchtool python-setuptools python-pip redis-server mongodb python-virtualenv virtualenvwrapper"	
+	PACKAGES="python-dev supervisor launchtool python-setuptools python-pip redis-server mongodb python-virtualenv virtualenvwrapper"	
 	
 	CMD=`apt-get -y install ${PACKAGES} `
 	if [ $? != 0 ]; then
@@ -34,8 +43,15 @@ function install_rc1_database(){
 	dprint 0 INFO "Do you want to install rc1 mysql database?[Y/n]"
 	read resp
 	if [ "$resp" = "Y" -o "$resp" = "y" ]; then
+
+    dprint 0 INFO "Please provide host for rc1 user. If empty localhost will be used."  
+    read rc1_host
+    if [ "$rc1_host" = "" -o "$rc1_host" = "n" ]; then
+      rc1_host="localhost"
+    fi
+
 		echo "CREATE DATABASE IF NOT EXISTS rc1;" | mysql -u root -p${MYSQL_ROOT_PW}
-		echo "GRANT ALL PRIVILEGES ON rc1.* TO ${RC1_DB_USER}@localhost IDENTIFIED BY '${RC1_DB_PASSWORD}';" | mysql -u root -p${MYSQL_ROOT_PW}
+		echo "GRANT ALL PRIVILEGES ON rc1.* TO ${RC1_DB_USER}@${rc1_host} IDENTIFIED BY '${RC1_DB_PASSWORD}';" | mysql -u root -p${MYSQL_ROOT_PW}
 		#root used cause SUPER privileges
 		mysql -u root -p${MYSQL_ROOT_PW} rc1 < RC1.sql
 	fi
@@ -129,6 +145,17 @@ function install_pyodin(){
 function main()
 {
 	dprint 0 INFO "Odin installation started."
+
+  dprint 0 INFO "Please check if the mysql and mongodb servers are installed."
+  dprint 0 INFO "If databases servers are not installed."
+  dprint 0 INFO "Execute keSix install-lamp script, located into /usr/src/scripts"
+
+  dprint 0 INFO "Do you want to continue?[y/n]"
+  read resp
+  if [ "$resp" = "" -o "$resp" = "n" ]; then
+    dprint 0 INFO "See you next time. Bye"
+  fi
+
 	install_system_packages
 	install_node_server
 	install_web_client
@@ -144,7 +171,19 @@ function main()
 	dprint 0 INFO "Thank for using ODIN. Good luck."
 }
 
-main
+function main_test()
+{
+  dprint 0 INFO "Please provide host for rc1 user. If empty localhost will be used."  
+  read rc1_host
+  if [ "$rc1_host" = "" -o "$rc1_host" = "n" ]; then
+    rc1_host="localhost"
+  fi
+
+  dprint 0 INFO "rc1 user host name $rc1_host."  
+
+}
+
+main_test
 
 
 

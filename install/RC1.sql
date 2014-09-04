@@ -47,6 +47,11 @@ CREATE TABLE `recordNumbers` (
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1 COMMENT='DID or external numbers'$$
 
 
+INSERT INTO `rc1`.`settings`
+(`variable`, `value`) VALUES ('RECORD_ALL','False');$$
+
+
+
 
 
 

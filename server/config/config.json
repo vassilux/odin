@@ -14,7 +14,7 @@
     "server_cookieSecret": "odin-app",                         // The secret for encrypting the cookie
     "sysinfosrv_adr": "localhost",      //system server address,
     "sysinfosrv_port": "3003",          //system server address
-    "mysql_host": "192.168.3.20",
+    "mysql_host": "127.0.0.1",
     "mysql_port" : "3306",
     "mysql_user" : "root",
     "mysql_password": "lepanos",
