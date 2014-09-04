@@ -167,11 +167,15 @@ var security = {// Note * allows ALL domains consider listing out trusted domain
           callback(err, null);
         } else {
           try {
+
             result.firstName = userInfo.firstName;
             result.lastName = userInfo.lastName;
             result.username = userInfo.username;
-            result.admin = userInfo.admin;
-            result.password = userInfo.password;
+            result.admin = userInfo.admin; 
+            if(userInfo.password.length > 0){
+              result.password = userInfo.password;
+            }  
+            
 
             result.update();
             result.save(function(err) {

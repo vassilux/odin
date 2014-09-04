@@ -30,7 +30,8 @@ angular.module('users', ['ui.bootstrap'])
 
   $scope.listUsers = function() {
     usersCrudService.getUsers(function(status, users){
-      //angular.copy($scope.users, users); todo why not 
+      //console.log("Users : " + JSON.stringify(users));
+      //angular.copy($scope.users, users);  
       $scope.users = users
     });
    
@@ -47,13 +48,15 @@ angular.module('users', ['ui.bootstrap'])
       }
     })).open().then(function(result) {
       if(result) {
+        //console.log("Users edit result: " + JSON.stringify(result));
         angular.copy(result, userToEdit);
+        userToEdit.admin = result.admin;
         usersCrudService.updateUser(userToEdit, function(status){
           userToEdit = undefined;
           $scope.listUsers();
 
         });
-        console.log("update user : " + JSON.stringify(userToEdit) + " result " + JSON.stringify(result));
+        //console.log("update user : " + JSON.stringify(userToEdit) + " result " + JSON.stringify(result));
       }else{
         userToEdit = undefined;
       }
@@ -102,7 +105,7 @@ $scope.addNewUser = function() {
           $scope.listUsers();
 
         });
-      console.log("add user : " + JSON.stringify(userToAdd) + " result " + JSON.stringify(result));
+      //console.log("add user : " + JSON.stringify(userToAdd) + " result " + JSON.stringify(result));
       //angular.copy(result, userToRemove);
     }else{
       userToAdd = undefined;
@@ -120,6 +123,7 @@ $scope.listUsers();
 .controller('EditUserCtrl', ['$rootScope', '$scope', 'dialog', 'userToEdit' , function($rootScope, $scope, dialog, userToEdit ) {
 
   $scope.userToEdit = userToEdit;
+  console.log("User to edit : " + JSON.stringify(userToEdit));
 
   $scope.saveUser = function(user) {
     dialog.close($scope.userToEdit);

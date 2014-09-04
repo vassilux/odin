@@ -270,14 +270,29 @@ app.get('/api/users/:username', function(req, res) {
  * Create a new user
  */
 app.post('/api/users', function(req, res) {
-  logger.log('Get request to create a user : ' + req.body.username);
+  //logger.log('Get request to create a user : ' + req.body.username);
+  //logger.log(' Get request to create a user : ' + JSON.stringify(req.body));
+  var isAdmin=false;
+  var isAdmin=false;
+  if(req.body.admin =="true"){
+    isAdmin = true;
+  }else{
+    isAdmin = false;
+  }
   var newUser = {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     username: req.body.username,
     password: req.body.password,
-    admin: req.body.admin
+    admin: isAdmin
   };
+
+  //fixe the string value from http body to real boolean
+  if(req.body.admin == "true"){
+    newUser.admin = true;
+  }else{
+    newUser.admin = false;
+  }
 
   res.contentType('json');
   security.checkIfUserExist(newUser.username, function(err, user) {
@@ -305,7 +320,7 @@ app.post('/api/users', function(req, res) {
  * Delete an user by username
  */
 app.del('/api/users/:username', function(req, res) {
-  logger.log('Get request to delete a user : ' + req.params.username);
+  logger.debug('Get request to delete a user : ' + req.params.username);
   var username = req.params.username;
 
   res.contentType('json');
@@ -337,24 +352,28 @@ app.del('/api/users/:username', function(req, res) {
 app.put('/api/users/:username', function(req, res) {
   logger.debug('Get request to update the user : ' + req.params.username);
   var username = req.params.username;
-  //logger.log('Get request to update the body part: ' + JSON.stringify(req.body));
-
+  logger.log('Get request to update the body part: ' + JSON.stringify(req.body));
+  //fixe the string value from http body to real boolean
+  var isAdmin=false;
+  if(req.body.admin =="true"){
+    isAdmin = true;
+  }else{
+    isAdmin = false;
+  }
+  //
   var newUser = {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     username: req.body.username,
     password: req.body.password,
-    admin: req.body.admin
-  };
-  //logger.log('Get request to update the new user : ' + req.body); //JSON.stringify(newUser.username));
-
+    admin: isAdmin
+  };  
+  
   res.contentType('json');
   security.updateUser(newUser, function(err, user) {
     if (err) {
-      console.log(" got error fot updated user : " + err);
       res.send('error: An error has occurred when delete the user : ' + username, 500);
     } else {
-      console.log(" updated user : " + JSON.stringify(user));
       res.send(username);
     }
   });

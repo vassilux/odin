@@ -68,7 +68,8 @@ angular.module('users.services',[])
   usersCrudService.updateUser = function(user, callback) {
     console.log(" usersCrudService.updateUser " + JSON.stringify(user));
     var url = "http://" + $rootScope.config.host + ":" + $rootScope.config.port + "/api/users/";
-    var xsrf = $.param({firstName: user.firstName, lastName: user.lastName, username: user.username,  password : user.password, admin: user.admin});
+    var xsrf = $.param({firstName: user.firstName, lastName: user.lastName, 
+      username: user.username,  password : user.password, admin: user.admin});
      $http({
       method: 'PUT',
       url: url + user.firstName,

@@ -14,7 +14,9 @@
             <td>{{user.username}}</td>
             <td>{{user.lastName}}</td>
             <td>{{user.firstName}}</td>
-            <td>{{user.admin}}</td>
+            <td>
+                <input type="checkbox" ng-model="user.admin" ng-disabled="true">
+                </td>
             <td><button class="btn edit" ng-click="editUser(user)" data-i18n="_users.edit_">Edit</button></td>
             <td><button class="btn btn-danger remove" ng-click="removeUser(user)" data-i18n="_users.remove_">Remove</button></td>
         </tr>
