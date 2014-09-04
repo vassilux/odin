@@ -40,6 +40,11 @@
         "description":"Users admin menu text"
     },
     {
+        "key":"_header.menu.admin.recorder_",
+        "value":"Audio recorder",
+        "description":"Recorder admin menu text"
+    },
+    {
         "key":"_header.menu.admin.configuration_",
         "value":"Configuration",
         "description":"Configuration admin menu text"
@@ -653,6 +658,50 @@
         "key":"_recorder.dialog.edit_number.title_",
         "value": "Number edition",
         "description":"Number edition dialog caption"
-    }
-   
+    },
+    {
+        "key":"_recorder.recordall.label_",
+        "value": "Record all",
+        "description":"Label of recordall"
+    },
+    {
+        "key":"_recorder.dialog.add_number.title_",
+        "value": "Add a phone number",
+        "description":"Number add dialog caption"
+    },
+    {
+        "key":"_recorder.dialog.add_number.number.label_",
+        "value": "DID or a phone number",
+        "description":"Number label of the add dialog"
+    },
+    {
+        "key":"_recorder.dialog.add_number.comments.label_",
+        "value": "Comments",
+        "description":"Comments label of the add dialog"
+    },
+    {
+        "key":"_recorder.dialog.add_number.recorded.label_",
+        "value": "Recorded",
+        "description":"Recorded label of the add dialog"
+    },
+    {
+        "key":"_recorder.dialog.add_btn_",
+        "value": "Add",
+        "description":"Add button label of the add dialog"
+    },
+    {
+        "key":"_recorder.dialog.cancel_btn_",
+        "value": "Cancel",
+        "description":"Cancel button label of the add dialog"
+    },
+    {
+        "key":"_recorder.dialog.remove_number.title_",
+        "value": "Remove number",
+        "description":"Remove number dialog title"
+    },
+    {
+        "key":"_recorder.dialog.remove_number.warning_",
+        "value": "Are you sure to remove the given number ?",
+        "description":"Remove number dialog title"
+    }     
 ]

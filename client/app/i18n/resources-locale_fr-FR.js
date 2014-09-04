@@ -31,13 +31,18 @@
     },
     {
         "key":"_header.menu.admin_",
-        "value":"Administration",
+        "value":"Gestion",
         "description":"Admin menu text"
     },
     {
         "key":"_header.menu.admin.users_",
         "value":"Utilisateurs",
         "description":"Users admin menu text"
+    },
+    {
+        "key":"_header.menu.admin.recorder_",
+        "value":"Enregistreur audio",
+        "description":"Recorder admin menu text"
     },
     {
         "key":"_header.menu.admin.configuration_",
@@ -606,17 +611,17 @@
     },
     {
         "key":"_recorder.column.number_",
-        "value": "Numèro",
+        "value": "Numéro",
         "description":"Recorder column number"
     },
     {
         "key":"_recorder.column.comments_",
-        "value": "Commenetaire",
+        "value": "Commentaire",
         "description":"Recorder column comments"
     },
     {
         "key":"_recorder.column.recorded_",
-        "value": "Enregisré",
+        "value": "Enregistré",
         "description":"Recorder column recorded"
     },
     {
@@ -638,5 +643,50 @@
         "key":"_recorder.dialog.edit_number.title_",
         "value": "Edition de numéro",
         "description":"Number edition dialog caption"
-    }
+    },
+    {
+        "key":"_recorder.recordall.label_",
+        "value": "Enregistrer toutes les communications",
+        "description":"Label of recordall"
+    },
+    {
+        "key":"_recorder.dialog.add_number.title_",
+        "value": "Ajouter un numéro",
+        "description":"Number add dialog caption"
+    },
+    {
+        "key":"_recorder.dialog.add_number.number.label_",
+        "value": "SDA ou le numéro de téléphone",
+        "description":"Number label of the add dialog"
+    },
+    {
+        "key":"_recorder.dialog.add_number.comments.label_",
+        "value": "Commentaires",
+        "description":"Number label of the add dialog"
+    },
+    {
+        "key":"_recorder.dialog.add_number.recorded.label_",
+        "value": "Enregistré",
+        "description":"Recorded label of the add dialog"
+    },
+    {
+        "key":"_recorder.dialog.add_btn_",
+        "value": "Ajouter",
+        "description":"Add button label of the add dialog"
+    },
+    {
+        "key":"_recorder.dialog.cancel_btn_",
+        "value": "Annuler",
+        "description":"Cancel button label of the add dialog"
+    },
+    {
+        "key":"_recorder.dialog.remove_number.title_",
+        "value": "Suppression de numéro",
+        "description":"Remove number dialog title"
+    },
+    {
+        "key":"_recorder.dialog.remove_number.warning_",
+        "value": "Êtes-vous sûr de vouloir supprimer le numéro donné?",
+        "description":"Remove number dialog title"
+    }    
 ]
