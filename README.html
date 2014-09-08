@@ -87,6 +87,45 @@ exten =&gt; s,n(exit),MacroExit()
  exten = h,1,Macro(record-stop)
  same =&gt; n,Macro(record-rc1-converter)
  same =&gt; n,NoOp(Monitor file hangup : ${MIXMON_DIR}${MONITOR_CALL_FILE_NAME})</code></pre>
+<p>Dialplan example :</p>
+<pre><code>[from-external-recording]
+exten = _X.,1,NoOp(from-external-recording : ${CALLERID(all)})
+same =&gt; n,Macro(record-enable)
+same =&gt; n,NoOp(Monitor file :${MIXMON_DIR}${MONITOR_CALL_FILE_NAME})
+;same =&gt; n,Set(CHANNEL(hangup_handler_push)=hangup-handler,s,1)
+same =&gt; n,Set(TIMEOUT(absolute)=60)
+same =&gt; n,Dial(SIP/6005&amp;SIP/6006,60,tTkK)
+same =&gt; n,Hangup()
+exten = h,1,Macro(record-stop)
+same =&gt; n,Macro(record-rc1-converter)
+same =&gt; n,NoOp(Monitor file hangup : ${MIXMON_DIR}${MONITOR_CALL_FILE_NAME})
+
+[from-external-f1com]
+exten = _X.,1,NoOp(from-external-recording-f1com : ${CALLERID(all)})
+same =&gt; n,UserEvent(incommingcall,Context:from-external, channel: ${CHANNEL}, extention:${EXTEN},calleridnum:${CALLERID(num)},calleridname:${CALLERID(name)},uniqueid: ${CDR(uniqueid)})
+same =&gt; n,Macro(record-enable)
+same =&gt; n,NoOp(Monitor file :${MIXMON_DIR}${MONITOR_CALL_FILE_NAME})
+;same =&gt; n,Set(CHANNEL(hangup_handler_push)=hangup-handler,s,1)
+same =&gt; n,AGI(agi://127.0.0.1:4575)
+same =&gt; n,Set(TIMEOUT(absolute)=60)
+same =&gt; n,Goto(queues,6500,1)
+same =&gt; n,Hangup()
+exten = h,1,Macro(record-stop)
+same =&gt; n,Macro(record-rc1-converter)
+same =&gt; n,NoOp(Monitor file hangup : ${MIXMON_DIR}${MONITOR_CALL_FILE_NAME})
+
+
+[hangup-handler]
+exten =&gt; s,1,NoOp(Hangup handler)
+same=&gt; n,Macro(record-stop)
+same=&gt; n,Macro(record-rc1-converter)
+same=&gt; n,Return()
+
+
+[from-somewhere]
+include = parkedcalls
+;exten = _X.,1,Goto(from-external-f1com,${EXTEN},1)
+exten = _X.,1,Goto(from-external-recording,${EXTEN},1)</code></pre>
 <h3 id="installation">Installation</h3>
 <p>Please transfer odin_[version].tar.gz file into /opt directory of the target host.</p>
 <p>Execute tar xvzf odin_[version].tar.gz</p>
