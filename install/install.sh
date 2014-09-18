@@ -183,7 +183,7 @@ function main_test()
 
 }
 
-main_test
+main
 
 
 
