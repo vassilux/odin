@@ -3,7 +3,6 @@
 # 
 # Description : Prepare deploy packages for odin application. 
 # Author : vassilux
-# Last modified : 2014-02-20 14:37:47 
 #
 
 set -e
